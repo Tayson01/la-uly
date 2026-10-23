@@ -52,7 +52,7 @@ function ContactPage() {
             </Btn>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3 lg:mt-10 lg:grid-cols-1 lg:gap-4">
+          <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:mt-10 lg:grid-cols-1 lg:gap-4">
             <a
               href={`tel:${TEL}`}
               className="rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-card lg:p-6"

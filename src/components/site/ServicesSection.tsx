@@ -54,16 +54,16 @@ export function ServicesSection() {
         <div data-service-reveal className="svc-heading mx-auto max-w-3xl lg:text-center">
           <div className="flex flex-wrap items-center justify-between gap-4 lg:flex-col lg:justify-center lg:gap-3">
             <span className="inline-flex items-center gap-2 rounded-full bg-success/10 px-3 py-1 text-[11px] font-bold text-success lg:order-first"><span className="svc-status size-1.5 rounded-full bg-success" />Dispecerat activ chiar acum</span>
-            <SectionLabel>Servicii · Timișoara și județul Timiș</SectionLabel>
+            <SectionLabel>Servicii · Arad, non-stop</SectionLabel>
           </div>
           <h2 className="mt-3 text-[26px] font-extrabold leading-[1.15] tracking-tight sm:text-3xl lg:text-4xl">
             Atelier deschis <span className="svc-hours inline-block text-brand">24/24.</span>
             <span className="svc-title-second mt-1 block">Echipă mobilă la tine.</span>
           </h2>
-          <p className="mt-5 text-sm leading-relaxed text-muted-foreground lg:mx-auto lg:max-w-xl">Vii la noi pe Str. Cloșca oricând, zi sau noapte — sau venim noi la tine, pe A1, Centură, DN69, DN59, tot județul Timiș și pe A1 (Nădlac – Margina).</p>
+          <p className="mt-5 text-sm leading-relaxed text-muted-foreground lg:mx-auto lg:max-w-xl">Vii la noi pe Calea Zimandului nr. 14 oricând, zi sau noapte — sau venim noi la tine. Schimb 4 anvelope cu echilibrare: 160 RON jante oțel, 180 RON jante aluminiu.</p>
           <div className="mt-6 flex flex-wrap gap-2.5 text-xs font-semibold lg:justify-center">
             <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-card"><Moon className="size-4 text-brand" />Zi și noapte, fără program</span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-card"><Car className="size-4 text-brand" />Tot județul + A1</span>
+            <span className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 shadow-card"><Car className="size-4 text-brand" />Deplasări la client</span>
           </div>
         </div>
 
@@ -73,7 +73,7 @@ export function ServicesSection() {
             <article data-service-reveal className="svc-feature group relative overflow-hidden rounded-lg border border-border bg-card">
               <div className="min-w-0 p-5 sm:p-8">
                 <div className="flex items-center justify-between gap-3">
-                  <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand"><Truck className="svc-mobile-icon size-4" />Mobil · tot Timișul</span>
+                  <span className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-brand"><Truck className="svc-mobile-icon size-4" />Mobil · la tine, 24/24</span>
                   <span className="svc-always inline-flex items-center gap-1.5 text-xs font-black tabular-nums text-brand"><Clock className="size-4" />24/24</span>
                 </div>
                 <div className="mt-5 grid gap-5 lg:grid-cols-2 lg:gap-12">
