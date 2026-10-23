@@ -1,0 +1,7 @@
+[
+ {"capability":"code","source":"github:Tayson01/vulcanizaretimisoara.ro","outcome":"migrate","status":"in_progress","next_action":"copy src, public, assets"},
+ {"capability":"schema/records/auth","source":"none detected","outcome":"not_applicable","status":"verified","next_action":"none - static site"},
+ {"capability":"contact form","source":"WhatsApp deep link (client-side)","outcome":"preserve","status":"in_progress","next_action":"verify"},
+ {"capability":"sitemap.xml route","source":"src/routes/sitemap[.]xml.ts","outcome":"preserve","status":"in_progress","next_action":"verify"},
+ {"capability":"secrets","source":"none","outcome":"not_applicable","status":"verified","next_action":"none"}
+]
