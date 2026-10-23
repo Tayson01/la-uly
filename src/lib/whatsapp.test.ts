@@ -8,6 +8,6 @@ describe("whatsapp location", () => {
     );
   });
   it("targets the business WhatsApp number", () => {
-    expect(waLink("x")).toBe("https://wa.me/40725138493?text=x");
+    expect(waLink("x")).toBe("https://wa.me/40746538480?text=x");
   });
 });
