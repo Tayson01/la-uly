@@ -14,10 +14,10 @@ export const Route = createFileRoute("/servicii/$slug")({
   },
   head: ({ loaderData }) => {
     const s = loaderData?.service;
-    const title = s ? `${s.title} în Timișoara — Vulcanizare Non Stop Timișoara` : "Serviciu — Vulcanizare Non Stop Timișoara";
+    const title = s ? `${s.title} în Arad — Vulcanizare La Uly` : "Serviciu — Vulcanizare La Uly Arad";
     const description = s
-      ? `${s.desc} Preț la telefon, durată ${s.duration}. Sună la ${PHONE}.`
-      : "Vulcanizare non-stop în Timișoara și intervenții mobile tot județul Timiș și pe A1 (Nădlac – Margina).";
+      ? `${s.desc} Durată ${s.duration}. Sună la ${PHONE}.`
+      : "Vulcanizare non-stop în Arad, cu deplasări la client 24/24.";
     return {
       meta: [
         { title },
@@ -94,7 +94,7 @@ function ServicePage() {
       <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-3xl bg-brand p-7 text-brand-foreground">
         <div>
           <p className="text-lg font-bold">Ai nevoie acum de {service.title.toLowerCase()}?</p>
-          <p className="text-sm opacity-90">Suntem deschiși 24/24 în Timișoara și venim la tine tot județul Timiș și pe A1 (Nădlac – Margina).</p>
+          <p className="text-sm opacity-90">Suntem deschiși 24/24 pe Calea Zimandului nr. 14, Arad, și venim la tine non-stop.</p>
         </div>
         <div className="flex flex-wrap gap-3">
           <a

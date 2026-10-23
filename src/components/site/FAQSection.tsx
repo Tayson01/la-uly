@@ -60,7 +60,7 @@ export function FAQSection() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
             Prețuri, program, timpi de sosire și plată — tot ce trebuie să știi despre
-            Vulcanizare Non Stop Timișoara, într-un singur loc.
+            Vulcanizare La Uly, într-un singur loc.
           </p>
         </div>
 
