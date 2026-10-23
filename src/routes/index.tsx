@@ -17,7 +17,7 @@ import { ServicesSection } from "@/components/site/ServicesSection";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ContactSection } from "@/components/site/ContactSection";
 import { InterventionsGallery } from "@/components/site/InterventionsGallery";
-import { BASE, MAPS, PHONE, TEL, WA, zones } from "@/lib/site-data";
+import { ADDRESS, BRAND, COMPANY, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
@@ -25,17 +25,17 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Vulcanizare Non Stop Timișoara 24/24 – Non-stop & Mobilă | 0725 138 493" },
+      { title: "Vulcanizare La Uly Arad – Non-stop 24/24 | 0746 538 480" },
       {
         name: "description",
         content:
-          "Vulcanizare deschisă non-stop în Timișoara, pe Str. Cloșca 33, plus vulcanizare mobilă în Dumbrăvița, Giroc, Ghiroda, Moșnița și Săcălaz, tot județul Timiș și pe A1 (Nădlac – Margina), pentru autoturisme, camioane și flote.",
+          "Vulcanizare La Uly, deschis non-stop pe Calea Zimandului nr. 14, Grădiște, Arad. Vulcanizare, schimb anvelope și echilibrare: 4 anvelope de la 160 RON. Deplasări la client 24/24.",
       },
-      { property: "og:title", content: "Vulcanizare Non Stop Timișoara 24/24 – Non-stop & Mobilă" },
+      { property: "og:title", content: "Vulcanizare La Uly Arad – Non-stop 24/24" },
       {
         property: "og:description",
         content:
-          "Intervenții rapide 24/24 pentru autoturisme, camioane și flote, în atelier sau direct la locația ta, în Timiș.",
+          "Vulcanizare, schimb anvelope și echilibrare non-stop în Arad, în atelier sau la tine. 160 RON jante oțel, 180 RON jante aluminiu.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -47,23 +47,20 @@ export const Route = createFileRoute("/")({
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "AutoRepair",
-          name: "Vulcanizare Non Stop Timișoara",
-          telephone: TEL,
+          name: BRAND,
+          legalName: COMPANY.name,
+          telephone: [TEL, TEL2],
           url: "https://vulcanizaretimisoara.ro/",
           address: {
             "@type": "PostalAddress",
-            streetAddress: "Str. Cloșca, Nr. 33, Timișoara",
-            addressLocality: "Timișoara",
-            postalCode: "300350",
+            streetAddress: "Calea Zimandului nr. 14",
+            addressLocality: "Arad",
+            addressRegion: "Arad",
+            postalCode: "310216",
             addressCountry: "RO",
           },
-          geo: {
-            "@type": "GeoCoordinates",
-            latitude: BASE[0],
-            longitude: BASE[1],
-          },
           openingHours: "Mo-Su 00:00-23:59",
-          areaServed: [...new Set(zones.flatMap((z) => [z.name, ...z.localities]))].map((name) => ({ "@type": "Place", name: `${name}, județul Timiș` })),
+          areaServed: [{ "@type": "City", name: "Arad" }],
           image: "https://vulcanizaretimisoara.ro/favicon.png",
           sameAs: [MAPS],
         }),
@@ -96,7 +93,7 @@ function Index() {
                 <span className="fx-word" style={{ animationDelay: "80ms" }}>Vulcanizare</span>{" "}
                 <span className="fx-word" style={{ animationDelay: "200ms" }}>în</span>{" "}
                 <span className="fx-word fx-text-gradient relative inline-block">
-                  Timișoara
+                  Arad
                   <svg
                     aria-hidden
                     viewBox="0 0 220 12"
@@ -109,14 +106,13 @@ function Index() {
               </h1>
 
               <p className="mt-4 max-w-xl text-[15px] leading-relaxed text-muted-foreground sm:mt-6 sm:text-lg">
-                Vulcanizare non-stop în Timișoara, pe Str. Cloșca 33.{" "}
-                <span className="hidden sm:inline">Vino la noi oricând sau venim noi la tine: Dumbrăvița, Giroc, Ghiroda, Moșnița și Săcălaz, tot județul Timiș și pe A1 (Nădlac – Margina).</span>
-                <span className="sm:hidden">Venim la tine tot județul Timiș și pe A1 (Nădlac – Margina).</span>
+                <strong className="font-bold text-foreground">{BRAND}</strong> — deschis non-stop pe {ADDRESS}.{" "}
+                Vulcanizare, schimb anvelope și echilibrare. Vino oricând sau venim noi la tine.
               </p>
 
               <div className="fx-hero-media fx-cam mt-5 shadow-float lg:hidden">
                 <span aria-hidden className="fx-scan" />
-                <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție non-stop noaptea în Timișoara" className="aspect-[16/10] w-full object-cover" />
+                <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție de vulcanizare non-stop, noaptea" className="aspect-[16/10] w-full object-cover" />
                 <div aria-hidden className="absolute inset-0 z-[1] bg-gradient-to-t from-foreground/80 via-foreground/10 to-transparent" />
                 <div className="absolute inset-x-3 bottom-3 z-[2] flex items-center justify-between gap-2">
                   <span className="flex items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-[10px] font-black uppercase tracking-widest text-brand-foreground shadow-glow"><span className="fx-rec" />Live · Non-stop</span>
@@ -134,33 +130,36 @@ function Index() {
                 </Btn>
                 <p className="flex items-center justify-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
                   <Clock className="size-3.5 text-brand" />
-                  Sosire medie 15–30 min · preț stabilit la telefon, fără surprize
+                  4 anvelope + echilibrare: {PRICES.steel} oțel · {PRICES.alloy} aluminiu
                 </p>
                 <div className="grid grid-cols-2 gap-2.5">
                   <Btn href={MAPS} target="_blank" rel="noreferrer" variant="ghost" className="group min-h-13 justify-center px-3 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-card">
                     <MapPin className="size-4 text-brand transition-transform group-hover:scale-110" /> Locație
                   </Btn>
                   <Btn href={WA} target="_blank" rel="noreferrer" variant="ghost" className="group min-h-13 justify-center px-3 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-card">
-                    <MessageCircle className="size-4 text-brand transition-transform group-hover:scale-110" /> Cere ofertă
+                    <MessageCircle className="size-4 text-brand transition-transform group-hover:scale-110" /> WhatsApp
                   </Btn>
                 </div>
+                <Btn href={`tel:${TEL2}`} variant="ghost" className="group min-h-13 justify-center px-3 transition-all hover:-translate-y-0.5 hover:border-brand/40 hover:shadow-card">
+                  <Phone className="size-4 text-brand" /> Al doilea număr: <span className="tabular-nums">{PHONE2}</span>
+                </Btn>
               </div>
 
               {/* Mobil: card premium cu cifre cheie, fără fotografie */}
               <div className="relative mt-6 overflow-hidden rounded-3xl border border-border bg-card shadow-card lg:hidden">
                 <div aria-hidden className="absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-brand via-brand/60 to-brand" />
                 <div className="grid grid-cols-3 divide-x divide-border pt-1">
-                  {[["24/24","non-stop"],["15–30","min sosire"],["Timiș","+ A1"]].map(([a,b]) => (
+                  {[["24/24","non-stop"],["160","RON · 4 roți"],["Arad","+ la tine"]].map(([a,b]) => (
                     <div key={a} className="px-2 py-4 text-center">
                       <div className="text-xl font-black tabular-nums leading-none tracking-tight text-foreground">
-                        {a === "24/24" ? <><CountUp to={24} />/<CountUp to={24} /></> : a === "15–30" ? <><CountUp to={15} />–<CountUp to={30} /></> : a}
+                        {a === "24/24" ? <><CountUp to={24} />/<CountUp to={24} /></> : a === "160" ? <CountUp to={160} /> : a}
                       </div>
                       <div className="mt-1.5 text-[9px] font-bold uppercase tracking-[0.18em] text-brand">{b}</div>
                     </div>
                   ))}
                 </div>
                 <ul className="grid grid-cols-2 gap-x-3 gap-y-2.5 border-t border-border bg-muted/40 px-4 py-4 text-[12px] font-semibold text-foreground/80">
-                  {["Fără programare", "Plată card / cash", "Autoturisme & camioane", "Factură pentru firme"].map((t) => (
+                  {["Fără programare", "Echilibrare inclusă", "Autoturisme & camioane", "Deplasări la client"].map((t) => (
                     <li key={t} className="flex items-center gap-2">
                       <span className="flex size-5 shrink-0 items-center justify-center rounded-full bg-brand text-[10px] font-black text-brand-foreground">✓</span>
                       <span className="min-w-0">{t}</span>
@@ -173,7 +172,7 @@ function Index() {
                     <span className="relative grid size-9 place-items-center rounded-full border-2 border-card bg-brand text-[14px] font-black italic text-brand-foreground shadow-card">V</span>
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[13px] font-black text-foreground">Str. Cloșca nr. 33</span>
+                    <span className="block text-[13px] font-black text-foreground">Calea Zimandului nr. 14</span>
                     <span className="block text-[11px] font-semibold text-muted-foreground">Vezi pe hartă în cât timp ajungem</span>
                   </span>
                   <span className="flex items-center gap-1 rounded-full bg-brand px-3 py-1.5 text-[11px] font-black uppercase tracking-wider text-brand-foreground shadow-card transition-transform group-hover:translate-y-0.5">
@@ -188,17 +187,17 @@ function Index() {
             <div className="min-w-0">
               <div className="relative hidden lg:block">
                 <div className="fx-hero-media group relative overflow-hidden rounded-[32px] shadow-float ring-1 ring-border">
-                  <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție non-stop noaptea: autospeciala Vulcanizare Non Stop Timișoara la lucru lângă mașina clientului" className="hero-kb aspect-[4/3] w-full object-cover" />
+                  <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție de vulcanizare non-stop noaptea, lângă mașina clientului" className="hero-kb aspect-[4/3] w-full object-cover" />
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-foreground/30" />
 
                   <div className="absolute inset-x-5 top-5 z-[2] flex items-center justify-between">
                     <span className="flex items-center gap-2 rounded-full bg-brand px-3.5 py-1.5 text-[11px] font-black uppercase tracking-widest text-brand-foreground shadow-glow"><span className="fx-rec" />Live · Non-stop</span>
-                    <span className="rounded-full bg-background/15 px-3.5 py-1.5 text-[11px] font-bold text-background ring-1 ring-background/25 backdrop-blur-md">Intervenție reală · Timișoara</span>
+                    <span className="rounded-full bg-background/15 px-3.5 py-1.5 text-[11px] font-bold text-background ring-1 ring-background/25 backdrop-blur-md">Non-stop · Arad</span>
                   </div>
 
                   <div className="absolute inset-x-5 bottom-5 z-[2]">
                     <div className="grid grid-cols-3 divide-x divide-background/20 rounded-2xl bg-background/10 py-3.5 ring-1 ring-background/20 backdrop-blur-xl">
-                      {[["24/24","non-stop"],["15–30","min sosire"],["Timiș","+ A1"]].map(([a,b]) => (
+                      {[["24/24","non-stop"],["160 RON","4 roți · oțel"],["180 RON","4 roți · aluminiu"]].map(([a,b]) => (
                         <div key={a} className="text-center">
                           <div className="text-2xl font-black tabular-nums leading-none text-background">{a}</div>
                           <div className="mt-1.5 text-[10px] font-bold uppercase tracking-[0.2em] text-background/70">{b}</div>
@@ -214,7 +213,7 @@ function Index() {
                     <span className="relative grid size-10 place-items-center rounded-full border-2 border-card bg-brand text-[15px] font-black italic text-brand-foreground shadow-card">V</span>
                   </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block text-[15px] font-black text-foreground">Str. Cloșca nr. 33, Timișoara</span>
+                    <span className="block text-[15px] font-black text-foreground">{ADDRESS}</span>
                     <span className="block text-xs font-semibold text-muted-foreground">Vezi pe hartă în cât timp ajungem</span>
                   </span>
                   <span className="flex items-center gap-1 rounded-full bg-brand px-4 py-2 text-xs font-black uppercase tracking-wider text-brand-foreground shadow-card transition-transform group-hover:translate-y-0.5">
