@@ -3,22 +3,22 @@ import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
 
 import { Btn, SectionLabel } from "@/components/site/ui";
 import { ContactForm } from "@/components/site/ContactForm";
-import { ADDRESS, COMPANY, MAPS, PHONE, TEL, WA } from "@/lib/site-data";
+import { ADDRESS, COMPANY, MAPS, PHONE, PHONE2, TEL, TEL2, WA } from "@/lib/site-data";
 
 export const Route = createFileRoute("/contact")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Contact — Vulcanizare Non Stop Timișoara, non-stop" },
+      { title: "Contact — Vulcanizare La Uly Arad, non-stop" },
       {
         name: "description",
         content:
-          "Sună la 0725 138 493 sau trimite locația pe WhatsApp. Vulcanizare non-stop în Timișoara și intervenții mobile, Str. Cloșca, Nr. 33, Timișoara.",
+          "Sună la 0746 538 480 sau 0746 765 469. Vulcanizare La Uly, deschis non-stop pe Calea Zimandului nr. 14, Grădiște, Arad, cu deplasări la client 24/24.",
       },
-      { property: "og:title", content: "Contact — Vulcanizare Non Stop Timișoara" },
+      { property: "og:title", content: "Contact — Vulcanizare La Uly Arad" },
       {
         property: "og:description",
-        content: "Telefon, WhatsApp cu locație și adresă — vulcanizare non-stop în Timișoara, Timiș.",
+        content: "Telefon, WhatsApp și adresă — Vulcanizare La Uly, non-stop în Arad.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -59,7 +59,15 @@ function ContactPage() {
             >
               <Phone className="size-5 text-brand" />
               <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">Telefon · WhatsApp</p>
-              <p className="font-bold lg:text-lg">{PHONE}</p>
+              <p className="font-bold tabular-nums lg:text-lg">{PHONE}</p>
+            </a>
+            <a
+              href={`tel:${TEL2}`}
+              className="rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-card lg:p-6"
+            >
+              <Phone className="size-5 text-brand" />
+              <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">Telefon 2</p>
+              <p className="font-bold tabular-nums lg:text-lg">{PHONE2}</p>
             </a>
             <a
               href={MAPS}
@@ -74,7 +82,7 @@ function ContactPage() {
             <div className="rounded-3xl border border-border bg-card p-5 lg:p-6">
               <Clock className="size-5 text-brand" />
               <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">Program</p>
-              <p className="font-bold lg:text-lg">Non-stop în Timișoara, 24/24</p>
+              <p className="font-bold lg:text-lg">Non-stop, 24/24 · și deplasări la client</p>
             </div>
           </div>
         </div>

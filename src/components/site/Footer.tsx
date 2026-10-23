@@ -2,7 +2,7 @@ import { BrandLogo } from "./BrandLogo";
 import { Link } from "@tanstack/react-router";
 import { Phone, MessageCircle, MapPin, ChevronRight, Clock } from "lucide-react";
 
-import { COMPANY, PHONE, TEL, ADDRESS, WA, services, zones } from "@/lib/site-data";
+import { BRAND, COMPANY, PHONE, PHONE2, TEL, TEL2, ADDRESS, WA, services, zones } from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -11,7 +11,7 @@ export function Footer() {
         <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-brand/60 to-transparent" />
         <div className="mx-auto grid max-w-6xl gap-10 px-5 py-14 sm:grid-cols-2 lg:grid-cols-4">
           <div>
-            <Link to="/" aria-label="Vulcanizare Non Stop Timișoara"><BrandLogo size="lg" /></Link>
+            <Link to="/" aria-label={BRAND}><BrandLogo size="lg" /></Link>
             <span className="mt-4 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-semibold text-success">
               <span className="relative flex size-2">
                 <span className="absolute inline-flex size-full animate-ping rounded-full bg-success opacity-70 motion-reduce:animate-none" />
@@ -20,7 +20,7 @@ export function Footer() {
               Deschis non-stop · 24/24
             </span>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Vulcanizare deschisă 24/24 în Timișoara, plus intervenții mobile tot județul Timiș și pe A1 (Nădlac – Margina).
+              Vulcanizare, schimb anvelope și echilibrare, deschis non-stop în Arad, plus deplasări la client 24/24.
             </p>
             <p className="mt-4 flex items-start gap-2 text-sm text-muted-foreground">
               <MapPin className="mt-0.5 size-4 shrink-0 text-brand" /> {ADDRESS}
@@ -67,6 +67,9 @@ export function Footer() {
             <div className="mt-3 grid gap-2">
               <a href={`tel:${TEL}`} className="flex items-center gap-3 rounded-xl bg-brand px-4 py-3 text-sm font-bold text-brand-foreground shadow-card transition-transform active:scale-[0.98]">
                 <Phone className="size-4" /> <span className="tabular-nums">{PHONE}</span>
+              </a>
+              <a href={`tel:${TEL2}`} className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-semibold transition-colors hover:border-brand hover:text-brand">
+                <Phone className="size-4 text-brand" /> <span className="tabular-nums">{PHONE2}</span>
               </a>
               <a href={WA} className="flex items-center gap-3 rounded-xl border border-border bg-background px-4 py-3 text-sm font-semibold transition-colors hover:border-brand hover:text-brand">
                 <MessageCircle className="size-4 text-brand" /> Scrie pe WhatsApp

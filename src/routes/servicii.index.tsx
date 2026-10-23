@@ -9,16 +9,16 @@ export const Route = createFileRoute("/servicii/")({
   staticData: { sitemap: true },
   head: () => ({
     meta: [
-      { title: "Servicii — Vulcanizare Non Stop Timișoara — listă completă" },
+      { title: "Servicii — Vulcanizare La Uly Arad — schimb anvelope de la 160 RON" },
       {
         name: "description",
         content:
-          "Toate serviciile Vulcanizare Non Stop Timișoara, deschisă 24/24 și cu intervenții mobile pe teren: asistență rutieră 24/24, reparație pană pe loc, montaj la domiciliu, echilibrare roți și vulcanizare camioane.",
+          "Vulcanizare La Uly, non-stop în Arad: vulcanizare, schimb anvelope și echilibrare. 4 anvelope + echilibrare: 160 RON jante oțel, 180 RON jante aluminiu.",
       },
-      { property: "og:title", content: "Servicii — Vulcanizare Non Stop Timișoara" },
+      { property: "og:title", content: "Servicii — Vulcanizare La Uly Arad" },
       {
         property: "og:description",
-        content: "Asistență rutieră, reparații pe loc, montaj la domiciliu, echilibrare roți și camioane.",
+        content: "Vulcanizare, schimb anvelope și echilibrare roți, non-stop în Arad.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -36,7 +36,7 @@ function ServiciiPage() {
         Tot ce ai nevoie, într-un singur loc.
       </h1>
       <p className="mt-4 max-w-2xl text-muted-foreground">
-        De la pene neașteptate pe drum până la întreținere programată — echipa noastră din Timișoara se
+        De la pene neașteptate pe drum până la întreținere programată — echipa noastră din Arad se
         ocupă de tot, 24/24.
       </p>
 
