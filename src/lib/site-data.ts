@@ -1,10 +1,18 @@
-export const PHONE = "0725 138 493";
-export const TEL = "+40725138493";
-export const WA_NUMBER = "40725138493";
+export const BRAND = "Vulcanizare La Uly";
+export const CITY = "Arad";
+export const PHONE = "0746 538 480";
+export const TEL = "+40746538480";
+export const PHONE2 = "0746 765 469";
+export const TEL2 = "+40746765469";
+export const WA_NUMBER = "40746538480";
 export const WA =
-  "https://wa.me/40725138493?text=Bun%C4%83%20ziua!%20Am%20nevoie%20de%20vulcanizare.";
-export const MAPS = "https://share.google/zFf8sUj8ZdYxTATsm";
+  "https://wa.me/40746538480?text=Bun%C4%83%20ziua!%20Am%20nevoie%20de%20vulcanizare.";
+export const MAPS = "https://www.google.com/maps/search/?api=1&query=Calea+Zimandului+14%2C+Arad";
 export const REVIEWS = MAPS;
+export const PRICES = {
+  steel: "160 RON",
+  alloy: "180 RON",
+};
 
 export const COVERAGE = {
   county: "Timiș",
@@ -48,9 +56,9 @@ export const services: Service[] = [
     slug: "vulcanizare-atelier-non-stop",
     icon: "wrench",
     title: "Vulcanizare non-stop în atelier",
-    desc: "Atelier deschis 24/24 pe Str. Cloșca 33, Timișoara — vii oricând, fără programare.",
+    desc: "Atelier deschis 24/24 pe Calea Zimandului nr. 14, Arad — vii oricând, fără programare.",
     intro:
-      "Atelierul nostru din Timișoara, pe Str. Cloșca 33, este deschis zi și noapte, inclusiv în weekend și de sărbători. Vii cu mașina oricând și rezolvăm pe loc pene, montaj, echilibrare sau schimb de anvelope.",
+      "Atelierul nostru din Grădiște, Arad, pe Calea Zimandului nr. 14, este deschis zi și noapte, inclusiv în weekend și de sărbători. Vii cu mașina oricând și rezolvăm pe loc pene, schimb de anvelope sau echilibrare.",
     price: "Preț la telefon",
     priceFrom: "Preț la telefon",
     priceNote: "fără programare, 24/24",
@@ -61,91 +69,93 @@ export const services: Service[] = [
     bullets: [
       "Deschis 24/24, 7 zile din 7",
       "Montaj, demontaj și echilibrare electronică",
-      "Reparații pene, valve și senzori de presiune",
+      "Reparații pene și schimb valve",
       "Autoturisme, SUV-uri, utilitare și camioane",
     ],
     steps: [
-      "Vii pe Str. Cloșca 33, Timișoara, oricând",
+      "Vii pe Calea Zimandului nr. 14, Arad, oricând",
       "Verificăm anvelopele și îți spunem prețul",
       "Facem lucrarea pe loc",
-      "Plătești cu cardul, transfer sau numerar",
+      "Plătești și pleci în siguranță",
     ],
   },
   {
     slug: "asistenta-rutiera",
     icon: "lifebuoy",
-    title: "Asistență rutieră 24/24",
-    desc: "Intervenim non-stop pe A1, DN6, DN69 și în toată zona Timișoarei, indiferent de oră.",
+    title: "Deplasare la client 24/24",
+    desc: "Ai pană și nu poți ajunge la atelier? Venim noi la tine, non-stop, în Arad și împrejurimi.",
     intro:
-      "Rămâi cu pana pe autostradă sau pe drum național? Venim la tine cu duba de intervenție, complet echipată, la orice oră din zi sau din noapte. Vulcanizarea mobilă rezolvă pe teren, 24/24, fără să îți muți mașina.",
+      "Rămâi cu pana acasă, la birou sau pe drum? Sună-ne sau trimite locația pe WhatsApp și venim la tine, la orice oră din zi sau din noapte, ca să rezolvăm pe loc.",
     price: "Preț la telefon",
     priceFrom: "Preț la telefon",
-    priceNote: "deplasare inclusă în oraș",
+    priceNote: "în funcție de distanță",
     pricing: [
-      { label: "Timișoara oraș", value: "la telefon", note: "deplasare inclusă" },
-      { label: "A1 / DN6 / DN69 / Centură", value: "la telefon", note: "autostradă & drum național" },
-      { label: "Camioane & utilitare", value: "personalizat", note: "contracte flote" },
+      { label: "Deplasare", value: "la telefon", note: "în funcție de distanță" },
     ],
-    duration: "20–40 minute pe loc",
+    duration: "în funcție de distanță",
     bullets: [
-      "Intervenții pe A1, DN6, DN69, DN59, Centura Timișoarei și drumurile județene",
-      "Sculărie profesională și compresor la bord",
-      "Anvelope de schimb pentru cele mai comune dimensiuni",
-      "Semnalizare corectă a zonei de lucru, în siguranță",
+      "Disponibil non-stop, 24/24",
+      "Sculărie profesională și compresor",
+      "Reparație pană sau montaj roată de rezervă pe loc",
+      "Prețul îl afli la telefon, înainte să plecăm",
     ],
     steps: [
       "Ne suni sau trimiți locația pe WhatsApp",
-      "Confirmăm timpul de sosire și prețul estimat",
+      "Îți spunem în cât timp ajungem și cât costă",
       "Ajungem la tine și reparăm pe loc",
-      "Plătești cu cardul, transfer sau numerar",
+      "Plătești și pleci mai departe",
     ],
   },
   {
     slug: "reparatii-pe-loc",
     icon: "wrench",
-    title: "Reparație pană pe loc",
-    desc: "Pene, tăieturi sau valve defecte — reparate la fața locului, cu vulcanizarea mobilă.",
+    title: "Reparație pană",
+    desc: "Pene, tăieturi ușoare sau valve defecte — reparate rapid, în atelier sau la fața locului.",
     intro:
-      "Reparăm pana direct acolo unde ești: plombă internă, ciuperci de vulcanizare, schimb de valvă sau resigilare jantă. Anvelopa rămâne sigură pentru rulaj normal, cu garanție pentru lucrare.",
+      "Reparăm pana cu plombă internă sau ciupercă, schimbăm valva sau resigilăm janta. Îți spunem sincer dacă anvelopa se poate repara în siguranță.",
     price: "Preț la telefon",
     priceFrom: "Preț la telefon",
-    priceNote: "reparație simplă pe loc",
+    priceNote: "reparație simplă",
     duration: "15–30 minute",
     bullets: [
-      "Plombă internă la cald sau ciupercă (reparație permanentă)",
-      "Reparație tăieturi laterale ușoare, unde e sigur",
-      "Schimb valve și senzori de presiune",
-      "Verificare presiune la toate roțile, gratuit",
+      "Plombă internă sau ciupercă (reparație permanentă)",
+      "Reparație tăieturi ușoare, unde e sigur",
+      "Schimb valve",
+      "Verificare presiune la toate roțile",
     ],
     steps: [
-      "Diagnosticăm anvelopa la fața locului",
+      "Verificăm anvelopa",
       "Îți spunem dacă reparația e sigură sau e nevoie de anvelopă nouă",
       "Reparăm, umflăm și verificăm etanșeitatea",
-      "Primești garanție pentru lucrare",
+      "Pleci în siguranță",
     ],
   },
   {
     slug: "montaj-domiciliu",
     icon: "circle",
-    title: "Schimb anvelope la domiciliu",
-    desc: "Montaj vară/iarnă direct acasă sau la birou, fără timpi de așteptare.",
+    title: "Schimb anvelope",
+    desc: "Schimb 4 anvelope cu echilibrare: 160 RON jante oțel, 180 RON jante aluminiu.",
     intro:
-      "Venim cu utilajul mobil de montat și echilibrat direct în curtea ta sau în parcarea de la birou. Schimbăm setul sezonier în aproximativ o oră, fără să pierzi timpul la coadă în service.",
-    price: "Preț la telefon",
-    priceFrom: "Preț la telefon",
-    priceNote: "set de 4 anvelope",
-    duration: "45–75 minute pentru un set complet",
+      "Schimbăm setul de vară sau de iarnă rapid, cu echilibrare inclusă. Pentru 4 anvelope plătești 160 RON pe jante de oțel și 180 RON pe jante de aluminiu.",
+    price: "de la 160 RON",
+    priceFrom: "160 RON",
+    priceNote: "set 4 anvelope, echilibrare inclusă",
+    pricing: [
+      { label: "4 anvelope + echilibrare, jante oțel", value: "160 RON" },
+      { label: "4 anvelope + echilibrare, jante aluminiu", value: "180 RON" },
+    ],
+    duration: "aproximativ o oră pentru un set complet",
     bullets: [
-      "Montaj și demontaj pe jantă, cu mașină mobilă",
-      "Echilibrare electronică inclusă la cerere",
-      "Cuplu de strângere corect, cu cheie dinamometrică",
-      "Preluăm anvelopele vechi la cerere",
+      "Montaj și demontaj pe jantă",
+      "Echilibrare electronică inclusă",
+      "Jante de oțel sau de aluminiu",
+      "Deplasare la client la cerere, non-stop",
     ],
     steps: [
-      "Stabilim ziua și ora prin telefon sau WhatsApp",
-      "Venim la adresa ta cu tot echipamentul",
-      "Montăm, echilibrăm și verificăm presiunile",
-      "Îți lăsăm factură sau bon, la alegere",
+      "Vii la atelier sau ne suni să venim noi",
+      "Demontăm și montăm anvelopele",
+      "Echilibrăm fiecare roată",
+      "Verificăm presiunile și strângem roțile corect",
     ],
   },
   {
@@ -154,46 +164,46 @@ export const services: Service[] = [
     title: "Echilibrare roți",
     desc: "Echilibrare electronică precisă pentru rulare lină și uzură uniformă.",
     intro:
-      "Vibrațiile în volan la 90–120 km/h vin aproape mereu de la roți neechilibrate. Facem echilibrare electronică cu aparatură mobilă, direct la tine, cu contragreutăți adezive sau cu clemă.",
+      "Vibrațiile în volan la viteză mare vin aproape mereu de la roți neechilibrate. Facem echilibrare electronică pentru jante de oțel și de aluminiu, la autoturisme și camioane.",
     price: "Preț la telefon",
     priceFrom: "Preț la telefon",
-    priceNote: "per roată",
+    priceNote: "inclusă la schimbul de 4 anvelope",
     duration: "10 minute pe roată",
     bullets: [
       "Echilibrare pentru jante de aluminiu și de oțel",
-      "Contragreutăți invizibile pentru jante de aluminiu",
+      "Contragreutăți adezive pentru jante de aluminiu",
       "Verificare deformări de jantă și uzură neuniformă",
-      "Recomandări de rotire a anvelopelor",
+      "Inclusă în prețul schimbului de 4 anvelope",
     ],
     steps: [
       "Verificăm vibrațiile și starea roților",
       "Echilibrăm fiecare roată pe aparat",
-      "Remontăm la cuplul corect",
-      "Test scurt de rulare, dacă e nevoie",
+      "Remontăm roțile corect",
+      "Test scurt, dacă e nevoie",
     ],
   },
   {
     slug: "vulcanizare-camioane",
     icon: "truck",
     title: "Vulcanizare camioane",
-    desc: "Intervenții pentru TIR-uri și autoutilitare, contracte pentru flote.",
+    desc: "Vulcanizare și echilibrare pentru camioane și autoutilitare, non-stop.",
     intro:
-      "Avem echipament special pentru camioane, autotrenuri și autoutilitare: pistoale de impact de mare cuplu, cricuri de tonaj și anvelope de intervenție. Lucrăm cu transportatori și flote pe bază de contract.",
+      "Avem echipament pentru camioane și autoutilitare: reparații, schimb și echilibrare roți, în atelier sau la fața locului, zi și noapte.",
     price: "Preț la telefon",
     priceFrom: "Preț la telefon",
-    priceNote: "contracte flote",
+    priceNote: "în funcție de lucrare",
     duration: "30–60 minute pe roată",
     bullets: [
-      "Intervenții pe A1, Centura Timișoarei și în zonele industriale din jur",
       "Reparații și schimb pentru roți de camion și remorcă",
-      "Contracte și facturare lunară pentru flote",
-      "Prioritate la dispecerat pentru clienții pe contract",
+      "Echilibrare roți camioane",
+      "Atelier aproape de Centura Aradului",
+      "Disponibil non-stop, 24/24",
     ],
     steps: [
-      "Dispecerul tău ne trimite locația și dimensiunea",
-      "Confirmăm disponibilitatea anvelopei",
-      "Intervenim pe loc, cu semnalizare de siguranță",
-      "Primești documentele pentru flotă",
+      "Ne suni și ne spui dimensiunea roții",
+      "Vii la atelier sau venim noi la tine",
+      "Facem lucrarea pe loc",
+      "Pleci mai departe în siguranță",
     ],
   },
 ];
@@ -211,8 +221,8 @@ export function waLink(text: string) {
   return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
-export const EMAIL = "contact@vulcanizaretimisoara.ro";
-export const ADDRESS = "Str. Cloșca, Nr. 33, Timișoara";
+export const ADDRESS = "Calea Zimandului nr. 14, Grădiște, Arad";
+export const ADDRESS_FULL = "Calea Zimandului nr. 14, cartier Grădiște, Arad, județul Arad";
 
 export const stats = [
   { value: "15 min", label: "Timp mediu de răspuns în oraș" },
@@ -250,57 +260,50 @@ export const reviews = [
 
 export const faqs = [
   {
-    q: "Cât costă o intervenție la Vulcanizare Non Stop Timișoara?",
-    a: "În atelierul din Timișoara, prețul îl afli la telefon, înainte de lucrare. Pentru intervențiile mobile, tariful depinde de tipul lucrării și de distanță și îl primești la telefon înainte de plecare, fără surprize.",
+    q: "Cât costă schimbul de anvelope la Vulcanizare La Uly?",
+    a: "Schimbul a 4 anvelope cu echilibrare costă 160 RON pentru jante de oțel și 180 RON pentru jante de aluminiu. Pentru alte lucrări sau pentru deplasare la tine, îți spunem prețul la telefon, înainte de lucrare.",
     category: "prețuri",
   },
   {
-    q: "Veniți și noaptea sau în weekend?",
-    a: "Da, suntem disponibili 24/24, inclusiv noaptea, sâmbăta, duminica și de sărbători. Dacă rămâneți cu pana la 3 dimineața, sunați și venim.",
+    q: "Sunteți deschiși și noaptea sau în weekend?",
+    a: "Da, suntem deschiși non-stop, 24/24, inclusiv noaptea, sâmbăta, duminica și de sărbători. Vii oricând pe Calea Zimandului nr. 14, în Grădiște, Arad.",
     category: "disponibilitate",
   },
   {
-    q: "Cât durează până ajungeți la mine?",
-    a: "Atelierul din Timișoara e deschis 24/24, poți veni oricând. Cu intervenția mobilă ajungem în Timișoara în 10–20 minute, în Dumbrăvița, Giroc sau Ghiroda în 15–25 de minute, iar spre Lugoj sau Recaș în 30–45 de minute, în funcție de trafic. Acoperim tot județul Timiș și pe A1 (Nădlac – Margina).",
+    q: "Veniți și la mine, dacă am pană?",
+    a: "Da, pe lângă atelier facem și deplasări la client, non-stop. Sună-ne sau trimite locația pe WhatsApp și îți spunem în cât timp ajungem și cât costă.",
     category: "timp-sosire",
   },
   {
-    q: "Ce servicii faceți la fața locului?",
-    a: "Reparație pană (plombă internă, ciuperci), schimb roată cu cea de rezervă, montaj anvelope noi, echilibrare roți cu aparatură mobilă, verificare presiune și schimb valve. Totul se face pe teren, cu vulcanizarea mobilă.",
-
+    q: "Unde sunteți exact?",
+    a: "Pe Calea Zimandului nr. 14, cartier Grădiște, Arad — lângă sensul giratoriu spre Oradea, la aproximativ 150 m de Centura Aradului.",
+    category: "disponibilitate",
+  },
+  {
+    q: "Ce servicii faceți?",
+    a: "Vulcanizare (reparații pene, valve), schimb anvelope și echilibrare roți, pentru autoturisme, SUV-uri, utilitare și camioane.",
     category: "servicii",
   },
   {
-    q: "Pot plăti cu cardul?",
-    a: "Da, acceptăm plata cu cardul (POS mobil), transfer bancar și numerar. Emitem factură pentru companii.",
-    category: "plată",
-  },
-  {
-    q: "Lucrați și cu camioane sau TIR?",
-    a: "Da, avem echipament special pentru vulcanizare camioane și autotrenuri. Intervenim pe A1, DN6 și în zonele industriale din tot județul Timiș pentru flote și transportatori.",
+    q: "Lucrați și cu camioane?",
+    a: "Da, facem vulcanizare și echilibrare și pentru camioane, în atelier sau la fața locului.",
     category: "servicii",
-  },
-  {
-    q: "Este sigur să reparați pană pe autostradă?",
-    a: "Intervenim doar după semnalizarea corectă a zonei de lucru, cu triunghiuri, veste reflectorizante și lumină de avertizare. Siguranța ta și a echipei noastre e prioritatea zero.",
-    category: "siguranță",
   },
   {
     q: "Dacă anvelopa nu poate fi reparată, ce fac?",
-    a: "Îți spunem de la început dacă reparația e sigură sau dacă e nevoie de anvelopă nouă. Dacă anvelopa nu poate fi reparată, montăm roata de rezervă sau aducem o anvelopă de intervenție. Vulcanizarea mobilă vine la tine cu tot echipamentul și rezolvăm pe teren, 24/24.",
-
+    a: "Îți spunem de la început dacă reparația e sigură sau dacă e nevoie de anvelopă nouă. Dacă nu se poate repara, montăm roata de rezervă sau o anvelopă nouă, ca să pleci în siguranță.",
     category: "servicii",
   },
 ];
 
 export const COMPANY = {
-  name: "NON STOP MAGIC20 SRL",
-  cui: "42438996",
-  regCom: "J2020000895358",
-  euid: "ROONRC.J2020000895358",
-  registeredOffice: "Str. Cloșca nr. 33, cam. 3, Timișoara, județul Timiș, cod poștal 300375",
-  foundedOn: "02.04.2020",
-  source: "https://listafirme.ro/non-stop-magic20-srl-42438996/",
+  name: "AUTOZIAN G&G SRL",
+  cui: "31974719",
+  regCom: "J2013000745028",
+  euid: "ROONRC.J2013000745028",
+  registeredOffice: "Sat Zimandcuz nr. 745, Com. Zimandu Nou, județul Arad, cod poștal 317427",
+  foundedOn: "05.07.2013",
+  source: "https://listafirme.eu/autozian-srl-31974719/",
 };
 
 // Traseu aproximativ A1 pe tronsonul acoperit: vama Nădlac → Arad → Timișoara → Lugoj → Margina.
