@@ -1,6 +1,6 @@
 import { ChevronUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { BadgeCheck, Camera, ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
+import { Camera, ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
 
 import { GoogleMark } from "@/components/site/GoogleMark";
 import { SectionLabel } from "@/components/site/ui";
@@ -57,7 +57,7 @@ function Stars({ value, className = "size-4" }: { value: number; className?: str
   return (
     <span role="img" className="inline-flex gap-0.5" aria-label={`${value} din 5 stele`}>
       {[1, 2, 3, 4, 5].map((i) => (
-        <Star key={i} className={`${className} ${value > 0 ? "fill-star text-star" : "fill-muted text-muted"}`} />
+        <Star key={i} className={`${className} ${i <= Math.round(value) ? "fill-star text-star" : "fill-muted text-muted"}`} />
       ))}
     </span>
   );
@@ -303,7 +303,7 @@ function ReviewsCarousel() {
               )}
               <div className="min-w-0 flex-1">
                 <p className="flex items-center gap-1 truncate text-[15px] font-extrabold">
-                  {r.name} <BadgeCheck className="size-4 shrink-0 text-brand" />
+                  {r.name}
                 </p>
                 <div className="mt-0.5 flex items-center gap-2">
                   {r.rating ? <Stars value={r.rating} className="size-3.5" /> : <GoogleMark className="size-3.5" />}
