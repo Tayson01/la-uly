@@ -189,6 +189,50 @@ export default function CoverageMap() {
   const dist = target ? km(BASE, target) : null;
   const showLabels = zoom >= 10;
 
+  // Anti-suprapunere: la zoom-ul curent calculăm în pixeli unde cade fiecare etichetă.
+  // Etichetele care s-ar suprapune devin puncte (cu numele la hover/atingere),
+  // iar punctele mici dublate sau acoperite de o etichetă nu se mai desenează.
+  const layout = useMemo(() => {
+    type Box = { x1: number; y1: number; x2: number; y2: number };
+    const px = (ll: LL) => L.CRS.EPSG3857.latLngToPoint(L.latLng(ll), zoom);
+    const box = (ll: LL, w: number, h: number, dy = 0, pad = 3): Box => {
+      const p = px(ll);
+      return { x1: p.x - w / 2 - pad, y1: p.y - h / 2 + dy - pad, x2: p.x + w / 2 + pad, y2: p.y + h / 2 + dy + pad };
+    };
+    const hit = (a: Box, b: Box) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
+    const taken: Box[] = [box(BASE, 44, 44), box(BASE, 140, 22, 35)];
+    mapRings.forEach((r) => taken.push(box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20)));
+    const base = px(BASE);
+    const order = [...zones].sort((a, b) =>
+      a.slug === active ? -1 : b.slug === active ? 1 : km(BASE, a.coords as LL) - km(BASE, b.coords as LL),
+    );
+    const labeled = new Set<string>();
+    const dots = new Set<string>();
+    for (const z of order) {
+      const c = z.coords as LL;
+      const p = px(c);
+      const nearBase = Math.hypot(p.x - base.x, p.y - base.y) < 30;
+      if (z.slug !== active && nearBase) continue; // e sub pinul atelierului
+      if (showLabels || z.slug === active) {
+        const b = box(c, z.short.length * 6.8 + 30, 26);
+        if (z.slug === active || !taken.some((t) => hit(t, b))) {
+          taken.push(b);
+          labeled.add(z.slug);
+          continue;
+        }
+      } else if (Math.hypot(p.x - base.x, p.y - base.y) < 38) continue;
+      dots.add(z.slug);
+      taken.push(box(c, 12, 12, 0, 1));
+    }
+    const points = servedPoints.filter((sp) => {
+      if (km(sp.coords, BASE) < 1.5) return false;
+      if (zones.some((z) => km(sp.coords, z.coords as LL) < 1.5)) return false;
+      const b = box(sp.coords, 8, 8, 0, 0);
+      return !taken.some((t) => hit(t, b));
+    });
+    return { labeled, dots, points };
+  }, [zoom, active, showLabels]);
+
   return (
     <div ref={wrapRef} className="cm-wrap relative isolate z-0 overflow-hidden h-[72svh] min-h-[480px] w-full bg-surface sm:h-[620px]">
       <MapContainer
@@ -242,7 +286,7 @@ export default function CoverageMap() {
         )}
 
         {/* Toate localitățile deservite, ca puncte mici */}
-        {servedPoints.map((p) => (
+        {layout.points.map((p) => (
           <CircleMarker
             key={p.name}
             center={p.coords}
@@ -253,15 +297,20 @@ export default function CoverageMap() {
           </CircleMarker>
         ))}
 
-        {zones.filter((z) => active === z.slug || (km(BASE, z.coords as LL) * 1000) / (109300 / 2 ** zoom) > 38).map((z) => (
-          <Marker
-            key={z.slug}
-            position={z.coords as LL}
-            icon={zoneIcon(z.short, active === z.slug, showLabels)}
-            eventHandlers={{ click: () => selectZone(z.slug, z.coords as LL) }}
-            zIndexOffset={active === z.slug ? 1000 : 0}
-          />
-        ))}
+        {zones.filter((z) => layout.labeled.has(z.slug) || layout.dots.has(z.slug)).map((z) => {
+          const asLabel = layout.labeled.has(z.slug);
+          return (
+            <Marker
+              key={`${z.slug}-${asLabel ? "l" : "d"}`}
+              position={z.coords as LL}
+              icon={zoneIcon(z.short, active === z.slug, asLabel)}
+              eventHandlers={{ click: () => selectZone(z.slug, z.coords as LL) }}
+              zIndexOffset={active === z.slug ? 1000 : asLabel ? 500 : 0}
+            >
+              {!asLabel && <Tooltip direction="top" offset={[0, -6]}>{z.name}</Tooltip>}
+            </Marker>
+          );
+        })}
 
         {user && acc && acc < 3000 && (
           <Circle center={user} radius={acc} interactive={false} pathOptions={{ color: "#3b82f6", weight: 1, opacity: 0.4, fillOpacity: 0.1 }} />
@@ -315,11 +364,11 @@ export default function CoverageMap() {
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Sosire</p>
-                  <p className="text-base font-black tabular-nums">~{eta(dist)}</p>
+                  <p className="text-base font-black tabular-nums">~{zone ? zone.etaMinutes : eta(dist)}</p>
                 </div>
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Distanță</p>
-                  <p className="text-base font-black tabular-nums">{Math.round(dist * 1.25)} km</p>
+                  <p className="text-base font-black tabular-nums">{zone ? (zone.km === 0 ? "atelier" : `~${zone.km} km`) : `${Math.round(dist * 1.25)} km`}</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-2">
