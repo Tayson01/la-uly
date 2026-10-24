@@ -51,8 +51,8 @@ describe("zone deservite: Arad și împrejurimi", () => {
     expect(COVERAGE.highwayTo).toBe("Arad");
   });
   test("prima zonă este atelierul din Arad", () => {
-    expect(zones[0].slug).toBe("vulcanizare-non-stop-arad");
-    expect(zones[0].km).toBe(0);
+    expect(zones[0]!.slug).toBe("vulcanizare-non-stop-arad");
+    expect(zones[0]!.km).toBe(0);
   });
   test("vechile pagini din Timișoara duc spre Arad", () => {
     expect(zoneRedirects["vulcanizare-non-stop-timisoara"]).toBe("/zone/vulcanizare-non-stop-arad");
