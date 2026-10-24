@@ -10,14 +10,14 @@ import {
 
 import { Btn } from "@/components/site/ui";
 import { CountUp, LiveClock } from "@/components/site/ScrollFx";
-import heroNoapte from "@/assets/hero-noapte.webp";
-import heroNoapteSm from "@/assets/hero-noapte-sm.webp";
+import heroAtelier from "@/assets/la-uly/hero-atelier.webp";
+import heroAtelierSm from "@/assets/la-uly/hero-atelier-sm.webp";
 import { CoverageMapSection } from "@/components/site/CoverageMapSection";
 import { ServicesSection } from "@/components/site/ServicesSection";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ContactSection } from "@/components/site/ContactSection";
 import { InterventionsGallery } from "@/components/site/InterventionsGallery";
-import { ADDRESS, BRAND, COMPANY, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA } from "@/lib/site-data";
+import { ADDRESS, BASE, BRAND, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/" }, { rel: "preload", as: "image", href: heroNoapteSm, imageSrcSet: `${heroNoapteSm} 400w, ${heroNoapte} 639w`, imageSizes: "(min-width: 1024px) 560px, 100vw", fetchPriority: "high" }],
+    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/" }, { rel: "preload", as: "image", href: heroAtelierSm, imageSrcSet: `${heroAtelierSm} 640w, ${heroAtelier} 1200w`, imageSizes: "(min-width: 1024px) 560px, 100vw", fetchPriority: "high" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -56,13 +56,15 @@ export const Route = createFileRoute("/")({
             streetAddress: "Calea Zimandului nr. 14",
             addressLocality: "Arad",
             addressRegion: "Arad",
-            postalCode: "310216",
+            postalCode: "310205",
             addressCountry: "RO",
           },
           openingHours: "Mo-Su 00:00-23:59",
           areaServed: [{ "@type": "City", name: "Arad" }],
           image: "https://vulcanizaretimisoara.ro/favicon.png",
-          sameAs: [MAPS],
+          sameAs: [MAPS, FACEBOOK],
+          email: EMAIL,
+          geo: { "@type": "GeoCoordinates", latitude: BASE[0], longitude: BASE[1] },
         }),
       },
     ],
@@ -112,11 +114,11 @@ function Index() {
 
               <div className="fx-hero-media fx-cam mt-5 shadow-float lg:hidden">
                 <span aria-hidden className="fx-scan" />
-                <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție de vulcanizare non-stop, noaptea" className="aspect-[16/10] w-full object-cover" />
+                <img src={heroAtelier} srcSet={`${heroAtelierSm} 640w, ${heroAtelier} 1200w`} sizes="(min-width: 1024px) 560px, 100vw" width={1200} height={900} fetchPriority="high" decoding="async" alt="Atelierul Vulcanizare La Uly din Grădiște, Arad: schimb de anvelope la un Mercedes" className="aspect-[16/10] w-full object-cover" />
                 <div aria-hidden className="absolute inset-0 z-[1] bg-gradient-to-t from-foreground/80 via-foreground/10 to-transparent" />
                 <div className="absolute inset-x-3 bottom-3 z-[2] flex items-center justify-between gap-2">
                   <span className="flex items-center gap-1.5 rounded-full bg-brand px-3 py-1 text-[10px] font-black uppercase tracking-widest text-brand-foreground shadow-glow"><span className="fx-rec" />Live · Non-stop</span>
-                  <span className="rounded-full bg-card/90 px-3 py-1 text-[11px] font-bold text-foreground backdrop-blur">Echipaj gata de plecare</span>
+                  <span className="rounded-full bg-card/90 px-3 py-1 text-[11px] font-bold text-foreground backdrop-blur">Atelierul din Grădiște</span>
                 </div>
               </div>
 
@@ -187,12 +189,12 @@ function Index() {
             <div className="min-w-0">
               <div className="relative hidden lg:block">
                 <div className="fx-hero-media group relative overflow-hidden rounded-[32px] shadow-float ring-1 ring-border">
-                  <img src={heroNoapte} srcSet={`${heroNoapteSm} 400w, ${heroNoapte} 639w`} sizes="(min-width: 1024px) 560px, 100vw" width={639} height={664} fetchPriority="high" decoding="async" alt="Intervenție de vulcanizare non-stop noaptea, lângă mașina clientului" className="hero-kb aspect-[4/3] w-full object-cover" />
+                  <img src={heroAtelier} srcSet={`${heroAtelierSm} 640w, ${heroAtelier} 1200w`} sizes="(min-width: 1024px) 560px, 100vw" width={1200} height={900} fetchPriority="high" decoding="async" alt="Atelierul Vulcanizare La Uly din Grădiște, Arad: schimb de anvelope la un Mercedes" className="hero-kb aspect-[4/3] w-full object-cover" />
                   <div aria-hidden className="absolute inset-0 bg-gradient-to-t from-foreground/85 via-foreground/10 to-foreground/30" />
 
                   <div className="absolute inset-x-5 top-5 z-[2] flex items-center justify-between">
                     <span className="flex items-center gap-2 rounded-full bg-brand px-3.5 py-1.5 text-[11px] font-black uppercase tracking-widest text-brand-foreground shadow-glow"><span className="fx-rec" />Live · Non-stop</span>
-                    <span className="rounded-full bg-background/15 px-3.5 py-1.5 text-[11px] font-bold text-background ring-1 ring-background/25 backdrop-blur-md">Non-stop · Arad</span>
+                    <span className="rounded-full bg-background/15 px-3.5 py-1.5 text-[11px] font-bold text-background ring-1 ring-background/25 backdrop-blur-md">Atelierul nostru · Grădiște</span>
                   </div>
 
                   <div className="absolute inset-x-5 bottom-5 z-[2]">

@@ -1,9 +1,9 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { Clock, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, MessageCircle, Phone, ThumbsUp } from "lucide-react";
 
 import { Btn, SectionLabel } from "@/components/site/ui";
 import { ContactForm } from "@/components/site/ContactForm";
-import { ADDRESS, COMPANY, MAPS, PHONE, PHONE2, TEL, TEL2, WA } from "@/lib/site-data";
+import { ADDRESS, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, TEL, TEL2, WA } from "@/lib/site-data";
 
 export const Route = createFileRoute("/contact")({
   staticData: { sitemap: true },
@@ -84,6 +84,24 @@ function ContactPage() {
               <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">Program</p>
               <p className="font-bold lg:text-lg">Non-stop, 24/24 · și deplasări la client</p>
             </div>
+            <a
+              href={`mailto:${EMAIL}`}
+              className="rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-card lg:p-6"
+            >
+              <Mail className="size-5 text-brand" />
+              <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">E-mail</p>
+              <p className="break-all font-bold lg:text-lg">{EMAIL}</p>
+            </a>
+            <a
+              href={FACEBOOK}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-3xl border border-border bg-card p-5 transition-all hover:-translate-y-1 hover:shadow-card lg:p-6"
+            >
+              <ThumbsUp className="size-5 text-brand" />
+              <p className="mt-3 text-xs font-semibold text-muted-foreground lg:mt-4">Facebook</p>
+              <p className="font-bold lg:text-lg">Vulcanizare La Uly Non-Stop</p>
+            </a>
           </div>
         </div>
 

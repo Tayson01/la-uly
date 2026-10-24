@@ -43,7 +43,7 @@ export const zones: Zone[] = [
     eta: "Sosire ~10–20 min",
     etaMinutes: "10–20 min",
     km: 0,
-    coords: [46.2039, 21.3438],
+    coords: [46.2062954, 21.3472382],
     desc: "Atelier non-stop în Grădiște, pe Calea Zimandului nr. 14, aproape de Centura Aradului.",
     intro:
       "Vulcanizare La Uly te așteaptă pe Calea Zimandului nr. 14, în Grădiște, zi și noapte. Dacă roata e complet dezumflată, nu mai conduce până la noi: sună și venim noi oriunde în Arad.",
@@ -68,7 +68,7 @@ export const zones: Zone[] = [
         ],
       },
     ],
-    serviceSlugs: ["vulcanizare-atelier-non-stop", "reparatii-pe-loc", "montaj-domiciliu", "echilibrare-roti"],
+    serviceSlugs: ["vulcanizare-atelier-non-stop", "montaj-domiciliu", "vanzare-anvelope", "echilibrare-roti"],
     faqs: [
       { q: "În cât timp ajungeți în Arad?", a: "De obicei în 10–20 de minute, în funcție de cartier și de trafic. Îți confirmăm timpul la telefon." },
       ATELIER_FAQ,

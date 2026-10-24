@@ -7,8 +7,13 @@ export const TEL2 = "+40746765469";
 export const WA_NUMBER = "40746538480";
 export const WA =
   "https://wa.me/40746538480?text=Bun%C4%83%20ziua!%20Am%20nevoie%20de%20vulcanizare.";
-export const MAPS = "https://www.google.com/maps/search/?api=1&query=Calea+Zimandului+14%2C+Arad";
+export const MAPS = "https://share.google/cb4eBtqPmz10uTivD";
 export const REVIEWS = MAPS;
+export const FACEBOOK = "https://www.facebook.com/profile.php?id=100094523259204";
+export const EMAIL = "autoziangg@yahoo.com";
+/** Scorul public de pe Google Maps (verificat 24.10.2026). */
+export const GOOGLE_RATING = 4.2;
+export const GOOGLE_REVIEWS = 461;
 export const PRICES = {
   steel: "160 RON",
   alloy: "180 RON",
@@ -22,7 +27,7 @@ export const COVERAGE = {
   label: "Arad și localitățile din jur (~50 km) + A1 (Nădlac – Arad)",
 };
 
-export const BASE: [number, number] = [46.2039, 21.3438];
+export const BASE: [number, number] = [46.2062954, 21.3472382];
 
 export type Service = {
   slug: string;
@@ -118,7 +123,7 @@ export const services: Service[] = [
     priceNote: "reparație simplă",
     duration: "15–30 minute",
     bullets: [
-      "Plombă internă sau ciupercă (reparație permanentă)",
+      "Plug sau petic (ciupercă) — reparație permanentă",
       "Reparație tăieturi ușoare, unde e sigur",
       "Schimb valve",
       "Verificare presiune la toate roțile",
@@ -170,7 +175,7 @@ export const services: Service[] = [
     priceNote: "inclusă la schimbul de 4 anvelope",
     duration: "10 minute pe roată",
     bullets: [
-      "Echilibrare pentru jante de aluminiu și de oțel",
+      "Echilibrare pentru toate dimensiunile, de la autoturisme la camioane",
       "Contragreutăți adezive pentru jante de aluminiu",
       "Verificare deformări de jantă și uzură neuniformă",
       "Inclusă în prețul schimbului de 4 anvelope",
@@ -180,6 +185,30 @@ export const services: Service[] = [
       "Echilibrăm fiecare roată pe aparat",
       "Remontăm roțile corect",
       "Test scurt, dacă e nevoie",
+    ],
+  },
+  {
+    slug: "vanzare-anvelope",
+    icon: "circle",
+    title: "Vânzare anvelope",
+    desc: "Anvelope de vară, iarnă și all season, noi și second-hand, montate pe loc.",
+    intro:
+      "În atelierul din Grădiște avem pe stoc anvelope de vară, de iarnă și all season, noi și second-hand, pentru autoturisme, SUV-uri, utilitare și camioane. Alegi anvelopele și ți le montăm și echilibrăm pe loc.",
+    price: "Preț la telefon",
+    priceFrom: "Preț la telefon",
+    priceNote: "în funcție de dimensiune și marcă",
+    duration: "montaj pe loc, aproximativ o oră pentru 4 anvelope",
+    bullets: [
+      "Anvelope de vară, iarnă și all season",
+      "Noi și second-hand, verificate",
+      "Ventile și accesorii",
+      "Montaj și echilibrare pe loc",
+    ],
+    steps: [
+      "Ne suni cu dimensiunea anvelopei (ex. 205/55 R16)",
+      "Îți spunem ce avem pe stoc și prețul",
+      "Vii la atelier sau venim noi la tine",
+      "Montăm, echilibrăm și verificăm presiunea",
     ],
   },
   {
@@ -287,6 +316,11 @@ export const faqs = [
   {
     q: "Lucrați și cu camioane?",
     a: "Da, facem vulcanizare și echilibrare și pentru camioane, în atelier sau la fața locului.",
+    category: "servicii",
+  },
+  {
+    q: "Vindeți și anvelope?",
+    a: "Da. Avem anvelope de vară, iarnă și all season, noi și second-hand. Sună-ne cu dimensiunea (scrisă pe flanc, ex. 205/55 R16) și îți spunem ce avem pe stoc și prețul.",
     category: "servicii",
   },
   {
