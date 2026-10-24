@@ -1282,7 +1282,7 @@
   .cm-radar { animation: none; display: none; }
 }
 
-/* Mobil: animații decorative reduse (păstrăm sclipirea „Timișoara”, banda și pulsul butoanelor de apel) */
+/* Mobil: animații decorative reduse (păstrăm sclipirea numelui orașului, banda și pulsul butoanelor de apel) */
 @media (max-width: 767px) {
   .vm-float, .vm-kenburns, .vm-spin, .vm-bar-shine, .vm-dot-pulse, .vm-ring-row, .vm-hand-fast, .vm-hand-slow,
   .vm-blink, .fx-tire, .fx-hero-media img, .fx-orb, .fx-rec, .svc-status, .cm-route,

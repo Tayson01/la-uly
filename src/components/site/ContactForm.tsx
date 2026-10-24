@@ -12,7 +12,7 @@ export function ContactForm({
 }) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [zone, setZone] = useState(defaultZone ?? zones[0]?.name ?? "Timișoara");
+  const [zone, setZone] = useState(defaultZone ?? zones[0]?.name ?? "Arad");
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<string | null>(null);
 
@@ -98,7 +98,7 @@ export function ContactForm({
               {z.name}
             </option>
           ))}
-          <option value="Altă localitate">Altă localitate din județ</option>
+          <option value="Altă localitate">Altă localitate din zonă</option>
         </select>
       </label>
       <label className="mt-4 block text-xs font-semibold text-muted-foreground">

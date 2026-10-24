@@ -19,9 +19,9 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const p = loaderData?.post;
-    if (!p) return { meta: [{ title: "Articol negăsit — Vulcanizare Non Stop Timișoara" }, { name: "robots", content: "noindex" }] };
+    if (!p) return { meta: [{ title: "Articol negăsit — Vulcanizare La Uly Arad" }, { name: "robots", content: "noindex" }] };
     const url = `${SITE}/blog/${p.slug}`;
-    const title = `${p.title} | Vulcanizare Non Stop Timișoara`;
+    const title = `${p.title} | Vulcanizare La Uly Arad`;
     const zone = p.area ? zones.find((z) => z.slug === p.area) : undefined;
     return {
       meta: [
@@ -55,14 +55,14 @@ export const Route = createFileRoute("/blog/$slug")({
             inLanguage: "ro-RO",
             keywords: p.keyword,
             articleSection: postCategory(p),
-            ...(zone ? { contentLocation: { "@type": "Place", name: `${zone.short}, județul Timiș, România`, geo: { "@type": "GeoCoordinates", latitude: zone.coords[0], longitude: zone.coords[1] } } } : {}),
+            ...(zone ? { contentLocation: { "@type": "Place", name: `${zone.short}, județul Arad, România`, geo: { "@type": "GeoCoordinates", latitude: zone.coords[0], longitude: zone.coords[1] } } } : {}),
             headline: p.title,
             description: p.desc,
             datePublished: p.date,
             dateModified: p.date,
             mainEntityOfPage: url,
-            author: { "@type": "Organization", name: "Vulcanizare Non Stop Timișoara" },
-            publisher: { "@type": "Organization", name: "Vulcanizare Non Stop Timișoara", url: `${SITE}/` },
+            author: { "@type": "Organization", name: "Vulcanizare La Uly" },
+            publisher: { "@type": "Organization", name: "Vulcanizare La Uly", url: `${SITE}/` },
           }),
         },
       ],
@@ -86,7 +86,7 @@ function PostPage() {
       <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{post.title}</h1>
       <p className="mt-4 text-lg text-muted-foreground">{post.desc}</p>
       <p className="mt-4 text-xs font-semibold text-muted-foreground">
-        <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })}</time> · {Math.max(1, Math.round(words / 200))} min de citit · Echipa Vulcanizare Non Stop Timișoara
+        <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })}</time> · {Math.max(1, Math.round(words / 200))} min de citit · Echipa Vulcanizare La Uly
       </p>
       {zone && (
         <Link to="/zone/$slug" params={{ slug: zone.slug }} className="mt-6 flex items-center justify-between gap-3 rounded-2xl border border-border bg-card px-4 py-3 hover:border-brand/40">

@@ -1,7 +1,8 @@
 # Roadmap
 
 - [x] Rebrand la „Vulcanizare La Uly” (Arad): nume, 2 telefoane, adresă, firmă AUTOZIAN G&G SRL, program non-stop, deplasări, prețuri 160/180 RON
-- [ ] Zone, blog, poze, recenzii și harta vechi (Timișoara) — NU se modifică până nu spune proprietarul (blocat: aștept decizia)
+- [x] Zone deservite, blog, hartă și toate paginile rescrise pentru Arad (13 zone, 34 articole)
+- [ ] Poze și recenzii de la firma veche (Timișoara) — rămân până spune proprietarul (blocat: aștept decizia)
 - [ ] Domeniu nou pentru adresele din Google/sitemap (blocat: aștept domeniul)
 
 - [x] Verifică fiecare pagină, articol, întrebare, legătură și metadată; elimină orice referire la tractări sau transport către service și verifică toate adresele site-ului — 85 de pagini și 24 de redirecționări verificate.

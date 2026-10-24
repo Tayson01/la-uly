@@ -49,7 +49,7 @@ export const Route = createFileRoute("/blog/zona/$slug")({
                 name: title,
                 description: desc,
                 inLanguage: "ro-RO",
-                about: { "@type": "Place", name: `${z.short}, județul Timiș, România`, geo: { "@type": "GeoCoordinates", latitude: z.coords[0], longitude: z.coords[1] } },
+                about: { "@type": "Place", name: `${z.short}, județul Arad, România`, geo: { "@type": "GeoCoordinates", latitude: z.coords[0], longitude: z.coords[1] } },
                 mainEntity: { "@type": "ItemList", itemListElement: list.map((p, i) => ({ "@type": "ListItem", position: i + 1, url: `${SITE}/blog/${p.slug}`, name: p.title })) },
               },
               {
@@ -130,7 +130,7 @@ function ZoneBlog() {
 
       {general.length > 0 && (
         <section className="mt-12">
-          <h2 className="text-xl font-extrabold">Sfaturi utile oriunde în Timiș</h2>
+          <h2 className="text-xl font-extrabold">Sfaturi utile oriunde în zona Aradului</h2>
           <ul className="mt-4 grid gap-2 sm:grid-cols-3">
             {general.map((p) => <li key={p.slug}><Link to="/blog/$slug" params={{ slug: p.slug }} className="block rounded-2xl border border-border bg-card px-4 py-3 text-sm font-semibold hover:border-brand/40">{p.title}</Link></li>)}
           </ul>

@@ -37,7 +37,7 @@ export function ZoneFinder({ initialCount = 8 }: { initialCount?: number }) {
 
       {q && matches.length === 0 ? (
         <p className="mt-3 rounded-xl bg-card px-3.5 py-3 text-sm leading-relaxed text-muted-foreground">
-          Nu am găsit localitatea în listă, dar acoperim tot județul Timiș și A1 — <span className="font-semibold text-foreground">sună-ne și confirmăm sosirea.</span>
+          Nu am găsit localitatea în listă, dar venim în Arad și împrejurimi (~50 km) și pe A1 — <span className="font-semibold text-foreground">sună-ne și confirmăm sosirea.</span>
         </p>
       ) : (
         <ul className="mt-3 grid grid-cols-2 gap-2">

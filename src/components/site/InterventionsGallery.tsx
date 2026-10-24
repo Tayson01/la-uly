@@ -10,7 +10,7 @@ const GOOGLE_URL = "https://maps.app.goo.gl/AEFCBe3UtatoaJG57";
 const RATING = 4.2;
 const COUNT = 839;
 
-const owner = { name: "Vulcanizare Non Stop Timișoara", avatar: a9 };
+const owner = { name: "Vulcanizare La Uly", avatar: a9 };
 
 const fbImages = import.meta.glob<string>("@/assets/fb/foto-*.jpg", { eager: true, import: "default" });
 const sizes: [number, number][] = [
@@ -151,7 +151,7 @@ export function InterventionsGallery() {
                 style={{ aspectRatio: `${p.w} / ${p.h}` }}
                 aria-label={isLastVisible ? undefined : `Deschide fotografia ${i + 1}`}
               >
-                <img src={p.src} alt={`Lucrare Vulcanizare Non Stop Timișoara, fotografie ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={p.src} alt={`Lucrare de vulcanizare, fotografie ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <span className="gallery-tile-shade absolute inset-0" aria-hidden="true" />
                 {isLastVisible ? (
                   <span className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-background/70 text-foreground backdrop-blur-[2px] transition-colors duration-300 group-hover:bg-background/55">

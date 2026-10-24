@@ -21,7 +21,7 @@ export const Route = createFileRoute("/zone/$slug")({
   head: ({ loaderData }) => {
     const z = loaderData?.zone;
     if (!z) {
-      return { meta: [{ title: "Zonă negăsită — Vulcanizare Non Stop Timișoara" }, { name: "robots", content: "noindex" }] };
+      return { meta: [{ title: "Zonă negăsită — Vulcanizare La Uly Arad" }, { name: "robots", content: "noindex" }] };
     }
     const url = `${SITE}/zone/${z.slug}`;
     return {
@@ -46,14 +46,14 @@ export const Route = createFileRoute("/zone/$slug")({
                 name: z.h1,
                 serviceType: "Vulcanizare mobilă",
                 url,
-                areaServed: [{ "@type": "Place", name: `${z.short}, județul Timiș`, geo: { "@type": "GeoCircle", geoMidpoint: { "@type": "GeoCoordinates", latitude: z.coords[0], longitude: z.coords[1] }, geoRadius: 5000 } }, ...z.localities.map((l) => ({ "@type": "Place", name: `${l}, județul Timiș` }))],
+                areaServed: [{ "@type": "Place", name: `${z.short}, județul Arad`, geo: { "@type": "GeoCircle", geoMidpoint: { "@type": "GeoCoordinates", latitude: z.coords[0], longitude: z.coords[1] }, geoRadius: 5000 } }, ...z.localities.map((l) => ({ "@type": "Place", name: `${l}, județul Timiș` }))],
                 availableChannel: { "@type": "ServiceChannel", servicePhone: { "@type": "ContactPoint", telephone: TEL, contactType: "urgențe 24/24" } },
                 provider: {
                   "@type": "AutoRepair",
-                  name: "Vulcanizare Non Stop Timișoara",
+                  name: "Vulcanizare La Uly",
                   telephone: TEL,
                   url: `${SITE}/`,
-                  address: { "@type": "PostalAddress", streetAddress: ADDRESS, addressLocality: "Timișoara", addressRegion: "Timiș", addressCountry: "RO" },
+                  address: { "@type": "PostalAddress", streetAddress: ADDRESS, addressLocality: "Arad", addressRegion: "Arad", addressCountry: "RO" },
                 },
               },
               {

@@ -45,7 +45,7 @@ export function CoverageMapSection() {
         <p className="text-xs font-bold uppercase tracking-[0.18em] text-brand">Zona de acoperire</p>
         <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">Cât de repede ajungem la tine?</h2>
         <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
-          Plecăm din Timișoara spre tot județul Timiș și pe A1. În oraș ajungem în aproximativ 15 minute, non-stop, până la 100 km.
+          Plecăm din Grădiște, Arad, spre tot orașul, localitățile din jur (~50 km) și pe A1 Nădlac – Arad, non-stop. Timpul exact ți-l spunem la telefon.
         </p>
       </div>
 

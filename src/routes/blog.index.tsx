@@ -9,9 +9,9 @@ import { zones } from "@/lib/zones-data";
 import { PHONE, TEL } from "@/lib/site-data";
 
 const SITE = "https://vulcanizaretimisoara.ro";
-const TITLE = "Blog vulcanizare Timișoara — ghiduri locale pentru pene și anvelope";
+const TITLE = "Blog vulcanizare Arad — ghiduri locale pentru pene și anvelope";
 const DESC =
-  "Ghiduri practice pentru pene și anvelope în Timișoara, Dumbrăvița, Giroc, Ghiroda, Moșnița, Săcălaz, pe A1 și în tot județul Timiș. Sfaturi de la Vulcanizare Non Stop Timișoara.";
+  "Ghiduri practice pentru pene și anvelope în Arad, Zimandu Nou, Vladimirescu, Pecica, Sântana, Lipova și pe A1 Nădlac – Arad. Sfaturi de la Vulcanizare La Uly.";
 
 const zoneBySlug = Object.fromEntries(zones.map((z) => [z.slug, z]));
 const fmt = (d: string) => new Date(d).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
@@ -39,16 +39,16 @@ export const Route = createFileRoute("/blog/")({
             {
               "@type": "Blog",
               "@id": `${SITE}/blog`,
-              name: "Blog Vulcanizare Non Stop Timișoara",
+              name: "Blog Vulcanizare La Uly",
               description: DESC,
               inLanguage: "ro-RO",
-              publisher: { "@type": "Organization", name: "Vulcanizare Non Stop Timișoara", url: `${SITE}/` },
+              publisher: { "@type": "Organization", name: "Vulcanizare La Uly", url: `${SITE}/` },
               blogPost: posts.map((p) => ({
                 "@type": "BlogPosting",
                 headline: p.title,
                 url: `${SITE}/blog/${p.slug}`,
                 datePublished: p.date,
-                ...(p.area && zoneBySlug[p.area] ? { contentLocation: { "@type": "Place", name: `${zoneBySlug[p.area]!.short}, județul Timiș` } } : {}),
+                ...(p.area && zoneBySlug[p.area] ? { contentLocation: { "@type": "Place", name: `${zoneBySlug[p.area]!.short}, județul Arad` } } : {}),
               })),
             },
             {
@@ -107,10 +107,10 @@ function BlogIndex() {
       </nav>
 
       <header className="mt-6 max-w-3xl">
-        <SectionLabel>Blog · Timișoara și județul Timiș</SectionLabel>
+        <SectionLabel>Blog · Arad și împrejurimi</SectionLabel>
         <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">Ghiduri pentru pene și anvelope, pe localități</h1>
         <p className="mt-4 text-muted-foreground">
-          Sfaturi scrise de echipa Vulcanizare Non Stop Timișoara pentru șoferii din oraș, din comunele din jur și de pe A1: ce faci la pană, unde oprești în siguranță și ce putem repara la tine.
+          Sfaturi scrise de echipa Vulcanizare La Uly pentru șoferii din oraș, din comunele din jur și de pe A1: ce faci la pană, unde oprești în siguranță și ce putem repara la tine.
         </p>
         <div className="mt-5 flex flex-wrap gap-2 text-xs font-semibold text-muted-foreground">
           <span className="rounded-full border border-border px-3 py-1.5">{posts.length} articole</span>
@@ -123,7 +123,7 @@ function BlogIndex() {
       <div className="mt-10 space-y-4">
         <label className="relative block max-w-md">
           <Search className="pointer-events-none absolute left-4 top-1/2 size-4 -translate-y-1/2 text-muted-foreground" />
-          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Caută: pană A1, Giroc, iarnă…" aria-label="Caută în blog" className="h-12 w-full rounded-2xl border border-border bg-card pl-11 pr-4 text-sm outline-none focus:border-brand/50" />
+          <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Caută: pană A1, Pecica, iarnă…" aria-label="Caută în blog" className="h-12 w-full rounded-2xl border border-border bg-card pl-11 pr-4 text-sm outline-none focus:border-brand/50" />
         </label>
         <div className="flex flex-wrap gap-2">
           {CATS.map((c) => (
@@ -183,7 +183,7 @@ function BlogIndex() {
       <div className="mt-14 flex flex-col items-start justify-between gap-4 rounded-3xl border border-border bg-card p-6 sm:flex-row sm:items-center">
         <div>
           <p className="font-bold">Ai pană acum și nu vrei să citești?</p>
-          <p className="text-sm text-muted-foreground">Non-stop, în Timișoara și tot județul Timiș.</p>
+          <p className="text-sm text-muted-foreground">Non-stop, în Arad și împrejurimi.</p>
         </div>
         <Btn href={`tel:${TEL}`}><Phone className="size-4" /> <span className="tabular-nums">{PHONE}</span></Btn>
       </div>
