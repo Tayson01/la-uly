@@ -236,7 +236,9 @@ export default function CoverageMap() {
       if (nearBase) continue; // e chiar sub pinul atelierului (ex. Arad / Grădiște)
       if (showLabels || z.slug === active) {
         const b = box(c, z.short.length * 6.8 + 30, 26);
-        if (z.slug === active || !taken.some((t) => hit(t, b))) {
+        const size = m?.getSize();
+        const inside = !size || (b.x1 > 0 && b.y1 > 0 && b.x2 < size.x && b.y2 < size.y);
+        if (z.slug === active || (inside && !taken.some((t) => hit(t, b)))) {
           taken.push(b);
           labeled.add(z.slug);
           continue;
