@@ -1,11 +1,11 @@
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Circle, MapContainer, Marker, Polyline, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { Circle, CircleMarker, MapContainer, Marker, Polyline, TileLayer, Tooltip, useMap, useMapEvents } from "react-leaflet";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight, Loader2, Locate, MessageCircle, Maximize, Minus, Navigation, Phone, Plus, X } from "lucide-react";
 
-import { BASE, TEL, mapRings, waLink, zones } from "@/lib/site-data";
+import { BASE, TEL, mapRings, servedPoints, waLink, zones } from "@/lib/site-data";
 
 type LL = [number, number];
 
@@ -240,6 +240,18 @@ export default function CoverageMap() {
             <Polyline positions={[BASE, target]} interactive={false} pathOptions={{ color: brand, weight: 3, opacity: 1, dashArray: "8 10", lineCap: "round", className: "cm-route" }} />
           </>
         )}
+
+        {/* Toate localitățile deservite, ca puncte mici */}
+        {servedPoints.map((p) => (
+          <CircleMarker
+            key={p.name}
+            center={p.coords}
+            radius={4}
+            pathOptions={{ color: brand, weight: 1.5, opacity: 0.9, fillColor: brand, fillOpacity: 0.55 }}
+          >
+            <Tooltip direction="top" offset={[0, -4]}>{p.name} · venim non-stop</Tooltip>
+          </CircleMarker>
+        ))}
 
         {zones.filter((z) => active === z.slug || (km(BASE, z.coords as LL) * 1000) / (109300 / 2 ** zoom) > 38).map((z) => (
           <Marker
