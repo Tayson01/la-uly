@@ -27,7 +27,7 @@ export function ServedAreas({ title = "Localități deservite" }: { title?: stri
       </ul>
       {expanded && (
         <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-          Venim și în: {extra.join(", ")} — în tot județul Timiș și pe A1 (Nădlac – Margina), non-stop.
+          Venim și în: {extra.join(", ")} — în Arad și împrejurimi (~50 km) și pe A1 (Nădlac – Arad), non-stop.
         </p>
       )}
       <button

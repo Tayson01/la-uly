@@ -5,9 +5,9 @@ import { BtnLink, SectionLabel } from "@/components/site/ui";
 import { CoverageMapSection } from "@/components/site/CoverageMapSection";
 import { PHONE, TEL, zones } from "@/lib/site-data";
 
-const TITLE = "Zone acoperite — vulcanizare mobilă pe tot județul Timiș + A1";
+const TITLE = "Zone deservite — Vulcanizare La Uly, Arad și împrejurimi + A1";
 const DESC =
-  "Unde ajunge echipa mobilă Vulcanizare Non Stop Timișoara: toată Timișoara, Dumbrăvița, Giroc, Ghiroda, Moșnița, Săcălaz și comunele din jur, tot județul Timiș și pe A1 (Nădlac – Margina). Timpi estimați de sosire.";
+  "Unde vine echipa mobilă Vulcanizare La Uly: tot Aradul, Zimandu Nou, Livada, Vladimirescu, Curtici, Sântana, Pecica, Lipova și localitățile din jur (~50 km), plus A1 Nădlac – Arad. Non-stop.";
 
 export const Route = createFileRoute("/zone/")({
   staticData: { sitemap: true },
@@ -34,33 +34,41 @@ const Z = (slug: string, label: string) => (
 
 const groups = [
   {
-    h2: "În Timișoara: toate cartierele",
-    list: ["Mehala", "Centru", "Iosefin", "Fabric", "Circumvalațiunii", "Calea Aradului", "Calea Șagului", "Freidorf", "Ronaț"],
+    h2: "În Arad: toate cartierele",
+    list: ["Grădiște", "Micălaca", "Aurel Vlaicu", "Centru", "Gai", "Bujac", "Aradul Nou", "Pârneava", "Sânnicolau Mic"],
     body: (
       <p>
-        Atelierul e pe Str. Cloșca 33, în Mehala, aproape de Calea Torontalului și de Circumvalațiunii. De aici ajungem
-        repede în orice cartier al Timișoarei, de regulă în 10–20 de minute. Dacă poți conduce, vino direct la atelier:
-        fără programare, zi și noapte.
+        Atelierul e pe Calea Zimandului nr. 14, în Grădiște, lângă sensul giratoriu spre Oradea și la aproximativ 150 m
+        de Centura Aradului. Dacă poți conduce, vino direct: fără programare, zi și noapte. Dacă nu, venim noi oriunde în oraș.
       </p>
     ),
   },
   {
-    h2: "Spre nord și est: Dumbrăvița, Ghiroda, Remetea Mare, Recaș",
-    list: ["Dumbrăvița", "Giarmata", "Ghiroda", "Remetea Mare", "Recaș", "A1 spre Lugoj"],
+    h2: "Spre nord: Zimandu Nou, Sântana, Curtici",
+    list: ["Zimandu Nou", "Zimandcuz", "Livada", "Sânleani", "Șofronea", "Sânpaul", "Curtici", "Sântana", "Caporal Alexa"],
     body: (
       <p>
-        Dumbrăvița și Ghiroda sunt practic lipite de oraș, așa că ajungem în 15–25 de minute. Pe DN6 și pe A1, spre
-        Recaș și Lugoj, intervenim non-stop pentru autoturisme și camioane, de obicei în 30–45 de minute.
+        Pe DN79 spre Oradea și pe drumul spre Curtici venim pentru autoturisme, utilitare și camioane. Livada și Sânleani
+        sunt chiar lângă Grădiște.
       </p>
     ),
   },
   {
-    h2: "Spre sud și vest: Giroc, Moșnița, Săcălaz, Dudeștii Noi",
-    list: ["Giroc", "Chișoda", "Moșnița Nouă", "Urseni", "Săcălaz", "Sânandrei", "Dudeștii Noi", "Becicherecu Mic"],
+    h2: "Spre est și sud: Vladimirescu, Lipova, Fântânele, Vinga",
+    list: ["Vladimirescu", "Horia", "Mândruloc", "Ghioroc", "Lipova", "Șiria", "Pâncota", "Fântânele", "Frumușeni", "Zădăreni", "Vinga"],
     body: (
       <p>
-        Giroc, Chișoda și Moșnița Nouă au crescut mult, cu multe case noi — venim la domiciliu pentru pene și schimbul
-        sezonier. Spre vest, pe DN6 către Săcălaz și pe Centura Timișoarei, ajungem în 20–35 de minute.
+        Pe DN7 spre Deva, pe DN69 spre Timișoara și în podgorie, la Șiria și Pâncota, venim non-stop. Timpul și prețul
+        ți le spunem la telefon, înainte să plecăm.
+      </p>
+    ),
+  },
+  {
+    h2: "Spre vest: Pecica și A1 până la Nădlac",
+    list: ["Pecica", "Turnu", "Sederhat", "Nădlac", "A1 Nădlac – Arad", "Centura Aradului"],
+    body: (
+      <p>
+        Pe DN7 spre Pecica și pe autostrada A1 între Nădlac și Arad intervenim zi și noapte, inclusiv pentru camioane.
       </p>
     ),
   },
@@ -72,11 +80,11 @@ function ZonePage() {
       <div className="mx-auto max-w-5xl px-5 pt-14">
         <SectionLabel>Zone acoperite</SectionLabel>
         <h1 className="mt-3 max-w-3xl text-3xl font-extrabold tracking-tight sm:text-4xl">
-          Unde ajunge vulcanizarea mobilă: tot județul Timiș + A1
+          Unde venim: Arad și împrejurimi + A1
         </h1>
         <div className="mt-5 max-w-3xl space-y-4 leading-relaxed text-muted-foreground">
           <p>
-            Pornim din atelierul de pe Str. Cloșca 33, din Timișoara, și ne deplasăm în tot județul Timiș, plus pe autostrada A1 pe tronsonul Nădlac (vamă) – Margina. Prețul deplasării îl afli la telefon, înainte de plecare. Mai jos
+            Pornim din atelierul de pe Calea Zimandului nr. 14, din Grădiște, Arad, și venim în tot orașul și în localitățile din jur, pe o rază de aproximativ 50 km, plus pe autostrada A1 între Nădlac și Arad. Prețul deplasării îl afli la telefon, înainte de plecare. Mai jos
             găsești localitățile grupate pe direcții, cu distanța aproximativă și timpul estimat de sosire.
           </p>
           <p>
@@ -119,7 +127,7 @@ function ZonePage() {
             <h2 className="text-xl font-bold sm:text-2xl">Dacă localitatea ta nu e în listă</h2>
             <div className="mt-3 space-y-3 leading-relaxed text-muted-foreground">
               <p>
-                Lista nu cuprinde fiecare sat. Dacă te afli între localitățile de mai sus și oriunde în județul Timiș sau pe A1 între Nădlac și Margina, ajungem. Sună la{" "}
+                Lista nu cuprinde fiecare sat. Dacă te afli între localitățile de mai sus și pe o rază de aproximativ 50 km în jurul Aradului sau pe A1 între Nădlac și Arad, venim. Sună la{" "}
                 <a href={`tel:${TEL}`} className="font-semibold text-foreground">{PHONE}</a> sau trimite locația pe
                 WhatsApp și îți confirmăm imediat.
               </p>

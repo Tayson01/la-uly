@@ -19,9 +19,9 @@ export const Route = createFileRoute("/blog/$slug")({
   },
   head: ({ loaderData }) => {
     const p = loaderData?.post;
-    if (!p) return { meta: [{ title: "Articol negăsit — Vulcanizare Non Stop Timișoara" }, { name: "robots", content: "noindex" }] };
+    if (!p) return { meta: [{ title: "Articol negăsit — Vulcanizare La Uly Arad" }, { name: "robots", content: "noindex" }] };
     const url = `${SITE}/blog/${p.slug}`;
-    const title = `${p.title} | Vulcanizare Non Stop Timișoara`;
+    const title = `${p.title} | Vulcanizare La Uly Arad`;
     const zone = p.area ? zones.find((z) => z.slug === p.area) : undefined;
     return {
       meta: [
@@ -55,14 +55,14 @@ export const Route = createFileRoute("/blog/$slug")({
             inLanguage: "ro-RO",
             keywords: p.keyword,
             articleSection: postCategory(p),
-            ...(zone ? { contentLocation: { "@type": "Place", name: `${zone.short}, județul Timiș, România`, geo: { "@type": "GeoCoordinates", latitude: zone.coords[0], longitude: zone.coords[1] } } } : {}),
+            ...(zone ? { contentLocation: { "@type": "Place", name: `${zone.short}, județul Arad, România`, geo: { "@type": "GeoCoordinates", latitude: zone.coords[0], longitude: zone.coords[1] } } } : {}),
             headline: p.title,
             description: p.desc,
             datePublished: p.date,
             dateModified: p.date,
             mainEntityOfPage: url,
-            author: { "@type": "Organization", name: "Vulcanizare Non Stop Timișoara" },
-            publisher: { "@type": "Organization", name: "Vulcanizare Non Stop Timișoara", url: `${SITE}/` },
+            author: { "@type": "Organization", name: "Vulcanizare La Uly" },
+            publisher: { "@type": "Organization", name: "Vulcanizare La Uly", url: `${SITE}/` },
           }),
         },
       ],
