@@ -220,9 +220,11 @@ export default function CoverageMap() {
           labeled.add(z.slug);
           continue;
         }
-      } else if (Math.hypot(p.x - base.x, p.y - base.y) < 38) continue;
+      }
+      const d = box(c, 12, 12, 0, 1);
+      if (z.slug !== active && taken.some((t) => hit(t, d))) continue; // nu desenăm puncte peste pin, eticheta atelierului sau etichetele inelelor
       dots.add(z.slug);
-      taken.push(box(c, 12, 12, 0, 1));
+      taken.push(d);
     }
     const points = servedPoints.filter((sp) => {
       if (km(sp.coords, BASE) < 1.5) return false;
@@ -364,7 +366,7 @@ export default function CoverageMap() {
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Sosire</p>
-                  <p className="text-base font-black tabular-nums">~{zone ? zone.etaMinutes : eta(dist)}</p>
+                  <p className="text-base font-black tabular-nums">~{zone ? zone.etaMinutes : nearest && user && km(user, nearest.coords as LL) < 8 ? nearest.etaMinutes : eta(dist)}</p>
                 </div>
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Distanță</p>
