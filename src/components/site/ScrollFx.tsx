@@ -145,7 +145,7 @@ export function SpinningTire({ className = "" }: { className?: string }) {
   );
 }
 
-/** Ora curentă (Timișoara), actualizată live. */
+/** Ora curentă (România), actualizată live. */
 export function LiveClock() {
   const [t, setT] = useState<string>("Deschis");
   useEffect(() => {

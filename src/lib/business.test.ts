@@ -40,3 +40,29 @@ describe("prețuri schimb 4 anvelope cu echilibrare", () => {
     expect(JSON.stringify(faqs)).toMatch(/non-stop, 24\/24/);
   });
 });
+
+import { COVERAGE, zones, zoneRedirects } from "./site-data";
+import { posts } from "./blog-data";
+
+describe("zone deservite: Arad și împrejurimi", () => {
+  test("acoperirea este Arad + A1 Nădlac – Arad", () => {
+    expect(COVERAGE.county).toBe("Arad");
+    expect(COVERAGE.highwayFrom).toMatch(/Nădlac/);
+    expect(COVERAGE.highwayTo).toBe("Arad");
+  });
+  test("prima zonă este atelierul din Arad", () => {
+    expect(zones[0].slug).toBe("vulcanizare-non-stop-arad");
+    expect(zones[0].km).toBe(0);
+  });
+  test("vechile pagini din Timișoara duc spre Arad", () => {
+    expect(zoneRedirects["vulcanizare-non-stop-timisoara"]).toBe("/zone/vulcanizare-non-stop-arad");
+  });
+  test("niciun articol sau zonă nu mai are numărul vechi 0725 138 493", () => {
+    expect(JSON.stringify({ zones, posts })).not.toMatch(/0725/);
+  });
+  test("fiecare articol local aparține unei zone existente", () => {
+    const slugs = new Set(zones.map((z) => z.slug));
+    for (const p of posts) if (p.area) expect(slugs.has(p.area)).toBe(true);
+    for (const p of posts) for (const l of p.links.filter((x) => x.to.startsWith("/zone/"))) expect(slugs.has(l.to.slice(6))).toBe(true);
+  });
+});
