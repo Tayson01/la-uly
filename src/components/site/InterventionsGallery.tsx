@@ -2,55 +2,56 @@ import { ChevronUp } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { BadgeCheck, Camera, ChevronLeft, ChevronRight, ExternalLink, Star, X } from "lucide-react";
 
-import a9 from "@/assets/google/avatar-9.png";
 import { GoogleMark } from "@/components/site/GoogleMark";
 import { SectionLabel } from "@/components/site/ui";
+import { BRAND, GOOGLE_RATING, GOOGLE_REVIEWS, MAPS } from "@/lib/site-data";
 
-const GOOGLE_URL = "https://maps.app.goo.gl/AEFCBe3UtatoaJG57";
-const RATING = 4.2;
-const COUNT = 839;
+const GOOGLE_URL = MAPS;
+const RATING = GOOGLE_RATING;
+const COUNT = GOOGLE_REVIEWS;
 
-const owner = { name: "Vulcanizare La Uly", avatar: a9 };
+const owner = { name: BRAND };
 
-const fbImages = import.meta.glob<string>("@/assets/fb/foto-*.jpg", { eager: true, import: "default" });
+const images = import.meta.glob<string>("@/assets/la-uly/foto-*.webp", { eager: true, import: "default" });
 const sizes: [number, number][] = [
-  [1, 1], [16, 9], [16, 9], [1, 1], [1, 1], [16, 9], [4, 3], [1, 1],
-  [1, 1], [1, 1], [1, 1], [4, 3], [1, 1], [4, 3], [1, 1], [16, 9],
+  [3, 4], [3, 4], [4, 3], [3, 4], [3, 4], [3, 4], [4, 3], [3, 4], [3, 4],
 ];
 
-/** Fotografii reale din atelier și de la intervenții (Str. Cloșca 33). */
+/** Fotografii reale din atelierul de pe Calea Zimandului nr. 14 și de la intervenții (Facebook / Google). */
 const photos = sizes.map(([w, h], i) => ({
-  src: fbImages[`/src/assets/fb/foto-${i + 1}.jpg`]!,
+  src: images[`/src/assets/la-uly/foto-${String(i + 1).padStart(2, "0")}.webp`]!,
   w,
   h,
   author: owner,
 }));
 
-/** Recenzii reale de 5 stele de pe profilul Google Maps (Str. Cloșca 33). */
-const reviewAvatars = import.meta.glob<string>("@/assets/reviews/r*.jpg", { eager: true, import: "default" });
-const av = (n: number) => reviewAvatars[`/src/assets/reviews/r${n}.jpg`];
-
-const reviewsBase = [
-  { name: "Edvin Mako", rating: 5, when: "acum 3 luni", text: "Cea mai bună vulcanizare. După o problemă avută cu roata din spate care avea pană, dar scăpa aer foarte aleatoriu, au descoperit problema în 5 minute și au rezolvat-o. Am mai fost la alte 2 vulcanizări și nu au găsit nimic." },
-  { name: "Christian Kasznel", rating: 5, when: "acum 4 luni", text: "Serviciile de schimbare anvelope sunt bune și nu am nimic de reproșat, nici ca timp. Și faptul că au deschis non-stop e foarte de ajutor!" },
-  { name: "Florin Serban", rating: 5, when: "acum 3 luni", text: "Prețuri mici și calitate superioară!!! Super" },
-  { name: "c. k.", rating: 5, when: "Google", text: "Foarte ok băieți și foarte rapizi, jos pălăria, merită 10 stele." },
-  { name: "R. M.", rating: 5, when: "Google", text: "Am avut nevoie într-o zi de sărbătoare și a mers totul foarte repede. Recomand!" },
-  { name: "C. H.", rating: 5, when: "Google", text: "Cel mai important este NON STOP! Foarte mulțumit de personal." },
-  { name: "M. A.", rating: 5, when: "Google", text: "Bravo echipa... Servicii super bune și program non stop." },
-  { name: "V. S.", rating: 5, when: "Google", text: "Am fost noaptea și sunt ok. SUPER" },
-  { name: "S. I.", rating: 5, when: "Google", text: "Foarte amabili, se vede că știu ce fac :)" },
-  { name: "C.", rating: 5, when: "Google", text: "Foarte rapizi și partea bună: non-stop." },
-  { name: "F. C.", rating: 5, when: "Google", text: "Rapiditate, calitate și cel mai important, non stop." },
-  { name: "R. M.", rating: 5, when: "Google", text: "Servicii excelente. Recomand cu încredere! 👍" },
-  { name: "O. B.", rating: 5, when: "Google", text: "Sunt ok, serviabili și cel mai important, non-stop." },
-  { name: "g. c.", rating: 5, when: "Google", text: "Băieți foarte ok, și preț și calitate." },
-  { name: "C. f. d.", rating: 5, when: "Google", text: "Rapid și super ok băieții." },
-  { name: "D. A.", rating: 5, when: "Google", text: "Schimbare rapidă de cauciucuri!" },
-  { name: "B. M.", rating: 5, when: "Google", text: "Băieți pricepuți." },
-  { name: "S. P.", rating: 5, when: "Google", text: "Recomand NON STOP!!!" },
+/** Recenzii reale de pe profilul Google Maps al atelierului. */
+const reviews: { name: string; when: string; text: string; note?: string; rating?: number; avatar?: string }[] = [
+  {
+    name: "Radu Jitariu",
+    when: "acum 3 luni",
+    text: "Recomand călduros… am nimerit un băiat foarte profesionist care mi-a rezolvat problema foarte repede. Menționez că am fost într-o luni dimineață la ora 02:00, când restul vulcanizărilor din Arad dorm.",
+  },
+  {
+    name: "Jeny Budau",
+    when: "acum 5 luni",
+    text: "De câte ori am avut nevoie de ajutorul vostru ați fost amabili, punctuali și profesioniști! Vă mulțumesc și sper din suflet să fiți apreciați și solicitați!",
+  },
+  {
+    name: "Bernd P",
+    when: "pe Google",
+    note: "tradus din germană",
+    text: "Rapid și ieftin. Eram în drum spre Germania și am prins un șurub în roata din spate, pierdea aer încet. Anvelopa a fost reparată repede, cu un petic. Am ajuns cu bine, anvelopa ține. Mulțumesc încă o dată!",
+  },
 ];
-const reviews = reviewsBase.map((r, i) => ({ ...r, avatar: i >= 3 ? av(i - 2) : undefined }));
+
+/** Ce menționează cel mai des clienții în recenziile Google (etichete generate de Google). */
+const highlights = [
+  { label: "Personal amabil", count: 34 },
+  { label: "Promptitudine", count: 10 },
+  { label: "Eficiență", count: 5 },
+  { label: "Personal priceput", count: 4 },
+];
 
 function Stars({ value, className = "size-4" }: { value: number; className?: string }) {
   return (
@@ -87,7 +88,7 @@ function Lightbox({ index, onClose, onMove }: { index: number; onClose: () => vo
         <ChevronLeft className="size-6" />
       </button>
       <figure className="relative max-h-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-        <img src={p.src} alt={`Fotografie ${index + 1} de pe Google Maps`} className="max-h-[80svh] w-auto rounded-2xl object-contain" />
+        <img src={p.src} alt={`Vulcanizare La Uly, Arad — fotografie ${index + 1}`} className="max-h-[80svh] w-auto rounded-2xl object-contain" />
         <figcaption className="mt-3 flex items-center justify-between gap-3 text-sm text-gallery-lb-foreground">
           <span className="flex items-center gap-2">
             <span aria-hidden className="grid size-7 shrink-0 place-items-center rounded-full border-2 border-card bg-brand text-[13px] font-black italic text-brand-foreground shadow-card">V</span>
@@ -115,12 +116,12 @@ export function InterventionsGallery() {
         {/* Antet + scor Google */}
         <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:items-end">
           <div>
-            <SectionLabel>Galerie · Intervenții reale</SectionLabel>
+            <SectionLabel>Galerie · Atelierul din Grădiște</SectionLabel>
             <h2 className="mt-3 max-w-2xl text-3xl font-black leading-tight sm:text-4xl lg:text-[2.5rem]">
               Lucrări reale, clienți <span className="text-brand">reali.</span>
             </h2>
             <p className="mt-4 max-w-xl leading-relaxed text-muted-foreground">
-              Fotografii și recenzii direct de pe profilul nostru Google Maps, fără filtre, fără poze de stoc.
+              Fotografii din atelierul de pe Calea Zimandului și de la intervențiile la camioane, plus recenzii reale de pe Google Maps.
             </p>
           </div>
 
@@ -151,7 +152,7 @@ export function InterventionsGallery() {
                 style={{ aspectRatio: `${p.w} / ${p.h}` }}
                 aria-label={isLastVisible ? undefined : `Deschide fotografia ${i + 1}`}
               >
-                <img src={p.src} alt={`Lucrare de vulcanizare, fotografie ${i + 1}`} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
+                <img src={p.src} alt={`Vulcanizare La Uly — lucrare în atelier, fotografia ${i + 1}`} width={p.w * 300} height={p.h * 300} loading="lazy" decoding="async" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
                 <span className="gallery-tile-shade absolute inset-0" aria-hidden="true" />
                 {isLastVisible ? (
                   <span className="absolute inset-0 flex flex-col items-center justify-center gap-1.5 bg-background/70 text-foreground backdrop-blur-[2px] transition-colors duration-300 group-hover:bg-background/55">
@@ -260,7 +261,7 @@ function ReviewsCarousel() {
         <div className="relative grid gap-5 sm:grid-cols-[1fr_auto] sm:items-center">
           <div className="min-w-0">
             <p className="inline-flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.18em] text-brand">
-              <GoogleMark className="size-3.5" /> Recenzii Google verificate
+              <GoogleMark className="size-3.5" /> Recenzii Google
             </p>
             <h3 className="mt-3 text-3xl font-black leading-[0.95] tracking-tight sm:text-4xl">
               Ce spun <span className="text-brand">clienții</span>
@@ -269,13 +270,20 @@ function ReviewsCarousel() {
           <a href={GOOGLE_URL} target="_blank" rel="noreferrer" className="rv-score group flex items-center gap-4 rounded-2xl border border-border bg-background px-4 py-3 transition hover:border-brand">
             <span className="text-4xl font-black leading-none tabular-nums">{RATING.toFixed(1).replace(".", ",")}</span>
             <span className="min-w-0">
-              <Stars value={5} className="size-4" />
+              <Stars value={RATING} className="size-4" />
               <span className="mt-1 block text-xs font-semibold text-muted-foreground">
                 {COUNT} recenzii pe Google <ExternalLink className="inline size-3 transition group-hover:text-brand" />
               </span>
             </span>
           </a>
         </div>
+        <ul className="relative mt-5 flex flex-wrap gap-2">
+          {highlights.map((h) => (
+            <li key={h.label} className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground">
+              {h.label} <span className="font-black text-brand tabular-nums">· {h.count}</span>
+            </li>
+          ))}
+        </ul>
       </div>
 
       <div ref={ref} className="gallery-reviews -mx-5 mt-5 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth px-5 pb-3 sm:mx-0 sm:gap-4 sm:px-0">
@@ -298,8 +306,8 @@ function ReviewsCarousel() {
                   {r.name} <BadgeCheck className="size-4 shrink-0 text-brand" />
                 </p>
                 <div className="mt-0.5 flex items-center gap-2">
-                  <Stars value={r.rating} className="size-3.5" />
-                  <span className="text-[11px] text-muted-foreground">{r.when === "Google" ? "pe Google" : r.when}</span>
+                  {r.rating ? <Stars value={r.rating} className="size-3.5" /> : <GoogleMark className="size-3.5" />}
+                  <span className="text-[11px] text-muted-foreground">{r.when}{r.note ? ` · ${r.note}` : ""}</span>
                 </div>
               </div>
             </div>
