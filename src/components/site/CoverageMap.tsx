@@ -155,7 +155,7 @@ export default function CoverageMap() {
         setAcc(p.coords.accuracy);
         setActive(null);
         setLocating(false);
-        mapRef.current?.flyToBounds(L.latLngBounds([ll, BASE]).pad(0.35), { duration: 0.9 });
+        mapRef.current?.flyToBounds(L.latLngBounds([ll, BASE]), { duration: 0.9, paddingTopLeft: [40, 80], paddingBottomRight: [80, 250] });
       },
       (e) => {
         setLocating(false);
@@ -206,16 +206,32 @@ export default function CoverageMap() {
     };
     const hit = (a: Box, b: Box) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
     const taken: Box[] = [box(BASE, 44, 44), box(BASE, 140, 22, 35)];
+    const overlays: Box[] = [];
     // butoanele, banda de sus și cardul de jos acoperă harta: nu punem etichete sub ele
     const wrap = wrapRef.current;
     if (m && wrap) {
       const w = wrap.getBoundingClientRect();
       wrap.querySelectorAll<HTMLElement>("[data-cm-overlay]").forEach((el) => {
         const r = el.getBoundingClientRect();
-        taken.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
+        overlays.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
       });
     }
-    mapRings.forEach((r) => taken.push(box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20)));
+    // butoanele, banda de sus și cardul de jos acoperă harta: nu punem etichete sub ele
+    const wrap = wrapRef.current;
+    if (m && wrap) {
+      const w = wrap.getBoundingClientRect();
+      wrap.querySelectorAll<HTMLElement>("[data-cm-overlay]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        overlays.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
+      });
+    }
+    const ringVisible = mapRings.map((r) => {
+      const b = box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20);
+      if (overlays.some((o) => hit(o, b))) return false;
+      taken.push(b);
+      return true;
+    });
+    taken.push(...overlays);
     const base = px(BASE);
     const order = [...zones].sort((a, b) =>
       a.slug === active ? -1 : b.slug === active ? 1 : km(BASE, a.coords as LL) - km(BASE, b.coords as LL),
@@ -246,7 +262,7 @@ export default function CoverageMap() {
       const b = box(sp.coords, 8, 8, 0, 0);
       return !taken.some((t) => hit(t, b));
     });
-    return { labeled, dots, points };
+    return { labeled, dots, points, ringVisible };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [zoom, active, showLabels, view, user]);
 
@@ -285,7 +301,7 @@ export default function CoverageMap() {
             }}
           />
         ))}
-        {mapRings.map((r) => (
+        {mapRings.filter((_, i) => layout.ringVisible[i]).map((r) => (
           <Marker
             key={`l${r.km}`}
             position={[BASE[0] + r.radius / 111320, BASE[1]]}
