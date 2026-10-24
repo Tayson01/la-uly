@@ -3,7 +3,7 @@ import { Check, Clock, Phone, Tag } from "lucide-react";
 
 import { Btn, BtnLink, SectionLabel } from "@/components/site/ui";
 import { ServiceIcon } from "@/components/site/ServiceIcon";
-import { PHONE, TEL, WA, services, zones } from "@/lib/site-data";
+import { PHONE, TEL, WA, services, zones, SITE_URL } from "@/lib/site-data";
 
 export const Route = createFileRoute("/servicii/$slug")({
   staticData: { sitemap: true },
@@ -27,7 +27,7 @@ export const Route = createFileRoute("/servicii/$slug")({
         { property: "og:type", content: "article" },
         { name: "twitter:card", content: "summary_large_image" },
       ],
-      links: [{ rel: "canonical", href: `https://vulcanizaretimisoara.ro/servicii/${s?.slug ?? ""}` }],
+      links: [{ rel: "canonical", href: `${SITE_URL}/servicii/${s?.slug ?? ""}` }],
     };
   },
   component: ServicePage,

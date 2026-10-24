@@ -6,9 +6,9 @@ import { Btn, SectionLabel } from "@/components/site/ui";
 import { ServedAreas } from "@/components/site/ServedAreas";
 import { posts, postCategory, type BlogPost } from "@/lib/blog-data";
 import { zones } from "@/lib/zones-data";
-import { PHONE, TEL } from "@/lib/site-data";
+import { PHONE, TEL, SITE_URL } from "@/lib/site-data";
 
-const SITE = "https://vulcanizaretimisoara.ro";
+const SITE = SITE_URL;
 const TITLE = "Blog vulcanizare Arad — ghiduri locale pentru pene și anvelope";
 const DESC =
   "Ghiduri practice pentru pene și anvelope în Arad, Zimandu Nou, Vladimirescu, Pecica, Sântana, Lipova și pe A1 Nădlac – Arad. Sfaturi de la Vulcanizare La Uly.";

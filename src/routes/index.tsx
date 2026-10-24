@@ -17,7 +17,7 @@ import { ServicesSection } from "@/components/site/ServicesSection";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ContactSection } from "@/components/site/ContactSection";
 import { InterventionsGallery } from "@/components/site/InterventionsGallery";
-import { ADDRESS, BASE, BRAND, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA } from "@/lib/site-data";
+import { ADDRESS, BASE, BRAND, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA, SITE_URL } from "@/lib/site-data";
 
 
 export const Route = createFileRoute("/")({
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/")({
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/" }, { rel: "preload", as: "image", href: heroAtelierSm, imageSrcSet: `${heroAtelierSm} 640w, ${heroAtelier} 1200w`, imageSizes: "(min-width: 1024px) 560px, 100vw", fetchPriority: "high" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }, { rel: "preload", as: "image", href: heroAtelierSm, imageSrcSet: `${heroAtelierSm} 640w, ${heroAtelier} 1200w`, imageSizes: "(min-width: 1024px) 560px, 100vw", fetchPriority: "high" }],
     scripts: [
       {
         type: "application/ld+json",
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/")({
           name: BRAND,
           legalName: COMPANY.name,
           telephone: [TEL, TEL2],
-          url: "https://vulcanizaretimisoara.ro/",
+          url: `${SITE_URL}/`,
           address: {
             "@type": "PostalAddress",
             streetAddress: "Calea Zimandului nr. 14",
@@ -61,7 +61,7 @@ export const Route = createFileRoute("/")({
           },
           openingHours: "Mo-Su 00:00-23:59",
           areaServed: [{ "@type": "City", name: "Arad" }],
-          image: "https://vulcanizaretimisoara.ro/favicon.png",
+          image: `${SITE_URL}/favicon.png`,
           sameAs: [MAPS, FACEBOOK],
           email: EMAIL,
           geo: { "@type": "GeoCoordinates", latitude: BASE[0], longitude: BASE[1] },

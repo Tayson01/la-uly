@@ -3,7 +3,7 @@ import { Clock, MapPin } from "lucide-react";
 
 import { BtnLink, SectionLabel } from "@/components/site/ui";
 import { CoverageMapSection } from "@/components/site/CoverageMapSection";
-import { PHONE, TEL, zones } from "@/lib/site-data";
+import { PHONE, TEL, zones, SITE_URL } from "@/lib/site-data";
 
 const TITLE = "Zone deservite — Vulcanizare La Uly, Arad și împrejurimi + A1";
 const DESC =
@@ -17,11 +17,11 @@ export const Route = createFileRoute("/zone/")({
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
-      { property: "og:url", content: "https://vulcanizaretimisoara.ro/zone" },
+      { property: "og:url", content: `${SITE_URL}/zone` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/zone" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/zone` }],
   }),
   component: ZonePage,
 });

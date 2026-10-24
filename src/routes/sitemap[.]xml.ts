@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
-import { services, zones } from "@/lib/site-data";
+import { services, zones, SITE_URL } from "@/lib/site-data";
 import { posts } from "@/lib/blog-data";
 import { isSitemapRouteIncluded, sitemapPathForLocation, sitemapStaticPaths, sitemapXML, type SitemapEntry } from "@/lib/sitemap";
 
-const BASE_URL = "https://vulcanizaretimisoara.ro";
+const BASE_URL = SITE_URL;
 
 export const Route = createFileRoute("/sitemap.xml")({
   staticData: { sitemap: false },

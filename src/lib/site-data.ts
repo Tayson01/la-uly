@@ -1,3 +1,5 @@
+/** Adresa publică a site-ului (canonical, sitemap). Schimb-o aici când se mută pe domeniul nou. */
+export const SITE_URL = "https://vulcanizaretimisoara.ro";
 export const BRAND = "Vulcanizare La Uly";
 export const CITY = "Arad";
 export const PHONE = "0746 538 480";
