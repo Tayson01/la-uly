@@ -1,5 +1,5 @@
 // Pagini locale: fiecare zonă are text propriu, scris separat (nu șablon cu numele înlocuit).
-// Acoperire: tot județul Timiș + autostrada A1 între vama Nădlac și Margina (vezi COVERAGE în site-data).
+// Acoperire: Arad și localitățile din jur (~50 km) + autostrada A1 între Nădlac și Arad (vezi COVERAGE în site-data).
 
 export type ZoneSection = { h2: string; p: string[] };
 export type ZoneFaq = { q: string; a: string };
@@ -27,1160 +27,472 @@ export type Zone = {
 
 export const RADIUS_KM = 50;
 
+const ATELIER_FAQ: ZoneFaq = {
+  q: "Unde e atelierul și ce program are?",
+  a: "Pe Calea Zimandului nr. 14, cartier Grădiște, Arad — lângă sensul giratoriu spre Oradea. Deschis non-stop, 24/24. Telefon: 0746 538 480 sau 0746 765 469.",
+};
+
+const PRICE_P =
+  "Schimbul a 4 anvelope cu echilibrare costă 160 RON pe jante de oțel și 180 RON pe jante de aluminiu. Pentru deplasare și alte lucrări îți spunem prețul la telefon, înainte să plecăm.";
+
 export const zones: Zone[] = [
   {
-    "slug": "vulcanizare-non-stop-timisoara",
-    "name": "Timișoara — Mehala și centru",
-    "short": "Timișoara",
-    "eta": "Sosire ~10–30 min",
-    "etaMinutes": "10–30 min",
-    "km": 0,
-    "coords": [
-      45.7647,
-      21.2037
-    ],
-    "desc": "Atelier non-stop în Mehala, aproape de orice cartier.",
-    "intro": "Vulcanizare Non Stop Timișoara te așteaptă pe Str. Cloșca, nr. 33, în Mehala, 24/24. Pentru o roată complet dezumflată, sună înainte să pornești: venim noi, ca să nu riști janta.",
-    "metaTitle": "Vulcanizare Non Stop Timișoara | 0725 138 493",
-    "metaDesc": "Atelier non-stop în Mehala, aproape de orice cartier. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare non-stop în Timișoara — atelier în Mehala",
-    "roads": [
-      "Str. Cloșca",
-      "Calea Circumvalațiunii",
-      "Calea Aradului",
-      "Calea Șagului"
-    ],
-    "localities": [
-      "Timișoara",
-      "Mehala",
-      "Cetate",
-      "Iosefin",
-      "Fabric",
-      "Freidorf"
-    ],
-    "sections": [
+    slug: "vulcanizare-non-stop-arad",
+    name: "Arad — Grădiște și tot orașul",
+    short: "Arad",
+    eta: "Sosire ~10–20 min",
+    etaMinutes: "10–20 min",
+    km: 0,
+    coords: [46.2039, 21.3438],
+    desc: "Atelier non-stop în Grădiște, pe Calea Zimandului nr. 14, aproape de Centura Aradului.",
+    intro:
+      "Vulcanizare La Uly te așteaptă pe Calea Zimandului nr. 14, în Grădiște, zi și noapte. Dacă roata e complet dezumflată, nu mai conduce până la noi: sună și venim noi oriunde în Arad.",
+    metaTitle: "Vulcanizare non-stop Arad — Grădiște | 0746 538 480",
+    metaDesc:
+      "Vulcanizare non-stop în Arad, pe Calea Zimandului nr. 14, Grădiște. Schimb 4 anvelope + echilibrare de la 160 RON. Venim și la tine, 24/24.",
+    h1: "Vulcanizare non-stop în Arad — atelier în Grădiște",
+    roads: ["Calea Zimandului", "Centura Aradului", "Calea Aurel Vlaicu", "Calea Timișorii"],
+    localities: ["Arad", "Grădiște", "Micălaca", "Aurel Vlaicu", "Centru", "Gai", "Bujac", "Aradul Nou", "Pârneava", "Sânnicolau Mic"],
+    sections: [
       {
-        "h2": "Atelier în Mehala sau intervenție în oraș?",
-        "p": [
-          "Dacă anvelopa pierde aer, nu presupune că poți traversa orașul în siguranță. Descrie-ne problema și îți spunem dacă e mai bine să vii la atelier sau să aștepți echipa mobilă."
-        ]
+        h2: "Vii la atelier sau venim noi?",
+        p: [
+          "Atelierul e în Grădiște, lângă sensul giratoriu spre Oradea, așa că din Micălaca, Aurel Vlaicu sau Bujac ajungi repede, iar de pe Centură ești practic la noi. Dacă anvelopa încă ține aer, vino direct; dacă e la pământ, rămâi pe loc și te ajutăm acolo.",
+        ],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Timișoara?",
-        "a": "De obicei în 10–30 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Prețuri clare",
+        p: [
+          PRICE_P,
+          "Sună la 0746 538 480 și spune modelul mașinii, dimensiunea anvelopei și unde ești.",
+        ],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["vulcanizare-atelier-non-stop", "reparatii-pe-loc", "montaj-domiciliu", "echilibrare-roti"],
+    faqs: [
+      { q: "În cât timp ajungeți în Arad?", a: "De obicei în 10–20 de minute, în funcție de cartier și de trafic. Îți confirmăm timpul la telefon." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-noaptea-ce-faci", "reparatie-sau-inlocuire-anvelopa", "cand-schimbi-anvelopele-de-iarna"],
   },
   {
-    "slug": "vulcanizare-mobila-dumbravita",
-    "name": "Dumbrăvița",
-    "short": "Dumbrăvița",
-    "eta": "Sosire ~15–30 min",
-    "etaMinutes": "15–30 min",
-    "km": 8,
-    "coords": [
-      45.7978,
-      21.2425
-    ],
-    "desc": "Pene și schimburi de anvelope la nord de Timișoara.",
-    "intro": "În Dumbrăvița, o pană în fața casei nu înseamnă un drum pe roata goală până în oraș. Trimite adresa și dimensiunea anvelopei; venim cu tot echipamentul.",
-    "metaTitle": "Vulcanizare mobilă Dumbrăvița 24/24 | 0725 138 493",
-    "metaDesc": "Pene și schimburi de anvelope la nord de Timișoara. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Dumbrăvița",
-    "roads": [
-      "Calea Aradului",
-      "DN69",
-      "DJ691",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Dumbrăvița"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-zimandu-nou",
+    name: "Zimandu Nou și Zimandcuz",
+    short: "Zimandu Nou",
+    eta: "Sosire ~15–25 min",
+    etaMinutes: "15–25 min",
+    km: 7,
+    coords: [46.2553, 21.3817],
+    desc: "Pe DN79, spre Oradea — chiar pe drumul care pleacă de lângă atelier.",
+    intro:
+      "Zimandu Nou și Zimandcuz sunt pe aceeași direcție cu atelierul: ieși din Grădiște pe Calea Zimandului și ești acolo. Pentru o pană acasă sau pe DN79, venim repede cu tot echipamentul.",
+    metaTitle: "Vulcanizare mobilă Zimandu Nou 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Zimandu Nou, Zimandcuz și Andrei Șaguna, pe DN79 spre Oradea. Atelier la câțiva km, în Grădiște, Arad.",
+    h1: "Vulcanizare mobilă în Zimandu Nou și Zimandcuz",
+    roads: ["DN79 spre Oradea", "Calea Zimandului"],
+    localities: ["Zimandu Nou", "Zimandcuz", "Andrei Șaguna"],
+    sections: [
       {
-        "h2": "Accesul în cartierele rezidențiale",
-        "p": [
-          "Indică un loc plan și liber, fără să blochezi poarta vecinilor. Traficul de pe Calea Aradului și DJ691 influențează timpul de sosire."
-        ]
+        h2: "Aproape de atelier",
+        p: [
+          "Din Zimandcuz până la atelier sunt doar câțiva kilometri pe drumul drept. Dacă roata pierde încet aer, umflă-o și vino; dacă s-a dezumflat de tot, nu risca janta pe DN79 — venim noi.",
+        ],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Dumbrăvița?",
-        "a": "De obicei în 15–30 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Pană pe DN79, spre Oradea",
+        p: [
+          "Pe DN79 circulă multe camioane, așa că oprește doar unde ai loc, departe de bandă, și pune triunghiul. Trimite-ne locația pe WhatsApp și îți spunem în cât timp ajungem.",
+        ],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "reparatii-pe-loc", "montaj-domiciliu", "vulcanizare-camioane"],
+    faqs: [
+      { q: "Veniți și pe DN79, în afara satului?", a: "Da, venim oriunde pe DN79 între Arad și Zimandu Nou, zi și noapte. Prețul deplasării ți-l spunem la telefon." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-noaptea-ce-faci", "valva-anvelopa-pierde-aer"],
   },
   {
-    "slug": "vulcanizare-mobila-giroc",
-    "name": "Giroc și Chișoda",
-    "short": "Giroc",
-    "eta": "Sosire ~20–40 min",
-    "etaMinutes": "20–40 min",
-    "km": 12,
-    "coords": [
-      45.6942,
-      21.2358
-    ],
-    "desc": "Intervenții în Giroc și Chișoda, acasă sau în parcare.",
-    "intro": "Pentru șoferii din Giroc și Chișoda, drumul până în Mehala poate fi aglomerat. Dacă roata nu mai ține aer, rămâi într-un loc sigur și cere intervenția la adresă.",
-    "metaTitle": "Vulcanizare mobilă Giroc 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții în Giroc și Chișoda, acasă sau în parcare. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Giroc și Chișoda",
-    "roads": [
-      "Calea Martirilor",
-      "Calea Șagului",
-      "DN59",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Giroc",
-      "Chișoda"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-livada-sanleani",
+    name: "Livada și Sânleani",
+    short: "Livada",
+    eta: "Sosire ~15–25 min",
+    etaMinutes: "15–25 min",
+    km: 4,
+    coords: [46.2192, 21.3874],
+    desc: "La est de Grădiște, cartierele noi de case din Livada și Sânleani.",
+    intro:
+      "Livada și Sânleani sunt lipite de Grădiște. Mulți clienți de aici ne sună dimineața, când găsesc roata dezumflată în curte — venim la poartă și rezolvăm înainte să pleci la muncă.",
+    metaTitle: "Vulcanizare mobilă Livada și Sânleani 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă în Livada și Sânleani, la câțiva km de atelierul din Grădiște, Arad. Pene, schimb anvelope și echilibrare, non-stop.",
+    h1: "Vulcanizare mobilă în Livada și Sânleani",
+    roads: ["Drumul Livada – Arad", "ieșirea de est din Grădiște"],
+    localities: ["Livada", "Sânleani"],
+    sections: [
       {
-        "h2": "Contează pe ce parte a comunei ești",
-        "p": [
-          "Spune dacă ești în Giroc sau Chișoda și trimite locația. Pentru schimbul sezonier pregătește setul de anvelope și cheia antifurt."
-        ]
+        h2: "Schimb de anvelope în curtea ta",
+        p: [
+          "Pe străzile noi din Sânleani și Livada e liniște și loc de lucru, așa că putem schimba roata direct în fața casei.",
+          PRICE_P,
+        ],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Giroc?",
-        "a": "De obicei în 20–40 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Sau treci pe la noi",
+        p: ["Atelierul e la câteva minute de mers. Dacă mașina rulează normal, vino oricând, inclusiv noaptea sau în weekend."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["montaj-domiciliu", "reparatii-pe-loc", "echilibrare-roti"],
+    faqs: [
+      { q: "Puteți schimba setul de iarnă la mine acasă?", a: "Da. Spune-ne la telefon dimensiunea și tipul jantelor și stabilim ora." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["schimb-anvelope-la-domiciliu-ghid", "cand-schimbi-anvelopele-de-iarna"],
   },
   {
-    "slug": "vulcanizare-mobila-ghiroda",
-    "name": "Ghiroda",
-    "short": "Ghiroda",
-    "eta": "Sosire ~20–40 min",
-    "etaMinutes": "20–40 min",
-    "km": 8,
-    "coords": [
-      45.7636,
-      21.3
-    ],
-    "desc": "Asistență pe ieșirea estică a orașului și lângă aeroport.",
-    "intro": "Pe Calea Lugojului și în Ghiroda, traficul de tranzit se întâlnește cu cel local. La o pană, caută un loc ferit de circulație și spune-ne sensul de mers.",
-    "metaTitle": "Vulcanizare mobilă Ghiroda 24/24 | 0725 138 493",
-    "metaDesc": "Asistență pe ieșirea estică a orașului și lângă aeroport. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Ghiroda",
-    "roads": [
-      "DN6",
-      "Calea Lugojului",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Ghiroda",
-      "Giarmata-Vii"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-sofronea-sanpaul",
+    name: "Șofronea și Sânpaul",
+    short: "Șofronea",
+    eta: "Sosire ~15–30 min",
+    etaMinutes: "15–30 min",
+    km: 9,
+    coords: [46.2778, 21.31],
+    desc: "La nord de Arad, pe drumul spre Curtici.",
+    intro:
+      "Între Arad și Curtici, Șofronea și Sânpaul au drumuri mai liniștite, dar și mai puține ajutoare la miezul nopții. Ne suni, iar noi venim din Grădiște în câteva minute.",
+    metaTitle: "Vulcanizare mobilă Șofronea și Sânpaul 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Șofronea și Sânpaul, la nord de Arad. Reparăm pana pe loc sau schimbăm roata.",
+    h1: "Vulcanizare mobilă în Șofronea și Sânpaul",
+    roads: ["Drumul Arad – Curtici"],
+    localities: ["Șofronea", "Sânpaul"],
+    sections: [
       {
-        "h2": "Repere utile pe DN6",
-        "p": [
-          "Un număr de imobil, o parcare sau locația trimisă din telefon ne ajută mai mult decât «spre aeroport»."
-        ]
+        h2: "Pană pe drumul spre Curtici",
+        p: ["Acostamentul e îngust pe alocuri. Oprește la o intrare în curte sau pe un drum lateral și pornește avariile. Locația pe WhatsApp ne ajută să te găsim imediat."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Ghiroda?",
-        "a": "De obicei în 20–40 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Ce putem face pe loc",
+        p: ["Reparăm pana cu ciupercă sau plombă, schimbăm valva sau montăm roata de rezervă. Dacă anvelopa nu se mai poate repara, îți spunem sincer."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "reparatii-pe-loc", "montaj-domiciliu"],
+    faqs: [
+      { q: "Veniți și noaptea în Sânpaul?", a: "Da, venim non-stop. Sună la 0746 538 480 și îți spunem în cât timp ajungem." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-noaptea-ce-faci", "roata-rezerva-galet"],
   },
   {
-    "slug": "vulcanizare-mobila-mosnita-noua",
-    "name": "Moșnița Nouă",
-    "short": "Moșnița",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 12,
-    "coords": [
-      45.7183,
-      21.325
-    ],
-    "desc": "Schimburi și reparații în zona rezidențială din sud-est.",
-    "intro": "În Moșnița Nouă adresa completă contează: străzile noi pot schimba traseul. Te ajutăm la domiciliu dacă ai o suprafață plană pentru lucru.",
-    "metaTitle": "Vulcanizare mobilă Moșnița 24/24 | 0725 138 493",
-    "metaDesc": "Schimburi și reparații în zona rezidențială din sud-est. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Moșnița Nouă",
-    "roads": [
-      "DJ592",
-      "Calea Buziașului",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Moșnița Nouă",
-      "Moșnița Veche",
-      "Urseni"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-curtici",
+    name: "Curtici și Dorobanți",
+    short: "Curtici",
+    eta: "Sosire ~20–35 min",
+    etaMinutes: "20–35 min",
+    km: 16,
+    coords: [46.3444, 21.3069],
+    desc: "Orașul de lângă granița cu Ungaria, cu trafic de camioane spre vamă.",
+    intro:
+      "În Curtici și Dorobanți venim atât pentru autoturisme, cât și pentru camioanele care trec spre vamă. Spune-ne ce vehicul ai și ce dimensiune are roata, ca să venim pregătiți.",
+    metaTitle: "Vulcanizare mobilă Curtici 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Curtici și Dorobanți, pentru autoturisme și camioane. Atelier în Grădiște, Arad.",
+    h1: "Vulcanizare mobilă în Curtici și Dorobanți",
+    roads: ["DJ709B", "drumul spre vama Curtici"],
+    localities: ["Curtici", "Dorobanți"],
+    sections: [
       {
-        "h2": "O intervenție pregătită dinainte",
-        "p": [
-          "Trimite locația porții, nu doar numele ansamblului. Dacă accesul e pe pietriș sau pământ, spune-ne dinainte."
-        ]
+        h2: "Camioane în zona vămii",
+        p: ["Pentru camioane avem echipament potrivit și putem lucra la fața locului, într-o parcare sau pe un loc sigur lângă drum."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Moșnița?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Autoturisme, acasă sau pe drum",
+        p: ["Pentru mașini mici, reparăm pana sau schimbăm roata la tine acasă ori unde ai rămas. Prețul deplasării ți-l spunem înainte să plecăm."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["vulcanizare-camioane", "asistenta-rutiera", "reparatii-pe-loc"],
+    faqs: [
+      { q: "Lucrați și la camioane în Curtici?", a: "Da. Spune-ne dimensiunea roții și unde e camionul, iar noi îți confirmăm timpul de sosire." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["ce-sa-spui-cand-suni-la-vulcanizare", "pana-noaptea-ce-faci"],
   },
   {
-    "slug": "vulcanizare-mobila-sacalaz",
-    "name": "Săcălaz",
-    "short": "Săcălaz",
-    "eta": "Sosire ~20–40 min",
-    "etaMinutes": "20–40 min",
-    "km": 11,
-    "coords": [
-      45.7583,
-      21.1122
-    ],
-    "desc": "Intervenții spre vest, pentru autoturisme și utilaje.",
-    "intro": "Spre Săcălaz mergem în principal pe DN59A. Venim și când vehiculul a rămas într-o curte sau lângă un teren agricol.",
-    "metaTitle": "Vulcanizare mobilă Săcălaz 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții spre vest, pentru autoturisme și utilaje. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Săcălaz",
-    "roads": [
-      "DN59A",
-      "Calea Torontalului",
-      "DN6"
-    ],
-    "localities": [
-      "Săcălaz",
-      "Beregsău Mare",
-      "Beregsău Mic"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-santana",
+    name: "Sântana și Caporal Alexa",
+    short: "Sântana",
+    eta: "Sosire ~25–40 min",
+    etaMinutes: "25–40 min",
+    km: 20,
+    coords: [46.3458, 21.5046],
+    desc: "Pe DN79, spre Oradea, cu multe camioane și utilaje agricole.",
+    intro:
+      "Sântana, Caporal Alexa și Comlăuș sunt pe DN79, același drum pe care se află atelierul. Venim pentru mașini, camioane și utilaje, zi și noapte.",
+    metaTitle: "Vulcanizare mobilă Sântana 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Sântana, Caporal Alexa și Comlăuș, pe DN79 spre Oradea. Autoturisme și camioane.",
+    h1: "Vulcanizare mobilă în Sântana și Caporal Alexa",
+    roads: ["DN79 Arad – Oradea"],
+    localities: ["Sântana", "Caporal Alexa", "Comlăuș"],
+    sections: [
       {
-        "h2": "Accesul până la vehicul",
-        "p": [
-          "Pentru o pană în afara asfaltului spune-ne cum e terenul și ce vehicul ai, ca să aducem echipamentul potrivit."
-        ]
+        h2: "Pe DN79, oprește în siguranță",
+        p: ["Dacă faci pană între Zimandu Nou și Sântana, nu opri pe bandă. Caută o parcare, o benzinărie sau o intrare largă și sună-ne de acolo."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Săcălaz?",
-        "a": "De obicei în 20–40 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Camioane și utilaje",
+        p: ["Avem echipament pentru roți de camion și putem veni la ferme sau în zonele de depozitare din jurul Sântanei."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "vulcanizare-camioane", "reparatii-pe-loc"],
+    faqs: [
+      { q: "Cât costă deplasarea până în Sântana?", a: "Depinde de lucrare și de oră. Ți-l spunem la telefon, înainte să plecăm, fără surprize." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["anvelope-utilaje-agricole-pana", "ce-sa-spui-cand-suni-la-vulcanizare"],
   },
   {
-    "slug": "vulcanizare-mobila-dudestii-noi",
-    "name": "Dudeștii Noi",
-    "short": "Dudeștii Noi",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 14,
-    "coords": [
-      45.8372,
-      21.1028
-    ],
-    "desc": "Ajutor pe direcția nord-vest, lângă DN6.",
-    "intro": "Dudeștii Noi și Becicherecu Mic sunt pe ieșirea spre Cenad. Dacă ai o problemă la roată pe DN6, spune-ne localitatea apropiată și sensul de mers.",
-    "metaTitle": "Vulcanizare mobilă Dudeștii Noi 24/24 | 0725 138 493",
-    "metaDesc": "Ajutor pe direcția nord-vest, lângă DN6. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Dudeștii Noi",
-    "roads": [
-      "DN6",
-      "Calea Torontalului",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Dudeștii Noi",
-      "Becicherecu Mic",
-      "Sânandrei"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-vladimirescu",
+    name: "Vladimirescu, Horia și Mândruloc",
+    short: "Vladimirescu",
+    eta: "Sosire ~15–30 min",
+    etaMinutes: "15–30 min",
+    km: 7,
+    coords: [46.1638, 21.4063],
+    desc: "La est de Arad, pe DN7 spre Deva.",
+    intro:
+      "Vladimirescu, Horia, Mândruloc și Cicir sunt aproape de oraș, pe DN7 spre Deva. Pentru o pană acasă sau pe drum, venim repede, iar dacă poți conduce, atelierul e la câteva minute.",
+    metaTitle: "Vulcanizare mobilă Vladimirescu 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Vladimirescu, Horia, Mândruloc și Cicir, pe DN7 spre Deva. Schimb anvelope de la 160 RON.",
+    h1: "Vulcanizare mobilă în Vladimirescu, Horia și Mândruloc",
+    roads: ["DN7 spre Deva", "Centura Aradului"],
+    localities: ["Vladimirescu", "Horia", "Mândruloc", "Cicir"],
+    sections: [
       {
-        "h2": "Pană pe drum sau în localitate",
-        "p": [
-          "Pe DN6, prioritatea e să ieși din trafic fără manevre bruște. Nu schimba roata lângă camioane în mișcare."
-        ]
+        h2: "Pe DN7, cu trafic intens",
+        p: ["DN7 e aglomerat la orele de vârf. Dacă faci pană, ieși pe o stradă laterală din Vladimirescu, unde lucrăm în siguranță."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Dudeștii Noi?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Schimb sezonier acasă",
+        p: [PRICE_P],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "montaj-domiciliu", "reparatii-pe-loc", "echilibrare-roti"],
+    faqs: [
+      { q: "Veniți și în Cicir sau Mândruloc?", a: "Da, venim în toate satele comunei Vladimirescu, non-stop." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-pe-dn7-ce-faci", "schimb-anvelope-la-domiciliu-ghid"],
   },
   {
-    "slug": "vulcanizare-mobila-recas-a1",
-    "name": "Recaș și A1 spre Lugoj",
-    "short": "Recaș / A1",
-    "eta": "Sosire ~35–60 min",
-    "etaMinutes": "35–60 min",
-    "km": 25,
-    "coords": [
-      45.8011,
-      21.5008
-    ],
-    "desc": "Spre Recaș și pe A1, în tot județul Timiș.",
-    "intro": "Venim spre Recaș pe DN6 și pe A1, oriunde în județul Timiș, zi și noapte.",
-    "metaTitle": "Vulcanizare mobilă Recaș / A1 24/24 | 0725 138 493",
-    "metaDesc": "Spre Recaș și pe A1, în tot județul Timiș. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Recaș și A1 spre Lugoj",
-    "roads": [
-      "DN6",
-      "A1 Timișoara–Lugoj",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Recaș",
-      "Izvin",
-      "Remetea Mare"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-fantanele",
+    name: "Fântânele, Tisa Nouă și Frumușeni",
+    short: "Fântânele",
+    eta: "Sosire ~20–30 min",
+    etaMinutes: "20–30 min",
+    km: 9,
+    coords: [46.1244, 21.3811],
+    desc: "La sud-est de Aradul Nou, comunele cu multe case noi.",
+    intro:
+      "În Fântânele, Tisa Nouă și Frumușeni venim pentru pene, schimb de anvelope sau echilibrare, direct la casă. Trecem Mureșul și ajungem la tine fără să-ți faci drum până în oraș.",
+    metaTitle: "Vulcanizare mobilă Fântânele 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Fântânele, Tisa Nouă și Frumușeni, lângă Arad. Reparații pene și schimb anvelope la domiciliu.",
+    h1: "Vulcanizare mobilă în Fântânele, Tisa Nouă și Frumușeni",
+    roads: ["Drumul Aradul Nou – Fântânele", "DN69 (ieșirea spre sud)"],
+    localities: ["Fântânele", "Tisa Nouă", "Frumușeni"],
+    sections: [
       {
-        "h2": "Pe autostradă avem nevoie de sens și kilometru",
-        "p": [
-          "Trimite poziția, sensul de mers și kilometrul. Stai departe de trafic, după parapet dacă poți; pentru pericol imediat sună la 112."
-        ]
+        h2: "Roata dezumflată în curte",
+        p: ["Nu porni spre oraș cu roata goală — podul peste Mureș și traficul din Aradul Nou nu sunt locul potrivit pentru o oprire. Sună-ne și venim noi."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Recaș / A1?",
-        "a": "De obicei în 35–60 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Ce aduci în calcul",
+        p: [PRICE_P],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["montaj-domiciliu", "reparatii-pe-loc", "asistenta-rutiera"],
+    faqs: [
+      { q: "Puteți veni în weekend în Frumușeni?", a: "Da, lucrăm non-stop, inclusiv în weekend și de sărbători." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["presiunea-corecta-in-anvelope", "schimb-anvelope-la-domiciliu-ghid"],
   },
   {
-    "slug": "vulcanizare-mobila-sanandrei",
-    "name": "Sânandrei și Carani",
-    "short": "Sânandrei",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 13,
-    "coords": [
-      45.8569,
-      21.17
-    ],
-    "desc": "Pene și schimb de anvelope spre nord, pe DN69.",
-    "intro": "Venim non-stop în Sânandrei și Carani și în Carani, Covaci: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Sânandrei 24/24 | 0725 138 493",
-    "metaDesc": "Pene și schimb de anvelope spre nord, pe DN69. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Sânandrei și Carani",
-    "roads": [
-      "DN69",
-      "Calea Aradului"
-    ],
-    "localities": [
-      "Sânandrei",
-      "Carani",
-      "Covaci"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-zadareni-vinga",
+    name: "Zădăreni, Felnac și Vinga",
+    short: "Zădăreni / Vinga",
+    eta: "Sosire ~25–40 min",
+    etaMinutes: "25–40 min",
+    km: 12,
+    coords: [46.1323, 21.219],
+    desc: "La sud de Arad, pe DN69 spre Timișoara și pe drumurile spre Felnac.",
+    intro:
+      "Zădăreni și Felnac sunt aproape de oraș, iar Vinga e pe DN69, spre Timișoara. Dacă rămâi cu pana pe drum sau acasă, sună-ne și venim cu tot ce trebuie.",
+    metaTitle: "Vulcanizare mobilă Zădăreni, Felnac, Vinga 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Zădăreni, Felnac, Vinga și Mailat, inclusiv pe DN69 spre Timișoara.",
+    h1: "Vulcanizare mobilă în Zădăreni, Felnac și Vinga",
+    roads: ["DN69 Arad – Timișoara", "drumul Zădăreni – Felnac"],
+    localities: ["Zădăreni", "Felnac", "Vinga", "Mailat"],
+    sections: [
       {
-        "h2": "Cum ajungem în Sânandrei",
-        "p": [
-          "Venim pe DN69, Calea Aradului. De obicei ajungem în 25–45 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
+        h2: "Pană pe DN69",
+        p: ["Pe DN69 se circulă repede. Oprește cât mai departe de bandă, pune vesta și triunghiul și stai în afara carosabilului până ajungem."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Sânandrei?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "În sat, la tine acasă",
+        p: ["În Zădăreni, Felnac sau Vinga reparăm pana sau schimbăm roata direct la poartă. Prețul deplasării îl afli la telefon."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "reparatii-pe-loc", "montaj-domiciliu"],
+    faqs: [
+      { q: "Ajungeți și până în Vinga?", a: "Da. Vinga e la aproximativ 25 km de atelier; îți spunem la telefon în cât timp ajungem." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["raza-acoperire-50-km", "pana-noaptea-ce-faci"],
   },
   {
-    "slug": "vulcanizare-mobila-giarmata",
-    "name": "Giarmata",
-    "short": "Giarmata",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 14,
-    "coords": [
-      45.8364,
-      21.3089
-    ],
-    "desc": "Intervenții lângă aeroport și în Giarmata.",
-    "intro": "Venim non-stop în Giarmata și în Giarmata-Vii, Cerneteaz: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Giarmata 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții lângă aeroport și în Giarmata. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Giarmata",
-    "roads": [
-      "DJ691",
-      "Aeroportul Timișoara"
-    ],
-    "localities": [
-      "Giarmata",
-      "Giarmata-Vii",
-      "Cerneteaz"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-pecica",
+    name: "Pecica, Turnu și Sederhat",
+    short: "Pecica",
+    eta: "Sosire ~30–45 min",
+    etaMinutes: "30–45 min",
+    km: 22,
+    coords: [46.1666, 21.0666],
+    desc: "La vest de Arad, pe DN7 spre Nădlac.",
+    intro:
+      "Pecica e pe DN7, între Arad și Nădlac. Venim pentru mașini, camioane și utilaje agricole, în oraș, în Turnu, în Sederhat sau direct pe drum.",
+    metaTitle: "Vulcanizare mobilă Pecica 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Pecica, Turnu și Sederhat, pe DN7 spre Nădlac. Autoturisme, camioane și utilaje.",
+    h1: "Vulcanizare mobilă în Pecica, Turnu și Sederhat",
+    roads: ["DN7 Arad – Nădlac", "drumul spre Turnu"],
+    localities: ["Pecica", "Turnu", "Sederhat", "Bodrogu Nou"],
+    sections: [
       {
-        "h2": "Cum ajungem în Giarmata",
-        "p": [
-          "Venim pe DJ691, Aeroportul Timișoara. De obicei ajungem în 25–45 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
+        h2: "Pe DN7, spre Nădlac",
+        p: ["DN7 are trafic greu de camioane. Dacă faci pană, ieși în Pecica sau pe un drum lateral și trimite-ne locația exactă pe WhatsApp."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Giarmata?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Utilaje și ferme",
+        p: ["În zona Pecica sunt multe ferme. Venim și la utilaje, dacă accesul permite — spune-ne dinainte cum arată drumul până acolo."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "vulcanizare-camioane", "reparatii-pe-loc"],
+    faqs: [
+      { q: "Veniți la utilaje agricole în câmp?", a: "Da, când accesul permite. Spune-ne tipul utilajului și dimensiunea anvelopei." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-pe-dn7-ce-faci", "anvelope-utilaje-agricole-pana"],
   },
   {
-    "slug": "vulcanizare-mobila-remetea-mare",
-    "name": "Remetea Mare",
-    "short": "Remetea Mare",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 14,
-    "coords": [
-      45.7786,
-      21.38
-    ],
-    "desc": "Ajutor pe DN6 spre est, în Remetea Mare și Ianova.",
-    "intro": "Venim non-stop în Remetea Mare și în Ianova, Bazoșu Nou: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Remetea Mare 24/24 | 0725 138 493",
-    "metaDesc": "Ajutor pe DN6 spre est, în Remetea Mare și Ianova. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Remetea Mare",
-    "roads": [
-      "DN6",
-      "Calea Lugojului"
-    ],
-    "localities": [
-      "Remetea Mare",
-      "Ianova",
-      "Bazoșu Nou"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-a1-nadlac-arad",
+    name: "A1 între Nădlac și Arad",
+    short: "A1 / Nădlac",
+    eta: "Sosire ~30–50 min",
+    etaMinutes: "30–50 min",
+    km: 30,
+    coords: [46.13, 20.95],
+    desc: "Autostrada A1 de la vama Nădlac până la Arad, plus Centura Aradului.",
+    intro:
+      "Pe A1, între Nădlac și Arad, și pe Centura Aradului, intervenim zi și noapte. Pe autostradă siguranța e pe primul loc: ieși pe banda de urgență, pune vesta și treci în spatele parapetului.",
+    metaTitle: "Vulcanizare mobilă A1 Nădlac – Arad 24/24 | 0746 538 480",
+    metaDesc: "Pană pe A1 între Nădlac și Arad sau pe Centura Aradului? Vulcanizare mobilă non-stop pentru autoturisme și camioane.",
+    h1: "Vulcanizare mobilă pe A1, între Nădlac și Arad",
+    roads: ["A1 Nădlac – Arad", "Centura Aradului", "DN7"],
+    localities: ["Nădlac", "Semlac", "Pecica", "Centura Aradului"],
+    sections: [
       {
-        "h2": "Cum ajungem în Remetea Mare",
-        "p": [
-          "Venim pe DN6, Calea Lugojului. De obicei ajungem în 25–45 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
+        h2: "Pe autostradă: întâi siguranța",
+        p: ["Oprește pe banda de urgență cât mai la dreapta, pornește avariile, îmbracă vesta și ieși din mașină pe partea dreaptă. Toți pasagerii stau în spatele parapetului."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Remetea Mare?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Ce ne spui la telefon",
+        p: ["Kilometrul sau ultimul nod trecut, sensul de mers, modelul mașinii și ce roată e afectată. Cu locația pe WhatsApp te găsim mai repede."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "vulcanizare-camioane", "reparatii-pe-loc"],
+    faqs: [
+      { q: "Veniți și pentru camioane pe A1?", a: "Da, avem echipament pentru camioane. Spune-ne dimensiunea roții și kilometrul." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["ce-sa-spui-cand-suni-la-vulcanizare", "raza-acoperire-50-km"],
   },
   {
-    "slug": "vulcanizare-mobila-sag",
-    "name": "Șag și Parța",
-    "short": "Șag",
-    "eta": "Sosire ~25–45 min",
-    "etaMinutes": "25–45 min",
-    "km": 13,
-    "coords": [
-      45.6464,
-      21.1767
-    ],
-    "desc": "Intervenții pe DN59 spre Deta, în Șag și Parța.",
-    "intro": "Venim non-stop în Șag și Parța și în Parța, Sânmihaiu Român: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Șag 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții pe DN59 spre Deta, în Șag și Parța. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Șag și Parța",
-    "roads": [
-      "DN59",
-      "Calea Șagului"
-    ],
-    "localities": [
-      "Șag",
-      "Parța",
-      "Sânmihaiu Român"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-siria-pancota",
+    name: "Șiria, Pâncota și Covăsânț",
+    short: "Șiria / Pâncota",
+    eta: "Sosire ~35–50 min",
+    etaMinutes: "35–50 min",
+    km: 25,
+    coords: [46.2673, 21.6385],
+    desc: "Spre podgoria Aradului, pe DN79A, la poalele dealurilor.",
+    intro:
+      "În Șiria, Pâncota, Galșa și Covăsânț venim pentru pene și schimb de anvelope, acasă sau pe drum. Spune-ne exact unde ești, mai ales dacă ești pe un drum de deal.",
+    metaTitle: "Vulcanizare mobilă Șiria și Pâncota 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Șiria, Pâncota, Galșa și Covăsânț, pe DN79A. Atelier în Grădiște, Arad.",
+    h1: "Vulcanizare mobilă în Șiria, Pâncota și Covăsânț",
+    roads: ["DN79A", "drumul podgoriei"],
+    localities: ["Șiria", "Pâncota", "Galșa", "Covăsânț"],
+    sections: [
       {
-        "h2": "Cum ajungem în Șag",
-        "p": [
-          "Venim pe DN59, Calea Șagului. De obicei ajungem în 25–45 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
+        h2: "Pe drumurile din podgorie",
+        p: ["Între Covăsânț și Șiria drumul are curbe și acostament îngust. Oprește doar unde te vede bine cine vine din spate și sună-ne de acolo."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Șag?",
-        "a": "De obicei în 25–45 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Mai departe de oraș, tot non-stop",
+        p: ["Distanța e mai mare, dar venim zi și noapte. Prețul deplasării ți-l spunem înainte, la telefon."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "reparatii-pe-loc", "montaj-domiciliu"],
+    faqs: [
+      { q: "Veniți până în Pâncota noaptea?", a: "Da, venim non-stop. Îți spunem la telefon în cât timp ajungem." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["raza-acoperire-50-km", "adancime-profil-anvelope"],
   },
   {
-    "slug": "vulcanizare-mobila-utvin",
-    "name": "Utvin și Sânmihaiu Român",
-    "short": "Utvin",
-    "eta": "Sosire ~20–40 min",
-    "etaMinutes": "20–40 min",
-    "km": 9,
-    "coords": [
-      45.7178,
-      21.135
-    ],
-    "desc": "Pene și schimburi de anvelope la sud-vest de oraș.",
-    "intro": "Venim non-stop în Utvin și Sânmihaiu Român și în Sânmihaiu Român, Sânmihaiu German: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Utvin 24/24 | 0725 138 493",
-    "metaDesc": "Pene și schimburi de anvelope la sud-vest de oraș. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Utvin și Sânmihaiu Român",
-    "roads": [
-      "DJ591",
-      "Centura Timișoarei"
-    ],
-    "localities": [
-      "Utvin",
-      "Sânmihaiu Român",
-      "Sânmihaiu German"
-    ],
-    "sections": [
+    slug: "vulcanizare-mobila-ghioroc-lipova",
+    name: "Ghioroc, Păuliș și Lipova",
+    short: "Ghioroc / Lipova",
+    eta: "Sosire ~30–50 min",
+    etaMinutes: "30–50 min",
+    km: 22,
+    coords: [46.1558, 21.5954],
+    desc: "Pe DN7, spre Deva, pe valea Mureșului.",
+    intro:
+      "Ghioroc, Păuliș, Lipova și Zăbrani sunt pe DN7, spre Deva. Pe acest drum circulă mult trafic de tranzit, așa că venim și pentru camioane, nu doar pentru autoturisme.",
+    metaTitle: "Vulcanizare mobilă Ghioroc și Lipova 24/24 | 0746 538 480",
+    metaDesc: "Vulcanizare mobilă non-stop în Ghioroc, Păuliș, Lipova și Zăbrani, pe DN7 spre Deva. Autoturisme și camioane.",
+    h1: "Vulcanizare mobilă în Ghioroc, Păuliș și Lipova",
+    roads: ["DN7 Arad – Deva", "drumul Lipova – Zăbrani"],
+    localities: ["Ghioroc", "Păuliș", "Lipova", "Zăbrani"],
+    sections: [
       {
-        "h2": "Cum ajungem în Utvin",
-        "p": [
-          "Venim pe DJ591, Centura Timișoarei. De obicei ajungem în 20–40 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
+        h2: "Pană pe DN7, pe valea Mureșului",
+        p: ["Drumul are porțiuni înguste între Păuliș și Lipova. Oprește doar într-o parcare sau la intrarea într-o localitate și semnalizează corect."],
       },
       {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Utvin?",
-        "a": "De obicei în 20–40 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
+        h2: "Și pentru camioane",
+        p: ["Avem echipament pentru roți de camion și venim la fața locului. Spune-ne dimensiunea roții ca să venim pregătiți."],
       },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
     ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
+    serviceSlugs: ["asistenta-rutiera", "vulcanizare-camioane", "reparatii-pe-loc"],
+    faqs: [
+      { q: "Veniți până în Lipova?", a: "Da. Lipova e la aproximativ 30 km de atelier; îți confirmăm timpul și prețul la telefon." },
+      ATELIER_FAQ,
+    ],
+    blogSlugs: ["pana-pe-dn7-ce-faci", "ce-sa-spui-cand-suni-la-vulcanizare"],
   },
-  {
-    "slug": "vulcanizare-mobila-bucovat",
-    "name": "Bucovăț și Dumbrăvița de sud",
-    "short": "Bucovăț",
-    "eta": "Sosire ~30–50 min",
-    "etaMinutes": "30–50 min",
-    "km": 15,
-    "coords": [
-      45.69,
-      21.37
-    ],
-    "desc": "Intervenții pe DJ592, spre Buziaș.",
-    "intro": "Venim non-stop în Bucovăț și Dumbrăvița de sud și în Sânmihaiu de Câmp, Urseni: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Bucovăț 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții pe DJ592, spre Buziaș. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Bucovăț și Dumbrăvița de sud",
-    "roads": [
-      "DJ592",
-      "Calea Buziașului"
-    ],
-    "localities": [
-      "Bucovăț",
-      "Sânmihaiu de Câmp",
-      "Urseni"
-    ],
-    "sections": [
-      {
-        "h2": "Cum ajungem în Bucovăț",
-        "p": [
-          "Venim pe DJ592, Calea Buziașului. De obicei ajungem în 30–50 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
-      },
-      {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Bucovăț?",
-        "a": "De obicei în 30–50 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
-      },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
-    ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
-  },
-  {
-    "slug": "vulcanizare-mobila-jimbolia",
-    "name": "Jimbolia și Cenad",
-    "short": "Jimbolia",
-    "eta": "Sosire ~45–60 min",
-    "etaMinutes": "45–60 min",
-    "km": 38,
-    "coords": [
-      45.7914,
-      20.7178
-    ],
-    "desc": "Spre vest, pe DN59C, până la Jimbolia.",
-    "intro": "Venim non-stop în Jimbolia și Cenad și în Cărpiniș, Biled, Lenauheim: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Jimbolia 24/24 | 0725 138 493",
-    "metaDesc": "Spre vest, pe DN59C, până la Jimbolia. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Jimbolia și Cenad",
-    "roads": [
-      "DN59C",
-      "DN6"
-    ],
-    "localities": [
-      "Jimbolia",
-      "Cărpiniș",
-      "Biled",
-      "Lenauheim"
-    ],
-    "sections": [
-      {
-        "h2": "Cum ajungem în Jimbolia",
-        "p": [
-          "Venim pe DN59C, DN6. De obicei ajungem în 45–60 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
-      },
-      {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Jimbolia?",
-        "a": "De obicei în 45–60 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
-      },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
-    ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
-  },
-  {
-    "slug": "vulcanizare-mobila-deta",
-    "name": "Deta și Ciacova",
-    "short": "Deta",
-    "eta": "Sosire ~45–60 min",
-    "etaMinutes": "45–60 min",
-    "km": 40,
-    "coords": [
-      45.39,
-      21.22
-    ],
-    "desc": "Spre sud, pe DN59, în Ciacova, Jebel și Deta.",
-    "intro": "Venim non-stop în Deta și Ciacova și în Ciacova, Voiteg, Jebel: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Deta 24/24 | 0725 138 493",
-    "metaDesc": "Spre sud, pe DN59, în Ciacova, Jebel și Deta. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Deta și Ciacova",
-    "roads": [
-      "DN59",
-      "DJ588"
-    ],
-    "localities": [
-      "Deta",
-      "Ciacova",
-      "Voiteg",
-      "Jebel"
-    ],
-    "sections": [
-      {
-        "h2": "Cum ajungem în Deta",
-        "p": [
-          "Venim pe DN59, DJ588. De obicei ajungem în 45–60 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
-      },
-      {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Deta?",
-        "a": "De obicei în 45–60 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
-      },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
-    ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
-  },
-  {
-    "slug": "vulcanizare-mobila-buzias",
-    "name": "Buziaș",
-    "short": "Buziaș",
-    "eta": "Sosire ~40–60 min",
-    "etaMinutes": "40–60 min",
-    "km": 33,
-    "coords": [
-      45.65,
-      21.605
-    ],
-    "desc": "Intervenții în Buziaș și satele din jur.",
-    "intro": "Venim non-stop în Buziaș și în Bacova, Silagiu: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Buziaș 24/24 | 0725 138 493",
-    "metaDesc": "Intervenții în Buziaș și satele din jur. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Buziaș",
-    "roads": [
-      "DJ592"
-    ],
-    "localities": [
-      "Buziaș",
-      "Bacova",
-      "Silagiu"
-    ],
-    "sections": [
-      {
-        "h2": "Cum ajungem în Buziaș",
-        "p": [
-          "Venim pe DJ592. De obicei ajungem în 40–60 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
-      },
-      {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Buziaș?",
-        "a": "De obicei în 40–60 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
-      },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
-    ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
-  },
-  {
-    "slug": "vulcanizare-mobila-ortisoara",
-    "name": "Orțișoara și Vinga",
-    "short": "Orțișoara",
-    "eta": "Sosire ~30–50 min",
-    "etaMinutes": "30–50 min",
-    "km": 22,
-    "coords": [
-      45.96,
-      21.2
-    ],
-    "desc": "Pe DN69 și pe A1 spre Arad.",
-    "intro": "Venim non-stop în Orțișoara și Vinga și în Vinga, Călacea: reparăm pana pe loc, schimbăm roata sau montăm anvelope la domiciliu. Atelierul nostru din Timișoara, de pe Str. Cloșca 33, e deschis 24/24.",
-    "metaTitle": "Vulcanizare mobilă Orțișoara 24/24 | 0725 138 493",
-    "metaDesc": "Pe DN69 și pe A1 spre Arad. Atelier 24/24 pe Str. Cloșca 33, Timișoara.",
-    "h1": "Vulcanizare mobilă în Orțișoara și Vinga",
-    "roads": [
-      "DN69",
-      "A1 spre Arad"
-    ],
-    "localities": [
-      "Orțișoara",
-      "Vinga",
-      "Călacea"
-    ],
-    "sections": [
-      {
-        "h2": "Cum ajungem în Orțișoara",
-        "p": [
-          "Venim pe DN69, A1 spre Arad. De obicei ajungem în 30–50 min, în funcție de trafic și ora din zi. Trimite locația pe WhatsApp și dimensiunea anvelopei, ca să aducem ce trebuie."
-        ]
-      },
-      {
-        "h2": "Reparație sigură și preț clar",
-        "p": [
-          "Verificăm dacă anvelopa poate fi reparată în siguranță. Dacă flancul e deteriorat, îți spunem cinstit că trebuie înlocuită.",
-          "Sună la 0725 138 493 și spune modelul mașinii, dimensiunea anvelopei și locul unde ești. Atelierul e deschis non-stop; timpul și prețul ți le confirmăm înainte de plecare."
-        ]
-      }
-    ],
-    "serviceSlugs": [
-      "vulcanizare-atelier-non-stop",
-      "reparatii-pe-loc",
-      "montaj-domiciliu",
-      "echilibrare-roti"
-    ],
-    "faqs": [
-      {
-        "q": "În cât timp ajungeți în Orțișoara?",
-        "a": "De obicei în 30–50 min, în funcție de trafic și adresă. Îți confirmăm la telefon."
-      },
-      {
-        "q": "Unde e atelierul și ce program are?",
-        "a": "Pe Str. Cloșca, nr. 33, Timișoara. Deschis non-stop, 24/24. Telefon: 0725 138 493."
-      }
-    ],
-    "blogSlugs": [
-      "pana-pe-dn7-ce-faci",
-      "reparatie-sau-inlocuire-anvelopa",
-      "cand-schimbi-anvelopele-de-iarna"
-    ]
-  }
 ];
 
-// URL-uri vechi → 301.
-export const zoneRedirects: Record<string, string> = {
-  "vulcanizare-mobila-dragodana": "/zone/vulcanizare-non-stop-timisoara",
-  "vulcanizare-mobila-gaesti": "/zone/vulcanizare-mobila-dumbravita",
-  "vulcanizare-mobila-matasaru": "/zone/vulcanizare-mobila-sacalaz",
-  "vulcanizare-mobila-targoviste": "/zone/vulcanizare-mobila-giroc",
-  "vulcanizare-mobila-topoloveni": "/zone/vulcanizare-mobila-recas-a1",
-  "vulcanizare-mobila-titu": "/zone/vulcanizare-mobila-ghiroda",
-  "vulcanizare-mobila-racari": "/zone/vulcanizare-mobila-dudestii-noi",
-  "vulcanizare-mobila-moreni": "/zone/vulcanizare-mobila-mosnita-noua",
-  "vulcanizare-mobila-pucioasa": "/zone/vulcanizare-mobila-recas-a1",
-  "vulcanizare-mobila-pitesti": "/zone/vulcanizare-mobila-recas-a1",
-  "dragodana-gaesti": "/zone/vulcanizare-mobila-dumbravita",
-  "targoviste": "/zone/vulcanizare-mobila-giroc",
-  "titu": "/zone/vulcanizare-mobila-ghiroda",
-  "topoloveni": "/zone/vulcanizare-mobila-recas-a1",
-  "autostrada-a1": "/zone/vulcanizare-non-stop-timisoara",
-  "pitesti": "/zone/vulcanizare-mobila-recas-a1",
-  "bucuresti-vest": "/zone/vulcanizare-non-stop-timisoara",
-  "ploiesti": "/zone/vulcanizare-non-stop-timisoara",
-  "moreni": "/zone/vulcanizare-mobila-mosnita-noua",
-  "pucioasa-fieni": "/zone/vulcanizare-mobila-recas-a1",
-  "racari": "/zone/vulcanizare-mobila-dudestii-noi",
-  "bolintin": "/zone/vulcanizare-non-stop-timisoara",
-  "videle": "/zone/vulcanizare-non-stop-timisoara",
-  "campulung": "/zone/vulcanizare-non-stop-timisoara"
-};
+// URL-uri vechi (fostul site din Timișoara) → 301 spre pagina principală din Arad.
+const OLD = [
+  "vulcanizare-non-stop-timisoara", "vulcanizare-mobila-dumbravita", "vulcanizare-mobila-giroc", "vulcanizare-mobila-ghiroda",
+  "vulcanizare-mobila-mosnita-noua", "vulcanizare-mobila-sacalaz", "vulcanizare-mobila-dudestii-noi", "vulcanizare-mobila-recas-a1",
+  "vulcanizare-mobila-sanandrei", "vulcanizare-mobila-giarmata", "vulcanizare-mobila-remetea-mare", "vulcanizare-mobila-sag",
+  "vulcanizare-mobila-utvin", "vulcanizare-mobila-bucovat", "vulcanizare-mobila-jimbolia", "vulcanizare-mobila-deta",
+  "vulcanizare-mobila-buzias", "vulcanizare-mobila-ortisoara", "vulcanizare-mobila-dragodana", "vulcanizare-mobila-gaesti",
+  "vulcanizare-mobila-matasaru", "vulcanizare-mobila-targoviste", "vulcanizare-mobila-topoloveni", "vulcanizare-mobila-titu",
+  "vulcanizare-mobila-racari", "vulcanizare-mobila-moreni", "vulcanizare-mobila-pucioasa", "vulcanizare-mobila-pitesti",
+  "dragodana-gaesti", "targoviste", "titu", "topoloveni", "autostrada-a1", "pitesti", "bucuresti-vest", "ploiesti",
+  "moreni", "pucioasa-fieni", "racari", "bolintin", "videle", "campulung",
+];
+
+export const zoneRedirects: Record<string, string> = Object.fromEntries(
+  OLD.map((slug) => [slug, slug === "autostrada-a1" ? "/zone/vulcanizare-mobila-a1-nadlac-arad" : "/zone/vulcanizare-non-stop-arad"]),
+);
