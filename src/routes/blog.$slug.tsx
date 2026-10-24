@@ -86,7 +86,7 @@ function PostPage() {
       <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl">{post.title}</h1>
       <p className="mt-4 text-lg text-muted-foreground">{post.desc}</p>
       <p className="mt-4 text-xs font-semibold text-muted-foreground">
-        <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })}</time> · {Math.max(1, Math.round(words / 200))} min de citit · Echipa Vulcanizare Non Stop Timișoara
+        <time dateTime={post.date}>{new Date(post.date).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" })}</time> · {Math.max(1, Math.round(words / 200))} min de citit · Echipa Vulcanizare La Uly
       </p>
       {zone && (
         <Link to="/zone/$slug" params={{ slug: zone.slug }} className="mt-6 flex items-center justify-between gap-3 rounded-2xl border border-border bg-card px-4 py-3 hover:border-brand/40">
