@@ -244,16 +244,19 @@ export default function CoverageMap() {
           continue;
         }
       }
-      const d = box(c, 12, 12, 0, 1);
+      const d = box(c, 12, 12, 0, 6);
       if (z.slug !== active && taken.some((t) => hit(t, d))) continue; // nu desenăm puncte peste pin, eticheta atelierului sau etichetele inelelor
       dots.add(z.slug);
       taken.push(d);
     }
-    const points = servedPoints.filter((sp) => {
+    // satele mici apar doar când mărești harta, și niciodată mai dese de ~34 px
+    const points = zoom < 11 ? [] : servedPoints.filter((sp) => {
       if (km(sp.coords, BASE) < 1.5) return false;
       if (zones.some((z) => km(sp.coords, z.coords as LL) < 1.5)) return false;
-      const b = box(sp.coords, 8, 8, 0, 0);
-      return !taken.some((t) => hit(t, b));
+      const b = box(sp.coords, 8, 8, 0, 13);
+      if (taken.some((t) => hit(t, b))) return false;
+      taken.push(b);
+      return true;
     });
     return { labeled, dots, points, ringVisible };
     // eslint-disable-next-line react-hooks/exhaustive-deps
