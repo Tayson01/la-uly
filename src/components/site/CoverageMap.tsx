@@ -212,7 +212,7 @@ export default function CoverageMap() {
       const c = z.coords as LL;
       const p = px(c);
       const nearBase = Math.hypot(p.x - base.x, p.y - base.y) < 30;
-      if (z.slug !== active && nearBase) continue; // e sub pinul atelierului
+      if (nearBase) continue; // e chiar sub pinul atelierului (ex. Arad / Grădiște)
       if (showLabels || z.slug === active) {
         const b = box(c, z.short.length * 6.8 + 30, 26);
         if (z.slug === active || !taken.some((t) => hit(t, b))) {
