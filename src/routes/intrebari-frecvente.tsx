@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { FAQSection } from "@/components/site/FAQSection";
-import { faqs } from "@/lib/site-data";
+import { faqs, SITE_URL } from "@/lib/site-data";
 
 export const Route = createFileRoute("/intrebari-frecvente")({
   staticData: { sitemap: true },
@@ -19,9 +19,10 @@ export const Route = createFileRoute("/intrebari-frecvente")({
         content: "Tot ce vrei să știi înainte să suni: prețuri, timpi de sosire și servicii disponibile.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/intrebari-frecvente` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/intrebari-frecvente" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/intrebari-frecvente` }],
     scripts: [
       {
         type: "application/ld+json",

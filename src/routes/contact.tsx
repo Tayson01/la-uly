@@ -3,7 +3,7 @@ import { Clock, Mail, MapPin, MessageCircle, Phone, ThumbsUp } from "lucide-reac
 
 import { Btn, SectionLabel } from "@/components/site/ui";
 import { ContactForm } from "@/components/site/ContactForm";
-import { ADDRESS, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, TEL, TEL2, WA } from "@/lib/site-data";
+import { ADDRESS, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, TEL, TEL2, WA, SITE_URL } from "@/lib/site-data";
 
 export const Route = createFileRoute("/contact")({
   staticData: { sitemap: true },
@@ -21,9 +21,10 @@ export const Route = createFileRoute("/contact")({
         content: "Telefon, WhatsApp și adresă — Vulcanizare La Uly, non-stop în Arad.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/contact` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/contact" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],
   }),
   component: ContactPage,
 });

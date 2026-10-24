@@ -4,6 +4,7 @@
 - [x] Zone deservite, blog, hartă și toate paginile rescrise pentru Arad (13 zone, 34 articole)
 - [x] Poze și recenzii noi de pe Facebook și Google (9 poze, 3 recenzii, scor 4,2 din 461), poze vechi șterse
 - [x] Doar 2 numere pe site: 0746 538 480 și 0746 765 469 (0758 859 752 nu se adaugă)
+- [x] Mai multe zone (22), 64 puncte pe hartă, 47 articole, date pentru Google pe fiecare pagină
 - [ ] Domeniu nou pentru adresele din Google/sitemap (blocat: aștept domeniul)
 
 - [x] Verifică fiecare pagină, articol, întrebare, legătură și metadată; elimină orice referire la tractări sau transport către service și verifică toate adresele site-ului — 85 de pagini și 24 de redirecționări verificate.

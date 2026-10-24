@@ -21,3 +21,5 @@
 - Keep service-section motion scoped to svc-* styles and one cleaned-up IntersectionObserver; render content visibly without JavaScript and honor reduced motion to preserve usability and mobile performance.
 - Blog has per-zone hub pages at /blog/zona/$slug derived from zones + posts (area or zone links), so every served locality gets an indexable article collection automatically.
 - Coverage bars are visible by default and animate once when their list enters the viewport; observer delays must never hide arrival information on mobile or without JavaScript.
+- The public site address lives only in site-data SITE_URL (canonicals, og:url, JSON-LD, sitemap), so a domain move is a one-line change.
+- Map points for every served locality come from servedPoints in zones-data (OpenStreetMap coordinates), separate from zone pages, so the map can show more villages than there are pages.

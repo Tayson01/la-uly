@@ -267,7 +267,8 @@ const basePosts: BlogPost[] = [
 
 import { localPosts } from "./blog-local";
 import { localPosts2 } from "./blog-local-2";
+import { localPosts3 } from "./blog-local-3";
 
-export const posts: BlogPost[] = [...localPosts, ...localPosts2, ...basePosts].sort((a, b) => b.date.localeCompare(a.date));
+export const posts: BlogPost[] = [...localPosts, ...localPosts2, ...localPosts3, ...basePosts].sort((a, b) => b.date.localeCompare(a.date));
 
 export const postCategory = (p: BlogPost) => p.category ?? (p.area ? "Ghid local" : /pană|noaptea|spui/i.test(p.title) ? "Urgență" : "Sfaturi");

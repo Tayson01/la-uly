@@ -3,7 +3,7 @@ import { Clock, MapPin } from "lucide-react";
 
 import { BtnLink, SectionLabel } from "@/components/site/ui";
 import { CoverageMapSection } from "@/components/site/CoverageMapSection";
-import { PHONE, TEL, zones } from "@/lib/site-data";
+import { PHONE, TEL, zones, SITE_URL } from "@/lib/site-data";
 
 const TITLE = "Zone deservite — Vulcanizare La Uly, Arad și împrejurimi + A1";
 const DESC =
@@ -17,11 +17,11 @@ export const Route = createFileRoute("/zone/")({
       { name: "description", content: DESC },
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESC },
-      { property: "og:url", content: "https://vulcanizaretimisoara.ro/zone" },
+      { property: "og:url", content: `${SITE_URL}/zone` },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
-    links: [{ rel: "canonical", href: "https://vulcanizaretimisoara.ro/zone" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/zone` }],
   }),
   component: ZonePage,
 });
@@ -35,7 +35,7 @@ const Z = (slug: string, label: string) => (
 const groups = [
   {
     h2: "În Arad: toate cartierele",
-    list: ["Grădiște", "Micălaca", "Aurel Vlaicu", "Centru", "Gai", "Bujac", "Aradul Nou", "Pârneava", "Sânnicolau Mic"],
+    list: ["Grădiște", "Micălaca", "Micălaca Nouă", "Aurel Vlaicu", "Centru", "Gai", "Bujac", "Aradul Nou", "Pârneava", "Sânnicolau Mic"],
     body: (
       <p>
         Atelierul e pe Calea Zimandului nr. 14, în Grădiște, lângă sensul giratoriu spre Oradea și la aproximativ 150 m
@@ -45,7 +45,7 @@ const groups = [
   },
   {
     h2: "Spre nord: Zimandu Nou, Sântana, Curtici",
-    list: ["Zimandu Nou", "Zimandcuz", "Livada", "Sânleani", "Șofronea", "Sânpaul", "Curtici", "Sântana", "Caporal Alexa"],
+    list: ["Zimandu Nou", "Zimandcuz", "Livada", "Sânleani", "Șofronea", "Sânpaul", "Curtici", "Sântana", "Caporal Alexa", "Macea", "Sânmartin", "Iratoșu", "Variașu Mare", "Chișineu-Criș", "Șimand"],
     body: (
       <p>
         Pe DN79 spre Oradea și pe drumul spre Curtici venim pentru autoturisme, utilitare și camioane. Livada și Sânleani
@@ -55,7 +55,7 @@ const groups = [
   },
   {
     h2: "Spre est și sud: Vladimirescu, Lipova, Fântânele, Vinga",
-    list: ["Vladimirescu", "Horia", "Mândruloc", "Ghioroc", "Lipova", "Șiria", "Pâncota", "Fântânele", "Frumușeni", "Zădăreni", "Vinga"],
+    list: ["Vladimirescu", "Horia", "Mândruloc", "Ghioroc", "Lipova", "Șiria", "Pâncota", "Fântânele", "Frumușeni", "Zădăreni", "Vinga", "Șagu", "Firiteaz", "Cruceni"],
     body: (
       <p>
         Pe DN7 spre Deva, pe DN69 spre Timișoara și în podgorie, la Șiria și Pâncota, venim non-stop. Timpul și prețul
@@ -65,7 +65,7 @@ const groups = [
   },
   {
     h2: "Spre vest: Pecica și A1 până la Nădlac",
-    list: ["Pecica", "Turnu", "Sederhat", "Nădlac", "A1 Nădlac – Arad", "Centura Aradului"],
+    list: ["Pecica", "Turnu", "Sederhat", "Sânpetru German", "Secusigiu", "Nădlac", "Semlac", "A1 Nădlac – Arad", "Centura Aradului"],
     body: (
       <p>
         Pe DN7 spre Pecica și pe autostrada A1 între Nădlac și Arad intervenim zi și noapte, inclusiv pentru camioane.

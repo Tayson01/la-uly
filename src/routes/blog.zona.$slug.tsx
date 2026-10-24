@@ -4,9 +4,9 @@ import { ArrowUpRight, MapPin, Phone } from "lucide-react";
 import { Btn, SectionLabel } from "@/components/site/ui";
 import { posts, postCategory } from "@/lib/blog-data";
 import { zones } from "@/lib/zones-data";
-import { PHONE, TEL } from "@/lib/site-data";
+import { PHONE, TEL, SITE_URL } from "@/lib/site-data";
 
-const SITE = "https://vulcanizaretimisoara.ro";
+const SITE = SITE_URL;
 const fmt = (d: string) => new Date(d).toLocaleDateString("ro-RO", { day: "numeric", month: "long", year: "numeric" });
 
 const postsFor = (slug: string) =>

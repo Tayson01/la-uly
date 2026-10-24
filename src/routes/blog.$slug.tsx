@@ -4,11 +4,11 @@ import { Phone } from "lucide-react";
 import { Btn, SectionLabel } from "@/components/site/ui";
 import { ServedAreas } from "@/components/site/ServedAreas";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
-import { PHONE, TEL, WA } from "@/lib/site-data";
+import { PHONE, TEL, WA, SITE_URL } from "@/lib/site-data";
 import { posts, postCategory } from "@/lib/blog-data";
 import { zones } from "@/lib/zones-data";
 
-const SITE = "https://vulcanizaretimisoara.ro";
+const SITE = SITE_URL;
 
 export const Route = createFileRoute("/blog/$slug")({
   staticData: { sitemap: true },

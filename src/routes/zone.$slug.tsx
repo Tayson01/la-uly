@@ -4,10 +4,10 @@ import { Clock, MapPin, Phone, Route as RouteIcon } from "lucide-react";
 import { Btn, BtnLink, SectionLabel } from "@/components/site/ui";
 import { ContactForm } from "@/components/site/ContactForm";
 import { WhatsAppIcon } from "@/components/site/WhatsAppIcon";
-import { ADDRESS, PHONE, TEL, WA, services, zones, zoneRedirects } from "@/lib/site-data";
+import { ADDRESS, PHONE, TEL, WA, services, zones, zoneRedirects, SITE_URL } from "@/lib/site-data";
 import { posts } from "@/lib/blog-data";
 
-const SITE = "https://vulcanizaretimisoara.ro";
+const SITE = SITE_URL;
 
 export const Route = createFileRoute("/zone/$slug")({
   staticData: { sitemap: true },
