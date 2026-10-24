@@ -17,6 +17,7 @@ import { ServicesSection } from "@/components/site/ServicesSection";
 import { FAQSection } from "@/components/site/FAQSection";
 import { ContactSection } from "@/components/site/ContactSection";
 import { InterventionsGallery } from "@/components/site/InterventionsGallery";
+import { services, zones } from "@/lib/site-data";
 import { ADDRESS, BASE, BRAND, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, PRICES, TEL, TEL2, WA, SITE_URL } from "@/lib/site-data";
 
 
@@ -38,6 +39,7 @@ export const Route = createFileRoute("/")({
           "Vulcanizare, schimb anvelope și echilibrare non-stop în Arad, în atelier sau la tine. 160 RON jante oțel, 180 RON jante aluminiu.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/` }, { rel: "preload", as: "image", href: heroAtelierSm, imageSrcSet: `${heroAtelierSm} 640w, ${heroAtelier} 1200w`, imageSizes: "(min-width: 1024px) 560px, 100vw", fetchPriority: "high" }],
@@ -46,8 +48,13 @@ export const Route = createFileRoute("/")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "AutoRepair",
+          "@type": ["AutoRepair", "TireShop"],
+          "@id": `${SITE_URL}/#business`,
           name: BRAND,
+          alternateName: ["Vulcanizare La Uly Non-Stop", "Vulcanizare mobila non stop Arad"],
+          description: "Vulcanizare non-stop în Arad, Grădiște: vulcanizare auto și camion, schimb și echilibrare anvelope, vânzare anvelope, deplasări la client 24/24.",
+          priceRange: "160–180 RON",
+          currenciesAccepted: "RON",
           legalName: COMPANY.name,
           telephone: [TEL, TEL2],
           url: `${SITE_URL}/`,
@@ -59,8 +66,17 @@ export const Route = createFileRoute("/")({
             postalCode: "310205",
             addressCountry: "RO",
           },
-          openingHours: "Mo-Su 00:00-23:59",
-          areaServed: [{ "@type": "City", name: "Arad" }],
+          openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], opens: "00:00", closes: "23:59" }],
+          areaServed: [...new Set(zones.flatMap((z) => z.localities))].map((name) => ({ "@type": "Place", name: `${name}, județul Arad` })),
+          hasOfferCatalog: {
+            "@type": "OfferCatalog",
+            name: "Servicii vulcanizare",
+            itemListElement: [
+              { "@type": "Offer", name: "Schimb 4 anvelope + echilibrare, jante oțel", price: "160", priceCurrency: "RON", itemOffered: { "@type": "Service", name: "Schimb anvelope jante oțel" } },
+              { "@type": "Offer", name: "Schimb 4 anvelope + echilibrare, jante aluminiu", price: "180", priceCurrency: "RON", itemOffered: { "@type": "Service", name: "Schimb anvelope jante aluminiu" } },
+              ...services.map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s.title, url: `${SITE_URL}/servicii/${s.slug}` } })),
+            ],
+          },
           image: `${SITE_URL}/favicon.png`,
           sameAs: [MAPS, FACEBOOK],
           email: EMAIL,

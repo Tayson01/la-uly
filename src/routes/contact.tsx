@@ -21,6 +21,7 @@ export const Route = createFileRoute("/contact")({
         content: "Telefon, WhatsApp și adresă — Vulcanizare La Uly, non-stop în Arad.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/contact` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/contact` }],

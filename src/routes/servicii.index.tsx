@@ -21,6 +21,7 @@ export const Route = createFileRoute("/servicii/")({
         content: "Vulcanizare, schimb anvelope și echilibrare roți, non-stop în Arad.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/servicii` },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/servicii` }],

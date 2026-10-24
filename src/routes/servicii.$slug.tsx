@@ -16,7 +16,7 @@ export const Route = createFileRoute("/servicii/$slug")({
     const s = loaderData?.service;
     const title = s ? `${s.title} în Arad — Vulcanizare La Uly` : "Serviciu — Vulcanizare La Uly Arad";
     const description = s
-      ? `${s.desc} Durată ${s.duration}. Sună la ${PHONE}.`
+      ? `${s.desc} Non-stop în Arad, Calea Zimandului nr. 14. Sună la ${PHONE}.`
       : "Vulcanizare non-stop în Arad, cu deplasări la client 24/24.";
     return {
       meta: [
@@ -25,9 +25,42 @@ export const Route = createFileRoute("/servicii/$slug")({
         { property: "og:title", content: title },
         { property: "og:description", content: description },
         { property: "og:type", content: "article" },
+        { property: "og:url", content: `${SITE_URL}/servicii/${s?.slug ?? ""}` },
         { name: "twitter:card", content: "summary_large_image" },
       ],
       links: [{ rel: "canonical", href: `${SITE_URL}/servicii/${s?.slug ?? ""}` }],
+      scripts: s
+        ? [
+            {
+              type: "application/ld+json",
+              children: JSON.stringify({
+                "@context": "https://schema.org",
+                "@graph": [
+                  {
+                    "@type": "Service",
+                    name: `${s.title} în Arad`,
+                    description: s.intro,
+                    serviceType: s.title,
+                    url: `${SITE_URL}/servicii/${s.slug}`,
+                    areaServed: [{ "@type": "City", name: "Arad" }, ...zones.map((z) => ({ "@type": "Place", name: `${z.short}, județul Arad` }))],
+                    provider: { "@id": `${SITE_URL}/#business`, "@type": "AutoRepair", name: "Vulcanizare La Uly", telephone: TEL, address: { "@type": "PostalAddress", streetAddress: "Calea Zimandului nr. 14", addressLocality: "Arad", postalCode: "310205", addressCountry: "RO" } },
+                    ...(s.pricing?.some((p) => p.value.includes("RON"))
+                      ? { offers: s.pricing.filter((p) => p.value.includes("RON")).map((p) => ({ "@type": "Offer", name: p.label, price: p.value.replace(/\D/g, ""), priceCurrency: "RON" })) }
+                      : {}),
+                  },
+                  {
+                    "@type": "BreadcrumbList",
+                    itemListElement: [
+                      { "@type": "ListItem", position: 1, name: "Acasă", item: `${SITE_URL}/` },
+                      { "@type": "ListItem", position: 2, name: "Servicii", item: `${SITE_URL}/servicii` },
+                      { "@type": "ListItem", position: 3, name: s.title, item: `${SITE_URL}/servicii/${s.slug}` },
+                    ],
+                  },
+                ],
+              }),
+            },
+          ]
+        : [],
     };
   },
   component: ServicePage,
