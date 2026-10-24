@@ -216,15 +216,6 @@ export default function CoverageMap() {
         overlays.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
       });
     }
-    // butoanele, banda de sus și cardul de jos acoperă harta: nu punem etichete sub ele
-    const wrap = wrapRef.current;
-    if (m && wrap) {
-      const w = wrap.getBoundingClientRect();
-      wrap.querySelectorAll<HTMLElement>("[data-cm-overlay]").forEach((el) => {
-        const r = el.getBoundingClientRect();
-        overlays.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
-      });
-    }
     const ringVisible = mapRings.map((r) => {
       const b = box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20);
       if (overlays.some((o) => hit(o, b))) return false;
