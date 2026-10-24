@@ -2,7 +2,7 @@ import { BrandLogo } from "./BrandLogo";
 import { Link } from "@tanstack/react-router";
 import { Phone, MessageCircle, MapPin, ChevronRight, Clock } from "lucide-react";
 
-import { BRAND, COMPANY, PHONE, PHONE2, TEL, TEL2, ADDRESS, WA, services, zones } from "@/lib/site-data";
+import { BRAND, COMPANY, EMAIL, FACEBOOK, MAPS, PHONE, PHONE2, TEL, TEL2, ADDRESS, WA, services, zones } from "@/lib/site-data";
 
 export function Footer() {
   return (
@@ -76,6 +76,11 @@ export function Footer() {
               </a>
               <p className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
                 <Clock className="size-3.5 text-brand" /> Răspundem zi și noapte, inclusiv în weekend
+              </p>
+              <p className="flex flex-wrap gap-x-4 gap-y-1 text-xs font-semibold">
+                <a href={`mailto:${EMAIL}`} className="hover:text-brand">{EMAIL}</a>
+                <a href={FACEBOOK} target="_blank" rel="noreferrer" className="hover:text-brand">Facebook</a>
+                <a href={MAPS} target="_blank" rel="noreferrer" className="hover:text-brand">Google Maps</a>
               </p>
             </div>
           </div>
