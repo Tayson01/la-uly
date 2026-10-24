@@ -79,3 +79,19 @@ describe("profiluri publice", () => {
     expect(services.some((s) => s.slug === "vanzare-anvelope")).toBe(true);
   });
 });
+
+describe("pagini unice pentru Google", () => {
+  test("fiecare zonă are adresă (slug) unică", () => {
+    expect(new Set(zones.map((z) => z.slug)).size).toBe(zones.length);
+  });
+  test("fiecare articol are adresă (slug) unică", () => {
+    expect(new Set(posts.map((p) => p.slug)).size).toBe(posts.length);
+  });
+  test("fiecare zonă are titlu și descriere proprii", () => {
+    expect(new Set(zones.map((z) => z.metaTitle)).size).toBe(zones.length);
+    expect(new Set(zones.map((z) => z.metaDesc)).size).toBe(zones.length);
+  });
+  test("cel puțin 20 de zone deservite", () => {
+    expect(zones.length).toBeGreaterThanOrEqual(20);
+  });
+});
