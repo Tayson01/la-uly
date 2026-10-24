@@ -15,14 +15,14 @@ export const PRICES = {
 };
 
 export const COVERAGE = {
-  county: "Timiș",
+  county: "Arad",
   highway: "A1",
   highwayFrom: "Nădlac (vamă)",
-  highwayTo: "Margina",
-  label: "tot județul Timiș + A1 (Nădlac – Margina)",
+  highwayTo: "Arad",
+  label: "Arad și localitățile din jur (~50 km) + A1 (Nădlac – Arad)",
 };
 
-export const BASE: [number, number] = [45.7647293, 21.2036795];
+export const BASE: [number, number] = [46.2039, 21.3438];
 
 export type Service = {
   slug: string;
@@ -212,9 +212,9 @@ export { zones, zoneRedirects, RADIUS_KM } from "./zones-data";
 export type { Zone } from "./zones-data";
 
 export const mapRings = [
-  { minutes: "Timișoara & periurban · 15–30 min", km: 25, radius: 25000 },
-  { minutes: "Lugoj, Jimbolia, Deta · 40–60 min", km: 60, radius: 60000 },
-  { minutes: "Tot județul Timiș + A1 · 60–90 min", km: 100, radius: 100000 },
+  { minutes: "Arad oraș · 10–20 min", km: 10, radius: 10000 },
+  { minutes: "Comunele din jur · 20–35 min", km: 25, radius: 25000 },
+  { minutes: "Până la ~50 km + A1 · 35–60 min", km: 50, radius: 50000 },
 ];
 
 export function waLink(text: string) {
@@ -306,25 +306,23 @@ export const COMPANY = {
   source: "https://listafirme.eu/autozian-srl-31974719/",
 };
 
-// Traseu aproximativ A1 pe tronsonul acoperit: vama Nădlac → Arad → Timișoara → Lugoj → Margina.
+// Traseu aproximativ A1 pe tronsonul acoperit: vama Nădlac → Arad.
 export const A1_ROUTE: [number, number][] = [
-  [46.155, 20.73], [46.17, 21.07], [46.2, 21.3], [46.15, 21.38], [46.03, 21.34],
-  [45.9, 21.3], [45.83, 21.29], [45.79, 21.37], [45.79, 21.62], [45.77, 21.76],
-  [45.73, 21.87], [45.78, 22.05], [45.85, 22.26],
+  [46.155, 20.73], [46.15, 20.9], [46.135, 21.05], [46.125, 21.2], [46.135, 21.26], [46.11, 21.33],
 ];
 
-// Contur aproximativ al județului Timiș (orientativ, pentru hartă).
-export const TIMIS_OUTLINE: [number, number][] = [
-  [46.17, 20.27], [46.12, 20.62], [46.06, 20.95], [45.97, 21.22], [46.03, 21.45], [45.98, 21.68],
-  [46.02, 21.95], [45.93, 22.2], [45.84, 22.42], [45.7, 22.38], [45.6, 22.2], [45.52, 21.98],
-  [45.45, 21.7], [45.42, 21.45], [45.48, 21.2], [45.6, 20.98], [45.75, 20.78], [45.9, 20.6], [46.05, 20.4],
+// Contur aproximativ al județului Arad (orientativ, pentru hartă).
+export const COUNTY_OUTLINE: [number, number][] = [
+  [46.2, 20.7], [46.27, 20.98], [46.4, 21.18], [46.5, 21.3], [46.55, 21.55], [46.6, 21.8], [46.62, 22.05],
+  [46.5, 22.3], [46.4, 22.55], [46.25, 22.65], [46.1, 22.55], [46.03, 22.3], [45.98, 22.05], [46.0, 21.8],
+  [46.03, 21.55], [45.97, 21.3], [46.05, 21.1], [46.1, 20.9], [46.15, 20.75],
 ];
 
 // Drumuri principale pe care intervenim, cu etichetă pe hartă.
 export const ROADS: { name: string; desc: string; at: [number, number]; path: [number, number][] }[] = [
-  { name: "DN6", desc: "Timișoara – Lugoj – Caransebeș", at: [45.74, 21.55], path: [[45.75, 21.23], [45.73, 21.5], [45.69, 21.9], [45.6, 22.05]] },
-  { name: "DN69", desc: "Timișoara – Arad", at: [45.88, 21.24], path: [[45.78, 21.23], [45.9, 21.25], [46.0, 21.27]] },
-  { name: "DN59", desc: "Timișoara – Deta – Moravița", at: [45.55, 21.25], path: [[45.73, 21.22], [45.6, 21.23], [45.4, 21.22]] },
-  { name: "DN59A", desc: "Timișoara – Jimbolia", at: [45.78, 20.95], path: [[45.77, 21.18], [45.79, 20.95], [45.79, 20.72]] },
-  { name: "DN6 Vest", desc: "Timișoara – Sânnicolau Mare", at: [45.92, 20.9], path: [[45.77, 21.18], [45.95, 20.85], [46.07, 20.63]] },
+  { name: "DN7 Vest", desc: "Arad – Pecica – Nădlac", at: [46.175, 21.0], path: [[46.18, 21.29], [46.17, 21.07], [46.17, 20.75]] },
+  { name: "DN7 Est", desc: "Arad – Lipova – Deva", at: [46.165, 21.55], path: [[46.18, 21.4], [46.16, 21.6], [46.09, 21.69]] },
+  { name: "DN79", desc: "Arad – Sântana – Oradea", at: [46.31, 21.45], path: [[46.21, 21.35], [46.28, 21.4], [46.35, 21.5], [46.45, 21.55]] },
+  { name: "DN69", desc: "Arad – Vinga – Timișoara", at: [46.07, 21.24], path: [[46.17, 21.31], [46.1, 21.25], [46.0, 21.22]] },
+  { name: "Curtici", desc: "Arad – Șofronea – Curtici", at: [46.3, 21.31], path: [[46.22, 21.32], [46.28, 21.31], [46.34, 21.31]] },
 ];
