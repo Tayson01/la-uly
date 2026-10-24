@@ -13,7 +13,7 @@
 - Keep the business address, Google Maps target, and coverage-map base coordinates centralized in site-data so location details stay consistent.
 - Keep legal company identity and registered office centralized in site-data, separate from the commercial brand and workshop address, so Contact and Footer remain consistent.
 - Derive browser icons (favicon, .ico, apple-touch-icon) from the red V of the brand logo as flat renders, with a brighter variant under prefers-color-scheme: dark so the tab icon stays legible.
-- Serve homepage van photography as bundled image files in src/assets with a dedicated mobile crop in a picture element so vehicle branding stays legible without altering the source photograph.
+- Real business photos (from the owner's Facebook/Google profiles) live as optimized WebP files in src/assets/la-uly (max 1200px, hero with a 640px srcset variant) so pages stay light and images are versioned in GitHub.
 - Sitemap is router-derived (staticData.sitemap on every route) with service/zone pages added from site-data, so new pages are indexed automatically.
 - All site images are real files under src/assets imported via ES modules (no CDN pointers), so they live in GitHub and are hashed into the build.
 - Header and footer render the brand as a text wordmark (BrandLogo) built from site-data BRAND and theme tokens, so a rename never needs new logo images and stays legible in both themes.
