@@ -237,7 +237,7 @@ export const services: Service[] = [
   },
 ];
 
-export { zones, zoneRedirects, RADIUS_KM } from "./zones-data";
+export { zones, zoneRedirects, RADIUS_KM, servedPoints } from "./zones-data";
 export type { Zone } from "./zones-data";
 
 export const mapRings = [
