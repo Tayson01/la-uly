@@ -66,3 +66,16 @@ describe("zone deservite: Arad și împrejurimi", () => {
     for (const p of posts) for (const l of p.links.filter((x) => x.to.startsWith("/zone/"))) expect(slugs.has(l.to.slice(6))).toBe(true);
   });
 });
+
+import { MAPS, EMAIL } from "./site-data";
+describe("profiluri publice", () => {
+  test("butonul Locație duce la profilul Google trimis de proprietar", () => {
+    expect(MAPS).toBe("https://share.google/cb4eBtqPmz10uTivD");
+  });
+  test("e-mailul firmei este autoziangg@yahoo.com", () => {
+    expect(EMAIL).toBe("autoziangg@yahoo.com");
+  });
+  test("se oferă și vânzare de anvelope", () => {
+    expect(services.some((s) => s.slug === "vanzare-anvelope")).toBe(true);
+  });
+});
