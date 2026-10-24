@@ -72,9 +72,9 @@ function useBrand() {
   return c;
 }
 
-function Bridge({ onMap, onZoom, onTap }: { onMap: (m: L.Map) => void; onZoom: (z: number) => void; onTap: () => void }) {
+function Bridge({ onMap, onZoom, onTap, onMove }: { onMap: (m: L.Map) => void; onZoom: (z: number) => void; onTap: () => void; onMove: () => void }) {
   const map = useMap();
-  useMapEvents({ zoomend: () => onZoom(map.getZoom()), click: onTap });
+  useMapEvents({ zoomend: () => onZoom(map.getZoom()), moveend: onMove, resize: onMove, click: onTap });
   useEffect(() => {
     onMap(map);
     onZoom(map.getZoom());
@@ -109,10 +109,14 @@ export default function CoverageMap() {
   const [locating, setLocating] = useState(false);
   const [acc, setAcc] = useState<number | null>(null);
   const [mobile, setMobile] = useState(false);
+  const [canFullscreen, setCanFullscreen] = useState(false);
+  const [view, setView] = useState(0);
+  const onMove = useCallback(() => setView((v) => v + 1), []);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: coarse)");
     setMobile(mq.matches);
+    setCanFullscreen(!mq.matches && !!document.fullscreenEnabled);
   }, []);
 
   const zone = useMemo(() => zones.find((z) => z.slug === active) ?? null, [active]);
@@ -194,13 +198,23 @@ export default function CoverageMap() {
   // iar punctele mici dublate sau acoperite de o etichetă nu se mai desenează.
   const layout = useMemo(() => {
     type Box = { x1: number; y1: number; x2: number; y2: number };
-    const px = (ll: LL) => L.CRS.EPSG3857.latLngToPoint(L.latLng(ll), zoom);
+    const m = mapRef.current;
+    const px = (ll: LL) => (m ? m.latLngToContainerPoint(L.latLng(ll)) : L.CRS.EPSG3857.latLngToPoint(L.latLng(ll), zoom));
     const box = (ll: LL, w: number, h: number, dy = 0, pad = 3): Box => {
       const p = px(ll);
       return { x1: p.x - w / 2 - pad, y1: p.y - h / 2 + dy - pad, x2: p.x + w / 2 + pad, y2: p.y + h / 2 + dy + pad };
     };
     const hit = (a: Box, b: Box) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
     const taken: Box[] = [box(BASE, 44, 44), box(BASE, 140, 22, 35)];
+    // butoanele, banda de sus și cardul de jos acoperă harta: nu punem etichete sub ele
+    const wrap = wrapRef.current;
+    if (m && wrap) {
+      const w = wrap.getBoundingClientRect();
+      wrap.querySelectorAll<HTMLElement>("[data-cm-overlay]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        taken.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
+      });
+    }
     mapRings.forEach((r) => taken.push(box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20)));
     const base = px(BASE);
     const order = [...zones].sort((a, b) =>
@@ -233,7 +247,8 @@ export default function CoverageMap() {
       return !taken.some((t) => hit(t, b));
     });
     return { labeled, dots, points };
-  }, [zoom, active, showLabels]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoom, active, showLabels, view, user]);
 
   return (
     <div ref={wrapRef} className="cm-wrap relative isolate z-0 overflow-hidden h-[72svh] min-h-[480px] w-full bg-surface sm:h-[620px]">
@@ -245,7 +260,7 @@ export default function CoverageMap() {
         touchZoom
         className="cm-map h-full w-full"
       >
-        <Bridge onMap={onMap} onZoom={setZoom} onTap={() => setActive(null)} />
+        <Bridge onMap={onMap} onZoom={setZoom} onTap={() => setActive(null)} onMove={onMove} />
         <TileLayer
           key={dark ? "d" : "l"}
           url={dark ? TILES.dark.base : TILES.light.base}
@@ -322,7 +337,7 @@ export default function CoverageMap() {
       </MapContainer>
 
       {/* Alegere rapidă localitate */}
-      <div className="cm-strip absolute left-0 right-16 top-3 z-[500] flex gap-1.5 overflow-x-auto px-3 pb-1">
+      <div data-cm-overlay className="cm-strip absolute left-0 right-16 top-3 z-[500] flex gap-1.5 overflow-x-auto px-3 pb-1">
         {[...zones].sort((a, b) => km(BASE, a.coords as LL) - km(BASE, b.coords as LL)).map((z) => (
           <button
             key={z.slug}
@@ -338,7 +353,7 @@ export default function CoverageMap() {
       </div>
 
       {/* Controale */}
-      <div className="absolute right-3 top-3 z-[501] flex flex-col gap-2">
+      <div data-cm-overlay className="absolute right-3 top-3 z-[501] flex flex-col gap-2">
         <div className="cm-glass flex flex-col overflow-hidden rounded-2xl">
           <button type="button" aria-label="Mărește" onClick={() => mapRef.current?.zoomIn()} className="cm-btn"><Plus className="size-4" /></button>
           <span className="h-px bg-border" />
@@ -346,12 +361,14 @@ export default function CoverageMap() {
         </div>
         <button type="button" aria-label="Locația mea" onClick={() => locate()} className="cm-glass cm-btn rounded-2xl">{locating ? <Loader2 className="size-4 animate-spin" /> : <Locate className="size-4" />}</button>
         <button type="button" aria-label="Vezi toată zona" onClick={fit} className="cm-glass cm-btn rounded-2xl"><Navigation className="size-4" /></button>
-        <button type="button" aria-label="Ecran complet" onClick={fullscreen} className="cm-glass cm-btn hidden rounded-2xl sm:grid"><Maximize className="size-4" /></button>
+        {canFullscreen && (
+          <button type="button" aria-label="Ecran complet" onClick={fullscreen} className="cm-glass cm-btn rounded-2xl"><Maximize className="size-4" /></button>
+        )}
       </div>
 
       {/* Card info */}
       <div className="absolute inset-x-3 bottom-3 z-[500] sm:left-auto sm:right-3 sm:w-[340px]">
-        <div className="cm-glass rounded-3xl p-3 sm:p-4">
+        <div data-cm-overlay className="cm-glass rounded-3xl p-3 sm:p-4">
           {target && dist !== null ? (
             <>
               <div className="flex items-start justify-between gap-3">
