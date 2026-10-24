@@ -72,9 +72,9 @@ function useBrand() {
   return c;
 }
 
-function Bridge({ onMap, onZoom, onTap }: { onMap: (m: L.Map) => void; onZoom: (z: number) => void; onTap: () => void }) {
+function Bridge({ onMap, onZoom, onTap, onMove }: { onMap: (m: L.Map) => void; onZoom: (z: number) => void; onTap: () => void; onMove: () => void }) {
   const map = useMap();
-  useMapEvents({ zoomend: () => onZoom(map.getZoom()), click: onTap });
+  useMapEvents({ zoomend: () => onZoom(map.getZoom()), moveend: onMove, resize: onMove, click: onTap });
   useEffect(() => {
     onMap(map);
     onZoom(map.getZoom());
@@ -109,10 +109,14 @@ export default function CoverageMap() {
   const [locating, setLocating] = useState(false);
   const [acc, setAcc] = useState<number | null>(null);
   const [mobile, setMobile] = useState(false);
+  const [canFullscreen, setCanFullscreen] = useState(false);
+  const [view, setView] = useState(0);
+  const onMove = useCallback(() => setView((v) => v + 1), []);
 
   useEffect(() => {
     const mq = window.matchMedia("(pointer: coarse)");
     setMobile(mq.matches);
+    setCanFullscreen(!mq.matches && !!document.fullscreenEnabled);
   }, []);
 
   const zone = useMemo(() => zones.find((z) => z.slug === active) ?? null, [active]);
@@ -151,7 +155,7 @@ export default function CoverageMap() {
         setAcc(p.coords.accuracy);
         setActive(null);
         setLocating(false);
-        mapRef.current?.flyToBounds(L.latLngBounds([ll, BASE]).pad(0.35), { duration: 0.9 });
+        mapRef.current?.flyToBounds(L.latLngBounds([ll, BASE]), { duration: 0.9, paddingTopLeft: [40, 80], paddingBottomRight: [80, 250] });
       },
       (e) => {
         setLocating(false);
@@ -189,6 +193,72 @@ export default function CoverageMap() {
   const dist = target ? km(BASE, target) : null;
   const showLabels = zoom >= 10;
 
+  // Anti-suprapunere: la zoom-ul curent calculăm în pixeli unde cade fiecare etichetă.
+  // Etichetele care s-ar suprapune devin puncte (cu numele la hover/atingere),
+  // iar punctele mici dublate sau acoperite de o etichetă nu se mai desenează.
+  const layout = useMemo(() => {
+    type Box = { x1: number; y1: number; x2: number; y2: number };
+    const m = mapRef.current;
+    const px = (ll: LL) => (m ? m.latLngToContainerPoint(L.latLng(ll)) : L.CRS.EPSG3857.latLngToPoint(L.latLng(ll), zoom));
+    const box = (ll: LL, w: number, h: number, dy = 0, pad = 3): Box => {
+      const p = px(ll);
+      return { x1: p.x - w / 2 - pad, y1: p.y - h / 2 + dy - pad, x2: p.x + w / 2 + pad, y2: p.y + h / 2 + dy + pad };
+    };
+    const hit = (a: Box, b: Box) => a.x1 < b.x2 && a.x2 > b.x1 && a.y1 < b.y2 && a.y2 > b.y1;
+    const taken: Box[] = [box(BASE, 44, 44), box(BASE, 140, 22, 35)];
+    const overlays: Box[] = [];
+    // butoanele, banda de sus și cardul de jos acoperă harta: nu punem etichete sub ele
+    const wrap = wrapRef.current;
+    if (m && wrap) {
+      const w = wrap.getBoundingClientRect();
+      wrap.querySelectorAll<HTMLElement>("[data-cm-overlay]").forEach((el) => {
+        const r = el.getBoundingClientRect();
+        overlays.push({ x1: r.left - w.left - 4, y1: r.top - w.top - 4, x2: r.right - w.left + 4, y2: r.bottom - w.top + 4 });
+      });
+    }
+    const ringVisible = mapRings.map((r) => {
+      const b = box([BASE[0] + r.radius / 111320, BASE[1]], 80, 20);
+      if (overlays.some((o) => hit(o, b))) return false;
+      taken.push(b);
+      return true;
+    });
+    taken.push(...overlays);
+    const base = px(BASE);
+    const order = [...zones].sort((a, b) =>
+      a.slug === active ? -1 : b.slug === active ? 1 : km(BASE, a.coords as LL) - km(BASE, b.coords as LL),
+    );
+    const labeled = new Set<string>();
+    const dots = new Set<string>();
+    for (const z of order) {
+      const c = z.coords as LL;
+      const p = px(c);
+      const nearBase = Math.hypot(p.x - base.x, p.y - base.y) < 30;
+      if (nearBase) continue; // e chiar sub pinul atelierului (ex. Arad / Grădiște)
+      if (showLabels || z.slug === active) {
+        const b = box(c, z.short.length * 6.8 + 30, 26);
+        const size = m?.getSize();
+        const inside = !size || (b.x1 > 0 && b.y1 > 0 && b.x2 < size.x && b.y2 < size.y);
+        if (z.slug === active || (inside && !taken.some((t) => hit(t, b)))) {
+          taken.push(b);
+          labeled.add(z.slug);
+          continue;
+        }
+      }
+      const d = box(c, 12, 12, 0, 1);
+      if (z.slug !== active && taken.some((t) => hit(t, d))) continue; // nu desenăm puncte peste pin, eticheta atelierului sau etichetele inelelor
+      dots.add(z.slug);
+      taken.push(d);
+    }
+    const points = servedPoints.filter((sp) => {
+      if (km(sp.coords, BASE) < 1.5) return false;
+      if (zones.some((z) => km(sp.coords, z.coords as LL) < 1.5)) return false;
+      const b = box(sp.coords, 8, 8, 0, 0);
+      return !taken.some((t) => hit(t, b));
+    });
+    return { labeled, dots, points, ringVisible };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [zoom, active, showLabels, view, user]);
+
   return (
     <div ref={wrapRef} className="cm-wrap relative isolate z-0 overflow-hidden h-[72svh] min-h-[480px] w-full bg-surface sm:h-[620px]">
       <MapContainer
@@ -199,7 +269,7 @@ export default function CoverageMap() {
         touchZoom
         className="cm-map h-full w-full"
       >
-        <Bridge onMap={onMap} onZoom={setZoom} onTap={() => setActive(null)} />
+        <Bridge onMap={onMap} onZoom={setZoom} onTap={() => setActive(null)} onMove={onMove} />
         <TileLayer
           key={dark ? "d" : "l"}
           url={dark ? TILES.dark.base : TILES.light.base}
@@ -224,7 +294,7 @@ export default function CoverageMap() {
             }}
           />
         ))}
-        {mapRings.map((r) => (
+        {mapRings.filter((_, i) => layout.ringVisible[i]).map((r) => (
           <Marker
             key={`l${r.km}`}
             position={[BASE[0] + r.radius / 111320, BASE[1]]}
@@ -242,7 +312,7 @@ export default function CoverageMap() {
         )}
 
         {/* Toate localitățile deservite, ca puncte mici */}
-        {servedPoints.map((p) => (
+        {layout.points.map((p) => (
           <CircleMarker
             key={p.name}
             center={p.coords}
@@ -253,15 +323,20 @@ export default function CoverageMap() {
           </CircleMarker>
         ))}
 
-        {zones.filter((z) => active === z.slug || (km(BASE, z.coords as LL) * 1000) / (109300 / 2 ** zoom) > 38).map((z) => (
-          <Marker
-            key={z.slug}
-            position={z.coords as LL}
-            icon={zoneIcon(z.short, active === z.slug, showLabels)}
-            eventHandlers={{ click: () => selectZone(z.slug, z.coords as LL) }}
-            zIndexOffset={active === z.slug ? 1000 : 0}
-          />
-        ))}
+        {zones.filter((z) => layout.labeled.has(z.slug) || layout.dots.has(z.slug)).map((z) => {
+          const asLabel = layout.labeled.has(z.slug);
+          return (
+            <Marker
+              key={`${z.slug}-${asLabel ? "l" : "d"}`}
+              position={z.coords as LL}
+              icon={zoneIcon(z.short, active === z.slug, asLabel)}
+              eventHandlers={{ click: () => selectZone(z.slug, z.coords as LL) }}
+              zIndexOffset={active === z.slug ? 1000 : asLabel ? 500 : 0}
+            >
+              {!asLabel && <Tooltip direction="top" offset={[0, -6]}>{z.name}</Tooltip>}
+            </Marker>
+          );
+        })}
 
         {user && acc && acc < 3000 && (
           <Circle center={user} radius={acc} interactive={false} pathOptions={{ color: "#3b82f6", weight: 1, opacity: 0.4, fillOpacity: 0.1 }} />
@@ -271,7 +346,7 @@ export default function CoverageMap() {
       </MapContainer>
 
       {/* Alegere rapidă localitate */}
-      <div className="cm-strip absolute left-0 right-16 top-3 z-[500] flex gap-1.5 overflow-x-auto px-3 pb-1">
+      <div data-cm-overlay className="cm-strip absolute left-0 right-16 top-3 z-[500] flex gap-1.5 overflow-x-auto px-3 pb-1">
         {[...zones].sort((a, b) => km(BASE, a.coords as LL) - km(BASE, b.coords as LL)).map((z) => (
           <button
             key={z.slug}
@@ -287,7 +362,7 @@ export default function CoverageMap() {
       </div>
 
       {/* Controale */}
-      <div className="absolute right-3 top-3 z-[501] flex flex-col gap-2">
+      <div data-cm-overlay className="absolute right-3 top-3 z-[501] flex flex-col gap-2">
         <div className="cm-glass flex flex-col overflow-hidden rounded-2xl">
           <button type="button" aria-label="Mărește" onClick={() => mapRef.current?.zoomIn()} className="cm-btn"><Plus className="size-4" /></button>
           <span className="h-px bg-border" />
@@ -295,12 +370,14 @@ export default function CoverageMap() {
         </div>
         <button type="button" aria-label="Locația mea" onClick={() => locate()} className="cm-glass cm-btn rounded-2xl">{locating ? <Loader2 className="size-4 animate-spin" /> : <Locate className="size-4" />}</button>
         <button type="button" aria-label="Vezi toată zona" onClick={fit} className="cm-glass cm-btn rounded-2xl"><Navigation className="size-4" /></button>
-        <button type="button" aria-label="Ecran complet" onClick={fullscreen} className="cm-glass cm-btn hidden rounded-2xl sm:grid"><Maximize className="size-4" /></button>
+        {canFullscreen && (
+          <button type="button" aria-label="Ecran complet" onClick={fullscreen} className="cm-glass cm-btn rounded-2xl"><Maximize className="size-4" /></button>
+        )}
       </div>
 
       {/* Card info */}
       <div className="absolute inset-x-3 bottom-3 z-[500] sm:left-auto sm:right-3 sm:w-[340px]">
-        <div className="cm-glass rounded-3xl p-3 sm:p-4">
+        <div data-cm-overlay className="cm-glass rounded-3xl p-3 sm:p-4">
           {target && dist !== null ? (
             <>
               <div className="flex items-start justify-between gap-3">
@@ -315,11 +392,11 @@ export default function CoverageMap() {
               <div className="mt-3 grid grid-cols-2 gap-2">
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Sosire</p>
-                  <p className="text-base font-black tabular-nums">~{eta(dist)}</p>
+                  <p className="text-base font-black tabular-nums">~{zone ? zone.etaMinutes : nearest && user && km(user, nearest.coords as LL) < 8 ? nearest.etaMinutes : eta(dist)}</p>
                 </div>
                 <div className="rounded-2xl bg-muted px-3 py-2">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground">Distanță</p>
-                  <p className="text-base font-black tabular-nums">{Math.round(dist * 1.25)} km</p>
+                  <p className="text-base font-black tabular-nums">{zone ? (zone.km === 0 ? "atelier" : `~${zone.km} km`) : `${Math.round(dist * 1.25)} km`}</p>
                 </div>
               </div>
               <div className="mt-3 flex gap-2">

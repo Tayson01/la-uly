@@ -23,3 +23,4 @@
 - Coverage bars are visible by default and animate once when their list enters the viewport; observer delays must never hide arrival information on mobile or without JavaScript.
 - The public site address lives only in site-data SITE_URL (canonicals, og:url, JSON-LD, sitemap), so a domain move is a one-line change.
 - Map points for every served locality come from servedPoints in zones-data (OpenStreetMap coordinates), separate from zone pages, so the map can show more villages than there are pages.
+- Coverage map declutters per view: zone labels are placed in screen pixels, collisions/overlays/edges turn labels into dots with tooltips, and served points duplicating a zone or hidden under a label are skipped, so nothing overlaps at any zoom.
