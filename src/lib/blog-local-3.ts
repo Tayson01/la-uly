@@ -199,7 +199,7 @@ export const localPosts3: BlogPost[] = [
     category: "Sfaturi",
     title: "Vulcanizare camioane în Arad, non-stop: atelier și intervenții",
     keyword: "vulcanizare camioane Arad",
-    intent: "Transportator care caută vulcanizare pentru camioane în Arad.",
+    intent: "Firmă de camioane care caută vulcanizare non-stop în Arad.",
     desc: "Atelier lângă Centura Aradului și intervenții la camioane pe A1, DN7 și DN79, zi și noapte.",
     date: "2026-10-24",
     sections: [
